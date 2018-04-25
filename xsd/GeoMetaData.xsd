@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema"
+  xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml"
+  xmlns:gml="http://www.opengis.net/gml/3.2"
+  xmlns:gmd="http://www.isotc211.org/2005/gmd"
+  targetNamespace="http://www.cgs.gov.cn/geo3dml"
+  elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+  <annotation>
+    <documentation>此文档定义三维地质模型的元数据结构。</documentation>
+  </annotation>
+
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://www.isotc211.org/2005/gmd/metadataEntity.xsd"/>
+
+  <complexType name="GeoModelMetadataType">
+    <annotation>
+      <documentation>三维地质模型元数据</documentation>
+    </annotation>
+    <complexContent>
+      <extension base="gmd:MD_Metadata_Type">
+        <sequence>
+          <element name="Description" type="string">
+            <annotation><documentation>关于地质模型的描述。</documentation></annotation>
+          </element>
+          <element name="ToolName" type="string">
+            <annotation><documentation>创建该地质模型所使用的软件工具的名称。</documentation></annotation>
+          </element>
+          <element name="ToolVersion" type="string">
+            <annotation><documentation>创建该地质模型所使用的软件工具的版本号。</documentation></annotation>
+          </element>
+          <element name="SpatialReferenceSystem" type="geo3dml:AbstractSpatialReferenceSystemPropertyType" minOccurs="0">
+            <annotation><documentation>空间数据参照系</documentation></annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="GeoModelMetadata" type="geo3dml:GeoModelMetadataType" substitutionGroup="gmd:MD_Metadata" />
+
+  <complexType name="GeoModelMetadataPropertyType">
+    <sequence>
+      <element ref="geo3dml:GeoModelMetadata" minOccurs="0"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  
+  <complexType name="AbstractSpatialReferenceSystemType" abstract="true">
+    <annotation><documentation>源自《地质信息元数据标准》（DD2006-05）的空间数据参数系数据结构。</documentation></annotation>
+    <sequence />
+  </complexType>
+  <element name="AbstractSpatialReferenceSystem" type="geo3dml:AbstractSpatialReferenceSystemType" abstract="true" />
+  
+  <complexType name="AbstractSpatialReferenceSystemPropertyType">
+    <sequence>
+      <element ref="geo3dml:AbstractSpatialReferenceSystem" minOccurs="0"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  
+  <complexType name="SpatialReferenceSystemUsingGeographicIdentifiersType">
+    <annotation><documentation>源自《地质信息元数据标准》（DD2006-05）的基于地理标识的空间参照系。</documentation></annotation>
+    <complexContent>
+      <extension base="geo3dml:AbstractSpatialReferenceSystemType">
+        <sequence>
+          <element name="Name" type="string">
+            <annotation><documentation>基于地理标识的空间参照系名称。</documentation></annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="SpatialReferenceSystemUsingGeographicIdentifiers" type="geo3dml:SpatialReferenceSystemUsingGeographicIdentifiersType" substitutionGroup="geo3dml:AbstractSpatialReferenceSystem" />
+  
+  <complexType name="CoordinateReferenceSystemType">
+    <annotation><documentation>源自《地质信息元数据标准》（DD2006-05）的基于坐标的空间参照系。</documentation></annotation>
+    <complexContent>
+      <extension base="geo3dml:AbstractSpatialReferenceSystemType">
+        <sequence>
+          <element name="CoordinateReferenceSystemIdentifier">
+            <annotation><documentation>坐标参照系名称</documentation></annotation>
+            <simpleType>
+              <restriction base="string">
+                <enumeration value="1954北京坐标系" />
+                <enumeration value="1980西安坐标系" />
+                <enumeration value="地方独立坐标系">
+                  <annotation><documentation>相对于独立国家坐标系的局部坐标系</documentation></annotation>
+                </enumeration>
+                <enumeration value="全球参考系">
+                  <annotation><documentation>全球参考系：用于检索陆地卫星数据的一个全球检索系。</documentation></annotation>
+                </enumeration>
+                <enumeration value="IAG 1979年大地参照系">
+                  <annotation><documentation>国际大地测量协会（IAG）1979年大会通过的大地参照系。</documentation></annotation>
+                </enumeration>
+                <enumeration value="世界大地坐标系">
+                  <annotation><documentation>世界大地坐标系，质点在地球质心。</documentation></annotation>
+                </enumeration>
+                <enumeration value="2000中国大地坐标系统">
+                  <annotation><documentation>国家GPS大地控制网，地心坐标系</documentation></annotation>
+                </enumeration>
+              </restriction>
+            </simpleType>
+          </element>
+          <element name="CoordinateSystemType">
+            <annotation><documentation>坐标系类型名称。</documentation></annotation>
+            <simpleType>
+              <restriction base="string">
+                <enumeration value="笛卡尔坐标系">
+                  <annotation><documentation>相互正交于远点的n个数轴（n是任意正整数）组成的n维坐标系。</documentation></annotation>
+                </enumeration>
+                <enumeration value="大地坐标系">
+                  <annotation><documentation>用经度和纬度表示地面点位置的球面坐标。</documentation></annotation>
+                </enumeration>
+                <enumeration value="投影坐标系">
+                  <annotation><documentation>由不同的投影方法所形成的坐标系。</documentation></annotation>
+                </enumeration>
+                <enumeration value="极坐标系">
+                  <annotation><documentation>用某点至极点的距离和方向表示该点位置的坐标系。</documentation></annotation>
+                </enumeration>
+                <enumeration value="重力相关坐标系">
+                  <annotation><documentation>重力测量及其计算的一种基准。</documentation></annotation>
+                </enumeration>
+              </restriction>
+            </simpleType>
+          </element>
+          <element name="CoordinateSystemIdentifier" type="string">
+            <annotation><documentation>坐标系名称</documentation></annotation>
+          </element>
+          <element name="Parameter" type="string" minOccurs="0">
+            <annotation><documentation>采用投影坐标系时有关投影坐标参数的说明。</documentation></annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="CoordinateReferenceSystem" type="geo3dml:CoordinateReferenceSystemType" substitutionGroup="geo3dml:AbstractSpatialReferenceSystem" />
+  
+  <complexType name="VerticalReferenceSystemType">
+    <annotation><documentation>源自《地质信息元数据标准》（DD2006-05）的垂向坐标参照系。</documentation></annotation>
+    <complexContent>
+      <extension base="geo3dml:AbstractSpatialReferenceSystemType">
+        <sequence>
+          <element name="VerticalReferenceSystemIdentifier">
+            <annotation><documentation>垂向坐标参照系名称。</documentation></annotation>
+            <simpleType>
+              <restriction base="string">
+                <enumeration value="高程">
+                  <annotation><documentation>高程类别的一级分类名。</documentation></annotation>
+                </enumeration>
+                <enumeration value="1956年黄海高程系">
+                  <annotation><documentation>高程类别的二级分类名。</documentation></annotation>
+                </enumeration>
+                <enumeration value="1985年国家高程系">
+                  <annotation><documentation>高程类别的二级分类名。</documentation></annotation>
+                </enumeration>
+                <enumeration value="地方独立高程系">
+                  <annotation><documentation>高程类别的二级分类名，是独立于国家高程系外的局部高程坐标系。</documentation></annotation>
+                </enumeration>
+                <enumeration value="深度">
+                  <annotation><documentation>深度类别的一级分类名。</documentation></annotation>
+                </enumeration>
+                <enumeration value="略最低低潮面">
+                  <annotation><documentation>深度类别的二级分类名，是印度大潮低潮面。</documentation></annotation>
+                </enumeration>
+                <enumeration value="理论深度基准面">
+                  <annotation><documentation>深度类别的二级分类名。</documentation></annotation>
+                </enumeration>
+                <enumeration value="重力">
+                  <annotation><documentation>重力相关类别的一级分类名。</documentation></annotation>
+                </enumeration>
+                <enumeration value="国家重力控制网">
+                  <annotation><documentation>重力相关类别的二级分类名，是57网。重力基准由苏联引入，属波茨坦重力基准。</documentation></annotation>
+                </enumeration>
+                <enumeration value="国家1985重力基准网">
+                  <annotation><documentation>重力相关类别的二级分类名，是85网。综合性的重力基准。</documentation></annotation>
+                </enumeration>
+                <enumeration value="维也纳重力基准">
+                  <annotation><documentation>重力相关类别的二级分类名。</documentation></annotation>
+                </enumeration>
+                <enumeration value="波茨坦重力基准">
+                  <annotation><documentation>重力相关类别的二级分类名。</documentation></annotation>
+                </enumeration>
+                <enumeration value="国际重力基准网1971">
+                  <annotation><documentation>重力相关类别的二级分类名，即IGSN-71。</documentation></annotation>
+                </enumeration>
+                <enumeration value="国际绝对重力基准网">
+                  <annotation><documentation>重力相关类别的二级分类名，即IAGBN。</documentation></annotation>
+                </enumeration>
+                <enumeration value="相对高度">
+                  <annotation><documentation>相对高度类别的一级分类名。</documentation></annotation>
+                </enumeration>
+              </restriction>
+            </simpleType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="VerticalReferenceSystem" type="geo3dml:VerticalReferenceSystemType" substitutionGroup="geo3dml:AbstractSpatialReferenceSystem" />
+</xs:schema>

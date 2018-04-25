@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema"
+  xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml"
+  xmlns:gml="http://www.opengis.net/gml/3.2"
+  targetNamespace="http://www.cgs.gov.cn/geo3dml"
+  elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+  <annotation>
+    <documentation>本文档定义Geo3DML所使用的一些基本数据类型。</documentation>
+  </annotation>
+
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/basicTypes.xsd" />
+
+  <simpleType name="DoubleBetween0And1">
+    <annotation>
+      <documentation>区间[0, 1]的浮点数。</documentation>
+    </annotation>
+    <restriction base="double">
+      <minInclusive value="0"/>
+      <maxInclusive value="1"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="DoubleBetween0And1List">
+    <annotation>
+      <documentation>元素值位于区间[0, 1]的数列。</documentation>
+    </annotation>
+    <list itemType="geo3dml:DoubleBetween0And1"/>
+  </simpleType>
+
+  <simpleType name="Color">
+    <annotation>
+      <documentation>颜色：RGB。</documentation>
+    </annotation>
+    <restriction base="geo3dml:DoubleBetween0And1List">
+      <length value="3"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="ColorPlusAlpha">
+    <annotation>
+      <documentation>颜色：RGBA。</documentation>
+    </annotation>
+    <restriction base="geo3dml:DoubleBetween0And1List">
+      <length value="4"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="TransformationMatrix2x2Type">
+    <annotation>
+      <documentation>表示一个2行2列的矩阵。矩阵的记录方式为按行优先的顺序记录4个实数，即第1个实数表示第一行第一列的元素，第2个实数表示第一行第二列的元素。其它依此类推。
+      </documentation>
+    </annotation>
+    <restriction base="gml:doubleList">
+      <length value="4"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="TransformationMatrix3x4Type">
+    <annotation>
+      <documentation>
+      表示一个3行4列的矩阵。矩阵的记录方式为按行优先的顺序记录12个实数，即前4个实数表示第一行的元素，后续4个实数表示第二行的记录。其它依此类推。
+      </documentation>
+    </annotation>
+    <restriction base="gml:doubleList">
+      <length value="12"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="TransformationMatrix4x4Type">
+    <annotation>
+      <documentation>
+      表示一个4行4列的矩阵。矩阵的记录方式为按行优先的顺序记录16个实数，即前4个实数表示第一行的元素，后续4个实数表示第二行的记录。其它依此类推。
+      </documentation>
+    </annotation>
+    <restriction base="gml:doubleList">
+      <length value="16"/>
+    </restriction>
+  </simpleType>
+
+</xs:schema>

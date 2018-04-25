@@ -1,0 +1,329 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema"
+  xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml"
+  xmlns:gml="http://www.opengis.net/gml/3.2"
+  targetNamespace="http://www.cgs.gov.cn/geo3dml"
+  elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+  <annotation>
+    <documentation>
+      Geo3DML对OGC GML空间数据结构进行扩展的空间数据结构的定义：TIN，四面体体元填充的体，规则六面体体元填充的体，角点网格，可变换格网。
+      其它几何对象均直接使用OGC GML标准中关于Geometry对象的定义。
+      在实际工作中，Geo3DML主要使用的几何对象包括：点(gml:Point)，曲线(gml:LineString以及GML中关于参数化曲线的定义)，曲面（geo3dml:GeoTin），体(gml:Solid)。
+    </documentation>
+  </annotation>
+
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd" />
+  <include schemaLocation="./GeoBasicTypes.xsd"/>
+
+  <complexType name="GeoTinType">
+    <annotation>
+      <documentation>Geo3DML中TIN的结构分为点表与三角形表两部分。</documentation>
+    </annotation>
+    <complexContent>
+      <extension base="gml:AbstractSurfaceType">
+        <sequence>
+          <element name="Vertices" minOccurs="0">
+            <annotation>
+              <documentation>顶点表</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element name="Vertex" minOccurs="0" maxOccurs="unbounded">
+                  <complexType>
+                    <complexContent>
+                      <extension base="gml:DirectPositionType">
+                        <attribute name="IndexNo" type="nonNegativeInteger" use="required"/>
+                      </extension>
+                    </complexContent>
+                  </complexType>
+                </element>
+              </sequence>
+            </complexType>
+          </element>
+          <element name="Triangles" minOccurs="0">
+            <annotation>
+              <documentation>三角形表</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element name="Triangle" minOccurs="0" maxOccurs="unbounded">
+                  <annotation>
+                    <documentation>TIN中的三角形结构包括顶点序列、邻接三角形序列两部分。</documentation>
+                  </annotation>
+                  <complexType>
+                    <sequence>
+                      <element name="VertexList">
+                        <complexType>
+                          <simpleContent>
+                            <extension base="gml:integerList">
+                              <attribute name="ItemCount" type="positiveInteger" fixed="3"/>
+                            </extension>
+                          </simpleContent>
+                        </complexType>
+                      </element>
+                      <element name="NeighborList" minOccurs="0">
+                        <complexType>
+                          <simpleContent>
+                            <extension base="gml:integerList">
+                              <attribute name="ItemCount" type="positiveInteger" fixed="3"/>
+                            </extension>
+                          </simpleContent>
+                        </complexType>
+                      </element>
+                    </sequence>
+                    <attribute name="IndexNo" type="nonNegativeInteger" use="required"/>
+                  </complexType>
+                </element>
+              </sequence>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="GeoTin" type="geo3dml:GeoTinType" substitutionGroup="gml:AbstractSurface"/>
+
+  <complexType name="GeoVolumeType">
+    <annotation>
+      <documentation>有同类型体元填充而成的体数据结构。</documentation>
+    </annotation>
+    <complexContent>
+      <extension base="gml:AbstractSolidType" />
+    </complexContent>
+  </complexType>
+  <element name="GeoVolume" type="geo3dml:GeoVolumeType" substitutionGroup="gml:AbstractSolid" abstract="true"/>
+  
+  <complexType name="GeoTetrahedronVolumeType">
+    <annotation>
+      <documentation>由四面体体元填充而成的体。</documentation>
+    </annotation>
+    <complexContent>
+      <extension base="geo3dml:GeoVolumeType">
+        <sequence>
+          <element name="Vertices" minOccurs="0">
+            <annotation>
+              <documentation>顶点表</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element name="Vertex" minOccurs="0" maxOccurs="unbounded">
+                  <complexType>
+                    <complexContent>
+                      <extension base="gml:DirectPositionType">
+                        <attribute name="IndexNo" type="nonNegativeInteger" use="required"/>
+                      </extension>
+                    </complexContent>
+                  </complexType>
+                </element>
+              </sequence>
+            </complexType>
+          </element>
+          <element name="Tetrahedrons" minOccurs="0">
+            <annotation>
+              <documentation>四面体表</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element name="Tetrahedron" minOccurs="0" maxOccurs="unbounded">
+                  <annotation>
+                    <documentation>体中的四面体体元信息。</documentation>
+                  </annotation>
+                  <complexType>
+                    <sequence>
+                      <element name="VertexList">
+                        <complexType>
+                          <simpleContent>
+                            <extension base="gml:integerList">
+                              <attribute name="ItemCount" type="positiveInteger" fixed="4"/>
+                            </extension>
+                          </simpleContent>
+                        </complexType>
+                      </element>
+                      <element name="NeighborList" minOccurs="0">
+                        <complexType>
+                          <simpleContent>
+                            <extension base="gml:integerList">
+                              <attribute name="ItemCount" type="positiveInteger" fixed="4"/>
+                            </extension>
+                          </simpleContent>
+                        </complexType>
+                      </element>
+                    </sequence>
+                    <attribute name="IndexNo" type="nonNegativeInteger" use="required"/>
+                  </complexType>
+                </element>
+              </sequence>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="GeoTetrahedronVolume" type="geo3dml:GeoTetrahedronVolumeType" substitutionGroup="geo3dml:GeoVolume"/>
+  
+  <complexType name="GeoCuboidVolumeType">
+    <annotation>
+      <documentation>由规则六面体体元填充而成的体。</documentation>
+    </annotation>
+    <complexContent>
+      <extension base="geo3dml:GeoVolumeType">
+        <sequence>
+          <element name="Vertices" minOccurs="0">
+            <annotation>
+              <documentation>顶点表</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element name="Vertex" minOccurs="0" maxOccurs="unbounded">
+                  <complexType>
+                    <complexContent>
+                      <extension base="gml:DirectPositionType">
+                        <attribute name="IndexNo" type="nonNegativeInteger" use="required"/>
+                      </extension>
+                    </complexContent>
+                  </complexType>
+                </element>
+              </sequence>
+            </complexType>
+          </element>
+          <element name="Cuboids" minOccurs="0">
+            <annotation>
+              <documentation>规则六面体表</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element name="Cuboid" minOccurs="0" maxOccurs="unbounded">
+                  <annotation>
+                    <documentation>体中的规则六面体信息。</documentation>
+                  </annotation>
+                  <complexType>
+                    <sequence>
+                      <element name="VertexList">
+                        <complexType>
+                          <simpleContent>
+                            <extension base="gml:integerList">
+                                 <attribute name="ItemCount" type="positiveInteger" fixed="8"/>
+                            </extension>
+                          </simpleContent>
+                        </complexType>
+                      </element>
+                    </sequence>
+                    <attribute name="IndexNo" type="nonNegativeInteger" use="required"/>
+                  </complexType>
+                </element>
+              </sequence>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="GeoCuboidVolume" type="geo3dml:GeoCuboidVolumeType" substitutionGroup="geo3dml:GeoVolume"/>
+  
+  <complexType name="GeoCornerPointGridType">
+    <annotation>
+      <documentation>由角点网格体元填充而成的体：角点网格。</documentation>
+    </annotation>
+    <complexContent>
+      <extension base="geo3dml:GeoVolumeType">
+        <sequence>
+          <element name="Dimension">
+            <annotation>
+              <documentation>角点网格的维度，即其沿I、J、K轴方向各自划分体元的数目。</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="gml:integerList">
+                  <attribute name="ItemCount" type="positiveInteger" fixed="3"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="Pillars" minOccurs="0">
+            <annotation>
+              <documentation>
+              角点网格的Pillar线组成的数组。Pillar线是沿K轴延展的直线段。
+              设该角点网格的维度为 (Ni, Nj, Nk)，并以I方向为“行”、以J方向为“列”，则网格的Pillar线可记为 (Nj + 1) 行、(Ni + 1) 列，总条数为 (Nj + 1) * (Ni + 1)。
+              本元素以“行”优先的方式记录所有的Pillar线，即先记录第0行包含的第0列至第Ni列的共 (Ni + 1) 条Pillar线，然后记录第1行包含的第0列至第Ni列的共 (Ni + 1) 条Pillar线，……，最后记录第Nj行包含的第0列至第Ni列的共 (Ni + 1) 条Pillar线。
+              </documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element name="Pillar" minOccurs="0" maxOccurs="unbounded">
+                  <annotation>
+                    <documentation>角点网格的Pillar线，即沿K轴延展的直线段。每条Pillar线由其首尾两顶点的坐标确定。本元素出现的次数为(Nj + 1) * (Ni + 1)。</documentation>
+                  </annotation>
+                  <complexType>
+                    <sequence>
+                      <element name="HeadPos" type="gml:DirectPositionType"/>
+                      <element name="TailPos" type="gml:DirectPositionType"/>
+                    </sequence>
+                  </complexType>
+                </element>
+              </sequence>
+            </complexType>
+          </element>
+          <element name="Cells" minOccurs="0">
+            <annotation>
+              <documentation>
+              角点网格的体元集合。设角点网格的维度为 (Ni, Nj, Nk)，则其所包含的体元总数为 (Ni * Nj * Nk)，此即为本子元素所包含元素的数目。
+              以I方向为“行”、J方向为“列”、K方向为“层”，本元素按行-列-层优先的顺序顺次记录体元的位置。即先记录索引值为(Xi,0,0)（其中Xi为整数，属于区间[0,Ni)）的体元，接着记录索引值为(Xi,1,0)的体元，……，接着记录索引值为(Xi,0,1)的体元，……最后记录索引值为(Xi,Nj - 1, Nk - 1)的体元。
+              </documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element name="Cell" minOccurs="0" maxOccurs="unbounded">
+                  <annotation>
+                    <documentation>
+                    角点网格的六面体体元。本元素出现的次数为 (Ni * Nj * Nk)。
+                    角点网格中每个六面体体元都由其顶面4个角点及底面4个角点来确定。而这些角点均位于Pillar线上，因此仅需记录各角点的Z坐标值或其在对应Pillar线上距离Pillar线首顶点的距离即可确定角点的位置。
+                    若在坐标系I-J-K内平移该体元，使其一顶点与原点重合，并使得过该顶点的三条棱分别与对应的坐标轴的正方向重合，然后分别以该三条棱的长度为单位长度，则可以记该体元的8个角点的坐标为(0,0,0)、(1,0,0)、(0,1,0)、(1,1,0)、(0,0,1)、(1,0,1)、(0,1,1)、(1,1,1)。本元素按此顺序记录各角点的海拔高程值（Z坐标）或与Pillar线首顶点的距离。若记体元的索引值为(i,j,k)（其中i,j,k均为从0开始的索引值），则上述8个角点各自所对应的Pillar线的索引值分别为：(i,j)、(i + 1,j)、(i,j + 1)、(i + 1,j + 1)、(i,j)、(i + 1,j)、(i,j + 1)、(i + 1,j + 1)。</documentation>
+                  </annotation>
+                  <complexType>
+                    <simpleContent>
+                      <extension base="gml:doubleList">
+                        <attribute name="ItemCount" type="positiveInteger" fixed="8"/>
+                        <attribute name="Valid" type="boolean" default="true">
+                          <annotation><documentation>标记本体元是否有效。缺省值为true。</documentation></annotation>
+                        </attribute>
+                      </extension>
+                    </simpleContent>
+                  </complexType>
+                </element>
+              </sequence>
+              <attribute name="ZValue" use="required">
+                <annotation><documentation>标记子元素Cell中记录的值的类型：elevation表示海拔高程值（Z坐标），length表示与Pillar线首顶点的距离。</documentation></annotation>
+                <simpleType>
+                  <restriction base="string">
+                    <pattern value="elevation|length"/>
+                  </restriction>
+                </simpleType>
+              </attribute>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="GeoCornerPointGrid" type="geo3dml:GeoCornerPointGridType" substitutionGroup="geo3dml:GeoVolume"/>
+
+  <complexType name="GeoGridType">
+    <annotation>
+      <documentation>Geo3DML中多维规则网格。</documentation>
+    </annotation>
+    <complexContent>
+      <extension base="gml:AbstractGeometryType">
+        <sequence>
+          <element ref="gml:Grid"/>
+          <element name="TransformationMatrix" type="geo3dml:TransformationMatrix4x4Type" minOccurs="0">
+            <annotation>
+              <documentation>网格变换参数。</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="GeoGrid" type="geo3dml:GeoGridType" substitutionGroup="gml:AbstractGeometry"/>
+
+</xs:schema>

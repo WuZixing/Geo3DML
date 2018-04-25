@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema"
+  xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml"
+  xmlns:gml="http://www.opengis.net/gml/3.2"
+  xmlns:se="http://www.opengis.net/se"
+  targetNamespace="http://www.cgs.gov.cn/geo3dml"
+  elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+  <annotation>
+    <documentation>
+      参考OGC SLD sld:UserStyle的结构定义了关于geo3dml:Geo3DLayer的可视化参数。
+      本方案没有直接引用SLD规范的定义，因为SLD是专门为WMS服务提供支撑的，需要与WMS规范的其它内容协同工作。而本方案的目的在于提供地质模型的中间交换格式，不刻意追求与WMS紧耦合关系。
+      但是，本文档所定义的geo3dml:Geo3DStyle结构可以方便地转换为sld:UserStyle结构，从而为WMS等其它服务提供支持。
+      此外，本文档还针对3D可视化的要求，在OGC SE规范的基础上定义了geo3dml:GeoPointSymbolizer、geo3dml:GeoLineSymbolizer和geo3dml:GeoSurfaceSymbolizer：主要是在SE规范相应对象的基础上加上了3D可视化的光照、材质与纹理参数。
+    </documentation>
+  </annotation>
+  
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd" />
+  <import namespace="http://www.opengis.net/se" schemaLocation="http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd" />
+  <include schemaLocation="./GeoBasicTypes.xsd"/>
+  <include schemaLocation="./Geo3DStyleLib.xsd"/>
+  
+  <complexType name="Geo3DStyleType">
+    <annotation>
+      <documentation>针对geo3dml:Geo3DLayer定义的地质模型视图中要素空间属性的可视化参数。本结构的定义参考了OGC SLD规范中关于sld:UserStyle结构的定义。</documentation>
+    </annotation>
+    <complexContent>
+      <extension base="gml:AbstractGMLType">
+        <annotation>
+          <documentation>从gml:AbstractGMLType继承了gml:id、gml:name、gml:description等成员，以便于其它对象通过gml:id引用本对象，或者将其转换为带唯一名字属性的sld:UserStyle对象。</documentation>
+        </annotation>
+        <sequence>
+          <choice maxOccurs="1">
+            <element ref="se:FeatureTypeStyle"/>
+            <element ref="se:CoverageStyle"/>
+          </choice>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="Geo3DStyle" type="geo3dml:Geo3DStyleType" substitutionGroup="gml:AbstractGML" />
+  
+  <complexType name="Geo3DStylePropertyType">
+    <sequence>
+      <element ref="geo3dml:Geo3DStyle" minOccurs="0"/>
+    </sequence>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  
+  <complexType name="GeoPointSymbolizerType">
+    <annotation>
+      <documentation>扩展se:PointSymbolizerType类型，加入geo3dml:Material材质参数。</documentation>
+    </annotation>
+    <complexContent>
+      <extension base="se:PointSymbolizerType">
+        <sequence>
+          <element ref="geo3dml:Material" minOccurs="0" />
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="GeoPointSymbolizer" type="geo3dml:GeoPointSymbolizerType" substitutionGroup="se:PointSymbolizer" />
+  
+  <complexType name="GeoLineSymbolizerType">
+    <annotation>
+      <documentation>扩展se:LineSymbolizerType类型，加入geo3dml:Material材质参数。</documentation>
+    </annotation>
+    <complexContent>
+      <extension base="se:LineSymbolizerType">
+        <sequence>
+          <element ref="geo3dml:Material" minOccurs="0" />
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="GeoLineSymbolizer" type="geo3dml:GeoLineSymbolizerType" substitutionGroup="se:LineSymbolizer" />
+  
+  <complexType name="GeoSurfaceSymbolizerType">
+    <annotation>
+      <documentation>曲面(如TIN)的可视化参数。</documentation>
+    </annotation>
+    <complexContent>
+      <extension base="se:SymbolizerType">
+        <sequence>
+          <element ref="se:Geometry" minOccurs="0"/>
+          <element name="Front">
+            <annotation><documentation>面的正面可视化属性：颜色或纹理。</documentation></annotation>
+            <complexType>
+              <sequence>
+                <choice>
+                  <element ref="geo3dml:Material"/>
+                  <element ref="geo3dml:AbstractTexture"/>
+                </choice>
+              </sequence>
+            </complexType>
+          </element>
+          <element name="Back" minOccurs="0">
+            <annotation><documentation>面的反面可视化属性（可选）：颜色或纹理。</documentation></annotation>
+            <complexType>
+              <sequence>
+                <choice>
+                  <element ref="geo3dml:Material"/>
+                  <element ref="geo3dml:AbstractTexture"/>
+                </choice>
+              </sequence>
+            </complexType>
+          </element>
+          <element name="VertexSymbolizer" minOccurs="0">
+            <annotation><documentation>顶点的可视化参数（可选）。</documentation></annotation>
+            <complexType>
+              <sequence>
+                <element ref="geo3dml:GeoPointSymbolizer"/>
+              </sequence>
+            </complexType>
+          </element>
+          <element name="FrameSymbolizer" minOccurs="0">
+            <annotation><documentation>线框的可视化参数（可选）。</documentation></annotation>
+            <complexType>
+              <sequence>
+                <element ref="geo3dml:GeoLineSymbolizer"/>
+              </sequence>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="GeoSurfaceSymbolizer" type="geo3dml:GeoSurfaceSymbolizerType" substitutionGroup="se:Symbolizer" />
+  
+  <complexType name="GeoDiscreteCoverageSymbolizerType">
+    <annotation><documentation>属性场的可视化参数</documentation></annotation>
+    <complexContent>
+      <extension base="se:SymbolizerType">
+        <sequence>
+          <element ref="se:Geometry" minOccurs="0">
+            <annotation><documentation>用于指定要被绘制的属性场的名字。</documentation></annotation>
+          </element>
+          <element ref="se:Rule" maxOccurs="unbounded">
+            <annotation><documentation>设置属性场中对象的属性匹配条件，为几何对象配置相应的可视化参数。</documentation></annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="GeoDiscreteCoverageSymbolizer" type="geo3dml:GeoDiscreteCoverageSymbolizerType" substitutionGroup="se:Symbolizer" />
+  
+  <complexType name="MaterialType">
+    <annotation>
+      <documentation>参考X3D及OGC CityGML定义的3D可视化材质结构，包括灯光、颜色等参数。</documentation>
+    </annotation>
+    <sequence>
+      <element name="AmbientIntensity" type="geo3dml:DoubleBetween0And1" default="0.2" minOccurs="0">
+        <annotation><documentation>环境光强度。指漫反射光的最小强度。</documentation></annotation>
+      </element>
+      <element name="DiffuseColor" type="geo3dml:Color" default="0.8 0.8 0.8" minOccurs="0">
+        <annotation><documentation>漫反射光。如果不考虑光照，则漫反射光就是对象的颜色。参考二维地质图的符号及图例标准来设置要素的可视化参数时，请提取其颜色值来设置这里的漫反射光颜色。</documentation></annotation>
+      </element>
+      <element name="EmissiveColor" type="geo3dml:Color" default="0.0 0.0 0.0" minOccurs="0">
+        <annotation><documentation>辐射光</documentation></annotation>
+      </element>
+      <element name="Shininess" type="geo3dml:DoubleBetween0And1" default="0.2" minOccurs="0">
+        <annotation><documentation>聚光度</documentation></annotation>
+      </element>
+      <element name="SpecularColor" type="geo3dml:Color" default="1.0 1.0 1.0" minOccurs="0">
+        <annotation><documentation>镜面反射光</documentation></annotation>
+      </element>
+      <element name="Transparency" type="geo3dml:DoubleBetween0And1" default="0.0" minOccurs="0">
+        <annotation><documentation>透明度：0表示完全不透明；1表示完全透明。</documentation></annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <element name="Material" type="geo3dml:MaterialType" />
+  
+  <complexType name="AbstractTextureType" abstract="true">
+    <annotation>
+      <documentation>纹理结构。参考CityGML的Appearance模块中关于AbstractTextureType的定义。</documentation>
+    </annotation>
+    <sequence>
+      <element name="ImageURI" type="anyURI" />
+      <element name="MimeType" type="string" />
+      <element name="WrapMode" default="None">
+        <annotation><documentation>纹理的贴图模式。</documentation></annotation>
+        <simpleType>
+          <restriction base="string">
+            <enumeration value="None">
+              <annotation><documentation>默认：单幅填充</documentation></annotation>
+            </enumeration>
+            <enumeration value="Wrap">
+              <annotation><documentation>重复</documentation></annotation>
+            </enumeration>
+            <enumeration value="Mirror">
+              <annotation><documentation>镜像</documentation></annotation>
+            </enumeration>
+            <enumeration value="Clamp">
+              <annotation><documentation>按纹理图片的边界扩展</documentation></annotation>
+            </enumeration>
+            <enumeration value="Border">
+              <annotation><documentation>按定义的边界颜色扩展</documentation></annotation>
+            </enumeration>
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="BorderColor" type="geo3dml:ColorPlusAlpha" minOccurs="0">
+        <annotation><documentation>按边界颜色填充纹理时所使用的边界颜色：RGBA。</documentation></annotation>
+      </element>
+        </sequence>
+  </complexType>
+  <element name="AbstractTexture" type="geo3dml:AbstractTextureType" abstract="true" />
+  
+  <complexType name="GeoReferencedTextureType">
+    <annotation>
+      <documentation>参见CityGML的Appearance模块中关于GeoReferencedTextureType的定义。</documentation>
+    </annotation>
+    <complexContent>
+      <extension base="geo3dml:AbstractTextureType">
+        <sequence>
+          <annotation><documentation>内嵌定义的纹理映射地理坐标参数。计算方法参见CityGML标准关于Appearance的说明。</documentation></annotation>
+          <element name="ReferencePoint" type="gml:PointPropertyType" />
+          <element name="Orientation" type="geo3dml:TransformationMatrix2x2Type" />
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="GeoReferencedTexture" type="geo3dml:GeoReferencedTextureType" substitutionGroup="geo3dml:AbstractTexture" />
+  
+  <complexType name="ParameterizedTextureType">
+    <annotation>
+      <documentation>依据CityGML的Appearance模块中关于ParameterizedTextureType的定义，此类型的纹理对象将显示地指定顶点对应的纹理坐标或者顶点纹理坐标的计算参数。</documentation>
+    </annotation>
+    <complexContent>
+      <extension base="geo3dml:AbstractTextureType">
+        <sequence>
+          <choice>
+            <element name="TexCoordList" type="gml:DirectPositionListType">
+              <annotation><documentation>依次列出顶点所对应的纹理坐标。</documentation></annotation>
+            </element>
+            <element name="TexCoordGen" type="geo3dml:TransformationMatrix3x4Type">
+              <annotation>
+                <documentation>
+                依据顶点坐标计算纹理坐标时使用的矩阵。记该3行4列的矩阵为T，纹理坐标为行向量(s,t)，顶点的齐次世界坐标为列向量p=(x, y, z, w)，则有：(s,t) = (s'/q', t'/q')，而列向量(s', t', q') = T*p。
+                </documentation>
+              </annotation>
+            </element>
+          </choice>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="ParameterizedTexture" type="geo3dml:ParameterizedTextureType" substitutionGroup="geo3dml:AbstractTexture" />
+  
+  <complexType name="GeoSceneStyleType">
+    <annotation><documentation>地质模型场景范围下的显示参数，主要包括背景和光源信息。</documentation></annotation>
+    <sequence>
+      <element name="Background" type="geo3dml:Color" default="0.0 0.0 0.0">
+        <annotation><documentation>背景颜色</documentation></annotation>
+      </element>
+      <element name="Light" minOccurs="0" maxOccurs="8">
+        <annotation><documentation>场景的光照信息</documentation></annotation>
+        <complexType>
+          <sequence>
+            <element name="On" type="boolean" default="true" minOccurs="0">
+              <annotation><documentation>标记该光源的启用状态，值为true时表示启用该光源，否则表示不使用该光源。</documentation></annotation>
+            </element>
+            <element name="Type" default="Scene" minOccurs="0">
+              <annotation><documentation>光源的类型：头灯，相机灯，场景灯。缺省值为Scene。</documentation></annotation>
+              <simpleType>
+                <restriction base="string">
+                  <enumeration value="Head">
+                    <annotation><documentation>头灯</documentation></annotation>
+                  </enumeration>
+                  <enumeration value="Camera">
+                    <annotation><documentation>相机灯</documentation></annotation>
+                  </enumeration>
+                  <enumeration value="Scene">
+                    <annotation><documentation>场景灯</documentation></annotation>
+                  </enumeration>
+                </restriction>
+              </simpleType>
+            </element>
+            <element name="Position" default="0.0 0.0 1.0" minOccurs="0">
+              <annotation><documentation>光源的位置。</documentation></annotation>
+              <simpleType>
+                <restriction base="gml:doubleList">
+                  <length value="3"/>
+                </restriction>
+              </simpleType>
+            </element>
+            <element name="FocalPosition" default="0.0 0.0 0.0" minOccurs="0">
+              <annotation><documentation>灯光的聚焦位置。与光源的位置配合起来可计算光照的方向。</documentation></annotation>
+              <simpleType>
+                <restriction base="gml:doubleList">
+                  <length value="3"/>
+                </restriction>
+              </simpleType>
+            </element>
+            <element name="Intensity" type="geo3dml:DoubleBetween0And1" default="1.0" minOccurs="0">
+              <annotation><documentation>光源的强度</documentation></annotation>
+            </element>
+            <element name="AmbientColor" type="geo3dml:Color" default="1.0 1.0 1.0" minOccurs="0">
+              <annotation><documentation>光源的环境光颜色。</documentation></annotation>
+            </element>
+            <element name="DiffuseColor" type="geo3dml:Color" default="1.0 1.0 1.0" minOccurs="0">
+              <annotation><documentation>光源的漫反射光颜色。</documentation></annotation>
+            </element>
+            <element name="SpecularColor" type="geo3dml:Color" default="1.0 1.0 1.0" minOccurs="0">
+              <annotation><documentation>光源的镜面光颜色。</documentation></annotation>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <element name="GeoSceneStyle" type="geo3dml:GeoSceneStyleType"/>
+  
+  <complexType name="GeoSceneStylePropertyType">
+    <sequence minOccurs="0">
+      <element ref="geo3dml:GeoSceneStyle"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</xs:schema>

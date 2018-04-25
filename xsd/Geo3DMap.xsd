@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema"
+  xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml"
+  xmlns:gml="http://www.opengis.net/gml/3.2"
+  xmlns:xml="http://www.w3.org/XML/1998/namespace"
+  targetNamespace="http://www.cgs.gov.cn/geo3dml"
+  elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+  <annotation>
+    <documentation>此文档定义三维地质图的XML文档结构。</documentation>
+  </annotation>
+
+  <include schemaLocation="./Geo3DStyle.xsd"/>
+  <include schemaLocation="./Geo3DModel.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd" />
+  <import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+
+  <complexType name="Geo3DMapType">
+    <annotation>
+      <documentation>
+        三维地质图的类型定义。地质图是地质模型的图形化表达结果。地质图由多个图层组成，每个图层将某地质要素类中的地质要素与其对应的可视化参数关联起来。
+      </documentation>
+    </annotation>
+    <sequence>
+      <element name="Name" type="string">
+        <annotation><documentation>地质图的名字。</documentation></annotation>
+      </element>
+      <element name="Description" type="string">
+        <annotation><documentation>关于该地质图的说明信息。</documentation></annotation>
+      </element>
+      <element name="Layers" minOccurs="0">
+        <annotation><documentation>地质图中包含的图层。</documentation></annotation>
+        <complexType>
+          <sequence>
+            <element name="Layer" type="geo3dml:Geo3DLayerType" minOccurs="0" maxOccurs="unbounded"/>
+          </sequence>
+        </complexType>
+      </element>
+    </sequence>
+    <attribute ref="xml:base">
+      <annotation><documentation>加入此属性是为了避免xlink:link标签所引入的文档验证冲突。</documentation></annotation>
+    </attribute>
+  </complexType>
+  <element name="Geo3DMap" type="geo3dml:Geo3DMapType" />
+
+  <complexType name="Geo3DLayerType">
+    <annotation>
+      <documentation>
+        三维地质图中图层的类型定义。图层是某地质要素类中地质要素的几何属性的可视化结果。图层定义了地质要素与其可视化参数的关联方法。
+      </documentation>
+    </annotation>
+    <complexContent>
+      <extension base="gml:AbstractGMLType">
+        <annotation><documentation>gml:AbstractGMLType定义的成员gml:name即为视图的名字。</documentation></annotation>
+        <sequence>
+          <element name="FeatureClass" type="geo3dml:GeoFeatureClassPropertyType" minOccurs="0">
+            <annotation><documentation>图层所关联的地质要素类。</documentation></annotation>
+          </element>
+          <element name="Styles" minOccurs="0">
+            <annotation><documentation>图层所关联的关于地质要素的可视化参数。</documentation></annotation>
+            <complexType>
+              <sequence>
+                <element name="Style" type="geo3dml:Geo3DStylePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+              </sequence>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="Geo3DLayer" type="geo3dml:Geo3DLayerType" substitutionGroup="gml:AbstractGML" />
+
+  <complexType name="Geo3DLayerPropertyType">
+    <sequence>
+      <element ref="geo3dml:Geo3DLayer" minOccurs="0"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</xs:schema>

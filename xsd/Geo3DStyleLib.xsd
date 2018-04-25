@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema"
+  xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml"
+  xmlns:se="http://www.opengis.net/se"
+  targetNamespace="http://www.cgs.gov.cn/geo3dml"
+  elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+  <annotation>
+    <documentation>
+      本文档定义要素可视化参数库(geo3dml:Geo3DStyleLib)的结构。该参数库实际上是三种结构的集合，这三种结构分别是：se:FeatureTypeStyle，se:CoverageStyle，以及se:Symbolizer。
+      预定义的se:FeatureTypeStyle和se:CoverageStyle定位于视图（对应于“图层”）级别关于要素可视化参数的整体复用；而预定义的se:Symbolizer则定位于要素级别可视化参数的复用。
+      geo3dml:Geo3DStyle可以直接引用参数库中定义的se:FeatureTypeStyle或se:CoverageStyle数据。
+    </documentation>
+  </annotation>
+  
+  <import namespace="http://www.opengis.net/se" schemaLocation="http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd" />
+  
+  <complexType name="Geo3DStyleLibType">
+    <annotation>
+      <documentation>地质要素可视化参数库结构，主要内容为se:FeatureTypeStyle、se:CoverageStyle以及se:Symbolizer三种结构的集合。</documentation>
+    </annotation>
+    <sequence>
+      <element name="Name" type="string">
+        <annotation><documentation>参数库的名字。</documentation></annotation>
+      </element>
+      <element name="FeatureTypeStyleLib" type="geo3dml:FeatureTypeStyleLibType" minOccurs="0">
+        <annotation><documentation>库中包含的预定义的se:FeatureTypeStyle结构。</documentation></annotation>
+      </element>
+      <element name="CoverageStyleLib" type="geo3dml:CoverageStyleLibType" minOccurs="0">
+        <annotation><documentation>库中包含的预定义的se:CoverageStyle结构。</documentation></annotation>
+      </element>
+      <element name="SymbolizerLib" type="geo3dml:SymbolizerLibType" minOccurs="0">
+        <annotation><documentation>库中包含的预定义的se:Symbolizer结构。</documentation></annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <element name="Geo3DStyleLib" type="geo3dml:Geo3DStyleLibType" />
+  
+  <complexType name="FeatureTypeStyleLibType">
+    <annotation><documentation>关于se:FeatureTypeStyle的集合。</documentation></annotation>
+    <sequence>
+      <element ref="se:FeatureTypeStyle" minOccurs="0" maxOccurs="unbounded" />
+    </sequence>
+  </complexType>
+  
+  <complexType name="CoverageStyleLibType">
+    <annotation><documentation>关于se:CoverageStyle的集合。</documentation></annotation>
+    <sequence>
+      <element ref="se:CoverageStyle" minOccurs="0" maxOccurs="unbounded" />
+    </sequence>
+  </complexType>
+  
+  <complexType name="SymbolizerLibType">
+    <annotation><documentation>关于se:Symbolizer的集合。</documentation></annotation>
+    <sequence>
+      <element ref="se:Symbolizer" minOccurs="0" maxOccurs="unbounded" />
+    </sequence>
+  </complexType>
+</xs:schema>
