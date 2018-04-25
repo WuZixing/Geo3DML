@@ -1,4 +1,4 @@
-# Geo3DML
+Geo3DML
 ===
 
 Geo3DML: Three-Dimensional Geological Model Markup Language，三维地质模型数据交换格式。
