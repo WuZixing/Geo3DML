@@ -1,19 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema"
   xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml"
   xmlns:gml="http://www.opengis.net/gml/3.2"
   xmlns:swe="http://www.opengis.net/swe/2.0"
   targetNamespace="http://www.cgs.gov.cn/geo3dml"
   elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+  
   <annotation>
     <documentation>此文档定义地质要素的XML文档结构。</documentation>
   </annotation>
-  
+
   <include schemaLocation="./GeoGeometry.xsd"/>
   <include schemaLocation="./GeoProperty.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <import namespace="http://www.opengis.net/swe/2.0" schemaLocation="http://schemas.opengis.net/sweCommon/2.0/swe.xsd"/>
-  
+
   <complexType name="GeoFeatureType">
     <annotation><documentation>地质要素。该要素的属性字段满足其所属图层中关于要素类型的定义。</documentation></annotation>
     <complexContent>
@@ -31,6 +32,20 @@
                   <complexType>
                     <complexContent>
                       <extension base="swe:AbstractDataComponentPropertyType">
+                        <sequence>
+                          <element name="Version">
+                            <annotation><documentation>属性值的版本，如“1.2.1”。</documentation></annotation>
+                            <complexType>
+                              <simpleContent>
+                                <extension base="string">
+                                  <attribute name="Timestamp" type="dateTime" use="required">
+                                    <annotation><documentation>此版本对应的创建时间。如：“2018-04-17T14:04:33”。</documentation></annotation>
+                                  </attribute>
+                                </extension>
+                              </simpleContent>
+                            </complexType>
+                          </element>
+                        </sequence>
                         <attribute name="Name" type="NCName" use="required">
                           <annotation><documentation>标记对应属性字段的名字。</documentation></annotation>
                         </attribute>
@@ -41,7 +56,7 @@
               </sequence>
             </complexType>
           </element>
-          <element name="Geometry" minOccurs="0">
+          <element name="Geometry" minOccurs="0" maxOccurs="unbounded">
             <annotation><documentation>地质要素的几何属性数据，以及依赖于该几何对象的属性场数据。</documentation></annotation>
             <complexType>
               <sequence>
@@ -52,6 +67,9 @@
                   <annotation><documentation>与Shape元素中指定的几何对象相关的属性场数据。</documentation></annotation>
                 </element>
               </sequence>
+              <attribute name="LOD" type="nonNegativeInteger" default="0">
+                <annotation><documentation>本几何数据对应的LOD级别。0表示分辨率最高的细节层次，级别增加表示分辨率降低（参考OpenGL关于纹理映射的LOD参数定义）。</documentation></annotation>
+              </attribute>
             </complexType>
           </element>
         </sequence>
@@ -68,7 +86,7 @@
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
   
-  <complexType  name="GeoFeatureRelationType">
+  <complexType name="GeoFeatureRelationType">
     <annotation><documentation>描述地质要素之间关系的结构。地质要素之间的关系如不整合、侵入等是和空间关系紧密关联的，而要素之间的时代关系（如地质要素之间关于各自形成年代的对比）则是非空间关系。描述地质要素之间的关系时所使用的术语除特别说明之外，应遵循《地质矿产术语分类代码》（GB/T 9649-2009）标准。</documentation></annotation>
     <complexContent>
       <extension base="gml:AbstractGMLType">
@@ -147,4 +165,5 @@
     </complexContent>
   </complexType>
   <element name="BoundaryRelation" type="geo3dml:BoundaryRelationType" substitutionGroup="geo3dml:GeoFeatureRelation" />
+
 </xs:schema>

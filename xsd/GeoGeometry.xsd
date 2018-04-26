@@ -85,7 +85,7 @@
 
   <complexType name="GeoVolumeType">
     <annotation>
-      <documentation>有同类型体元填充而成的体数据结构。</documentation>
+      <documentation>由同类型体元填充而成的体数据结构。</documentation>
     </annotation>
     <complexContent>
       <extension base="gml:AbstractSolidType" />
@@ -325,5 +325,134 @@
     </complexContent>
   </complexType>
   <element name="GeoGrid" type="geo3dml:GeoGridType" substitutionGroup="gml:AbstractGeometry"/>
+
+  <complexType name="GeoSGridType">
+    <annotation>
+      <documentation>特指顺层网格和截断矩形网格。按顶点-面-体元的拓扑结构保存体数据。</documentation>
+    </annotation>
+    <complexContent>
+      <extension base="geo3dml:GeoVolumeType">
+        <sequence>
+          <element name="PlaneGrid">
+            <annotation><documentation>网格在水平方向上的网格参数。在水平方向是按规则网格划分格子。</documentation></annotation>
+            <complexType>
+              <sequence>
+                <element name="Origin" type="gml:DirectPositionType">
+                  <annotation>水平方向上网格划分的原点。</annotation>
+                </element>
+                <element name="Azimuth" type="double">
+                  <annotation><documentation>
+                    平面正交坐标轴的方位角（以度数为单位）。在平面上，X轴与Y轴正交。方位角是Y轴正方向与正北方向之间的夹角。
+                    如方位角为0时，Y轴指向正北，X轴指向正东。
+                  </documentation></annotation>
+                </element>
+                <element name="Steps">
+                  <annotation><documentation>沿X和Y轴划分网格的步长。</documentation></annotation>
+                  <complexType>
+                    <simpleContent>
+                      <extension base="gml:doubleList">
+                        <attribute name="ItemCount" type="positiveInteger" fixed="2"/>
+                      </extension>
+                    </simpleContent>
+                  </complexType>
+                </element>
+                <element name="Dimension">
+                  <annotation><documentation>沿X和Y轴划分网格的维度，即沿I、J方向各自划分的网格数目。</documentation></annotation>
+                  <complexType>
+                    <simpleContent>
+                      <extension base="gml:integerList">
+                        <attribute name="ItemCount" type="positiveInteger" fixed="2"/>
+                      </extension>
+                    </simpleContent>
+                  </complexType>
+                </element>
+              </sequence>
+            </complexType>
+          </element>
+
+          <element name="Vertices" minOccurs="0">
+            <annotation>
+              <documentation>顶点表</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element name="Vertex" minOccurs="0" maxOccurs="unbounded">
+                  <complexType>
+                    <complexContent>
+                      <extension base="gml:DirectPositionType">
+                        <attribute name="IndexNo" type="nonNegativeInteger" use="required"/>
+                      </extension>
+                    </complexContent>
+                  </complexType>
+                </element>
+              </sequence>
+            </complexType>
+          </element>
+                
+          <element name="Faces" minOccurs="0" >
+            <annotation>
+              <documentation>面表</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element name="Face" minOccurs="0" maxOccurs="unbounded">
+                  <annotation>
+                    <documentation>多个顶点构成的面。一般是4个顶点，也可能少于或多于4个顶点。</documentation>
+                  </annotation>
+                  <complexType>
+                    <sequence>
+                      <element name="VertexList">
+                        <complexType>
+                          <simpleContent>
+                            <extension base="gml:integerList">
+                              <attribute name="VertexCount" type="nonNegativeInteger" use="required"/>
+                            </extension>
+                          </simpleContent>
+                        </complexType>
+                      </element>
+                    </sequence>
+                    <attribute name="IndexNo" type="nonNegativeInteger" use="required"/>
+                  </complexType>
+                </element>
+              </sequence>
+            </complexType>
+          </element>
+          
+          <element name="Cells" minOccurs="0">
+            <annotation>
+              <documentation>体元表。</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element name="Cell" maxOccurs="unbounded">
+                  <annotation>
+                    <documentation>体元是个多面片围成的。</documentation>
+                  </annotation>
+                  <complexType>
+                    <sequence>
+                      <element name="FaceList">
+                        <complexType>
+                          <simpleContent>
+                            <extension base="gml:integerList">
+                              <attribute name="FaceCount" type="nonNegativeInteger" use="required"/>
+                            </extension>
+                          </simpleContent>
+                        </complexType>
+                      </element>
+                    </sequence>
+                    <attribute name="IndexNo" type="nonNegativeInteger" use="required"/>
+                    <attribute name="I" type="nonNegativeInteger"><annotation><documentation>体元对应的网格划分的I值。</documentation></annotation></attribute>
+                    <attribute name="J" type="nonNegativeInteger"><annotation><documentation>体元对应的网格划分的J值。</documentation></annotation></attribute>
+                    <attribute name="K" type="nonNegativeInteger"><annotation><documentation>体元对应的网格划分的K值。</documentation></annotation></attribute>
+                  </complexType>
+                </element>
+              </sequence>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="GeoSGrid" type="geo3dml:GeoSGridType" substitutionGroup="gml:GeoVolume"/>
 
 </xs:schema>

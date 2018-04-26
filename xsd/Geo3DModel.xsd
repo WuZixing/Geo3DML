@@ -46,6 +46,18 @@
           </restriction>
         </simpleType>
       </element>
+      <element name="Version">
+        <annotation><documentation>模型的版本信息，如“1.2.1”。模型的版本信息是模型中空间数据和非空间数据的缺省版本信息。</documentation></annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="string">
+              <attribute name="Timestamp" type="dateTime" use="required">
+                <annotation><documentation>此版本对应的创建时间。如：“2018-04-17T14:04:33”。</documentation></annotation>
+              </attribute>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
       <element name="Metadata" type="geo3dml:GeoModelMetadataType" minOccurs="0">
         <annotation><documentation>地质模型元数据。</documentation></annotation>
       </element>
@@ -66,6 +78,12 @@
         </complexType>
       </element>
     </sequence>
+    <attribute name="ID" type="string" use="required">
+      <annotation><documentation>地质模型的ID。ID相同时表示同一个模型的数据。</documentation></annotation>
+    </attribute>
+    <attribute name="LOD" type="nonNegativeInteger" default="0">
+      <annotation><documentation>模型空间数据的缺省LOD级别。0表示分辨率最高的细节层次，级别增加表示分辨率降低（参考OpenGL关于纹理映射的LOD参数定义）。</documentation></annotation>
+    </attribute>
     <attribute ref="xml:base">
       <annotation><documentation>加入此属性是为了避免xlink:link标签所引入的文档验证冲突。</documentation></annotation>
     </attribute>

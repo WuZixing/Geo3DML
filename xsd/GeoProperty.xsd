@@ -49,6 +49,18 @@
               </sequence>
             </complexType>
           </element>
+          <element name="Version">
+            <annotation><documentation>属性模型的版本，如“1.2.1”。</documentation></annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="string">
+                  <attribute name="Timestamp" type="dateTime" use="required">
+                    <annotation><documentation>此版本对应的创建时间。如：“2018-04-17T14:04:33”。</documentation></annotation>
+                  </attribute>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
         </sequence>
       </extension>
     </complexContent>
