@@ -33,7 +33,7 @@ Geo3DML(v1.0)
 
 [12 基础数据结构模块](./12.0-基础数据结构模块.md)
 
-[附录A：Geo3DML XML Schema](./附录A-Geo3DML XML Schema.md)
+[附录A：Geo3DML XML Schema](./附录A-Geo3DML-XML-Schema.md)
 
 [附录B：Geo3DML示例数据](./附录B-Geo3DML示例数据.md)
 
