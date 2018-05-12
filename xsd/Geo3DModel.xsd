@@ -81,9 +81,6 @@
     <attribute name="ID" type="string" use="required">
       <annotation><documentation>地质模型的ID。ID相同时表示同一个模型的数据，以支持多文件数据的关联。</documentation></annotation>
     </attribute>
-    <attribute name="LOD" type="nonNegativeInteger" default="0">
-      <annotation><documentation>模型空间数据的缺省LOD级别。0表示分辨率最高的细节层次，级别增加表示分辨率降低（参考OpenGL关于纹理映射的LOD参数定义）。</documentation></annotation>
-    </attribute>
     <attribute ref="xml:base">
       <annotation><documentation>加入此属性是为了避免xlink:link标签所引入的文档验证冲突。</documentation></annotation>
     </attribute>
