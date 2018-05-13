@@ -22,14 +22,17 @@
           <element name="Description" type="string">
             <annotation><documentation>关于地质模型的描述。</documentation></annotation>
           </element>
+          <element name="Version" type="string">
+            <annotation><documentation>模型的版本号。</documentation></annotation>
+          </element>
+          <element name="SpatialReferenceSystem" type="geo3dml:AbstractSpatialReferenceSystemPropertyType" minOccurs="0">
+            <annotation><documentation>空间数据参照系</documentation></annotation>
+          </element>
           <element name="ToolName" type="string">
             <annotation><documentation>创建该地质模型所使用的软件工具的名称。</documentation></annotation>
           </element>
           <element name="ToolVersion" type="string">
             <annotation><documentation>创建该地质模型所使用的软件工具的版本号。</documentation></annotation>
-          </element>
-          <element name="SpatialReferenceSystem" type="geo3dml:AbstractSpatialReferenceSystemPropertyType" minOccurs="0">
-            <annotation><documentation>空间数据参照系</documentation></annotation>
           </element>
         </sequence>
       </extension>
