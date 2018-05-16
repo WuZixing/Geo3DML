@@ -7,7 +7,8 @@
   xmlns:gmd="http://www.isotc211.org/2005/gmd"
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.cgs.gov.cn/geo3dml file:///D:/GMML/Document/schema/GMML/1.0/Geo3DML.xsd">
+  xsi:schemaLocation="http://www.cgs.gov.cn/geo3dml file:///D:/GMML/Document/schema/GMML/1.0/Geo3DML.xsd"
+  ID="88d7cf1d-fe6c-4fb8-a4f7-19361c71990a">
   <Name>剖面_m1</Name>
   <Type>Section</Type>
   <Metadata>
@@ -51,6 +52,7 @@
     </gmd:identificationInfo>
     <!-- 扩展的元数据项 -->
     <Description>剖面是一种地质模型，刻画地质现象在剖切面上的空间分布规律。</Description>
+    <Version>1.0.0</Version>
     <ToolName>XX工具</ToolName>
     <ToolVersion>vXX.XX</ToolVersion>
   </Metadata>

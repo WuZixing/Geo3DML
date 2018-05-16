@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<geo3dml:Geo3DModel xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml" xmlns="http://www.cgs.gov.cn/geo3dml"
+  xmlns:gml="http://www.opengis.net/gml/3.2"
+  xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0"
+  xmlns:swe="http://www.opengis.net/swe/2.0"
+  xmlns:gco="http://www.isotc211.org/2005/gco"
+  xmlns:gmd="http://www.isotc211.org/2005/gmd"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.cgs.gov.cn/geo3dml file:///C:/Users/wliang/Workspace/Geo3DML/xsd/Geo3DML.xsd"
+  ID="c3607415-fa31-4b07-97fc-b22638050315">
+  <Name>SGrid示例模型</Name>
+  <Type>3DModel</Type>
+  <Metadata>
+    <!-- 联系方式 -->
+    <gmd:contact>
+      <gmd:CI_ResponsibleParty>
+        <!-- 责任人名字 -->
+        <gmd:individualName>
+          <gco:CharacterString>模型创建人的名字</gco:CharacterString>
+        </gmd:individualName>
+        <!-- 所在机构名 -->
+        <gmd:organisationName>
+          <gco:CharacterString>单位名</gco:CharacterString>
+        </gmd:organisationName>
+        <!-- 职务 -->
+        <gmd:positionName></gmd:positionName>
+        <!-- 具体的联系信息 -->
+        <gmd:contactInfo>
+          <gmd:CI_Contact>
+            <gmd:phone>
+              <gmd:CI_Telephone>
+                <gmd:voice>
+                  <gco:CharacterString>010-87654321</gco:CharacterString>
+                </gmd:voice>
+              </gmd:CI_Telephone>
+            </gmd:phone>
+            <!-- 联系地址 -->
+            <gmd:address>
+              <gmd:CI_Address></gmd:CI_Address>
+            </gmd:address>
+          </gmd:CI_Contact>
+        </gmd:contactInfo>
+        <gmd:role></gmd:role>
+      </gmd:CI_ResponsibleParty>
+    </gmd:contact>
+    <gmd:dateStamp>
+      <gco:Date>2013-11-13</gco:Date>
+    </gmd:dateStamp>
+    <!-- 数据的描述信息，如标题，摘要等。 -->
+    <gmd:identificationInfo>
+    </gmd:identificationInfo>
+    <!-- 扩展的元数据项 -->
+    <Description>关于矢栅一体化模型的示例。网格数据是SGrid类型。</Description>
+    <Version>1.0.0</Version>
+    <ToolName>XX软件</ToolName>
+    <ToolVersion>vX.X.X</ToolVersion>
+  </Metadata>
+  <FeatureClasses>
+    <FeatureClass>
+      <GeoFeatureClass gml:id="4c654ddd-b574-4bbc-81e9-7b5b7be8bd7d">
+        <gml:name>地层</gml:name>
+        <Schema>
+          <swe:field name="stratigraphic_name">
+            <swe:Text />
+          </swe:field>
+          <swe:field name="lithology">
+            <swe:Text />
+          </swe:field>
+          <swe:field name="density">
+            <swe:Quantity>
+              <swe:uom>t/m3</swe:uom>
+            </swe:Quantity>
+          </swe:field>
+        </Schema>
+        <Features>
+          <Feature>
+            <GeoFeature gml:id="64a35c7c-1e87-4ef2-bcfe-2315bae0213a">
+              <gml:name>地层1</gml:name>
+              <Fields>
+                <Field Name="stratigraphic_name">
+                  <swe:Text><swe:value>蓟县组</swe:value></swe:Text>
+                </Field>
+                <Field Name="lithology">
+                  <swe:Text><swe:value>灰岩</swe:value></swe:Text>
+                </Field>
+                <Field Name="density">
+                  <swe:Text>
+                    <swe:uom>t/m3</swe:uom>
+                    <swe:value>2.3</swe:value>
+                  </swe:Text>
+                </Field>
+              </Fields>
+              <Geometry LOD="0">
+                <Shape>
+                  <GeoTin gml:id="111ba61a-5412-439e-bd9b-2cd4181eb4c4">
+                    <Vertices>
+                      <Vertex gml:srsDimension="3" IndexNo="0">0 0 10</Vertex>
+                      <Vertex gml:srsDimension="3" IndexNo="1">0 100 0</Vertex>
+                      <Vertex gml:srsDimension="3" IndexNo="2">200 0 10</Vertex>
+                      <Vertex gml:srsDimension="3" IndexNo="3">200 100 10</Vertex>
+                      <Vertex gml:srsDimension="3" IndexNo="4">200 0 110</Vertex>
+                      <Vertex gml:srsDimension="3" IndexNo="5">200 100 110</Vertex>
+                      <Vertex gml:srsDimension="3" IndexNo="6">0 0 110</Vertex>
+                      <Vertex gml:srsDimension="3" IndexNo="7">0 100 110</Vertex>
+                    </Vertices>
+                    <Triangles>
+                      <Triangle IndexNo="0">
+                        <VertexList>0 1 2</VertexList>
+                        <NeighborList>1 8 7</NeighborList>
+                      </Triangle>
+                      <Triangle IndexNo="1">
+                        <VertexList>2 1 3</VertexList>
+                        <NeighborList>10 2 0</NeighborList>
+                      </Triangle>
+                      <Triangle IndexNo="2">
+                        <VertexList>2 3 4</VertexList>
+                        <NeighborList>3 9 1</NeighborList>
+                      </Triangle>
+                      <Triangle IndexNo="3">
+                        <VertexList>4 3 5</VertexList>
+                        <NeighborList>11 4 2</NeighborList>
+                      </Triangle>
+                      <Triangle IndexNo="4">
+                        <VertexList>4 5 6</VertexList>
+                        <NeighborList>5 9 3</NeighborList>
+                      </Triangle>
+                      <Triangle IndexNo="5">
+                        <VertexList>6 5 7</VertexList>
+                        <NeighborList>11 6 4</NeighborList>
+                      </Triangle>
+                      <Triangle IndexNo="6">
+                        <VertexList>6 7 0</VertexList>
+                        <NeighborList>7 8 5</NeighborList>
+                      </Triangle>
+                      <Triangle IndexNo="7">
+                        <VertexList>0 7 1</VertexList>
+                        <NeighborList>10 0 6</NeighborList>
+                      </Triangle>
+                      <Triangle IndexNo="8">
+                        <VertexList>0 2 6</VertexList>
+                        <NeighborList>9 6 0</NeighborList>
+                      </Triangle>
+                      <Triangle IndexNo="9">
+                        <VertexList>6 2 4</VertexList>
+                        <NeighborList>2 4 8</NeighborList>
+                      </Triangle>
+                      <Triangle IndexNo="10">
+                        <VertexList>1 7 3</VertexList>
+                        <NeighborList>11 1 7</NeighborList>
+                      </Triangle>
+                      <Triangle IndexNo="11">
+                        <VertexList>3 7 5</VertexList>
+                        <NeighborList>5 3 10</NeighborList>
+                      </Triangle>
+                    </Triangles>
+                  </GeoTin>
+                </Shape>
+              </Geometry>
+              <Geometry LOD="0">
+                <Shape></Shape>
+                <ShapeProperty></ShapeProperty>
+              </Geometry>
+              <Geometry LOD="1">
+                <Shape></Shape>
+                <ShapeProperty></ShapeProperty>
+              </Geometry>
+            </GeoFeature>
+          </Feature>
+        </Features>
+      </GeoFeatureClass>
+    </FeatureClass>
+  </FeatureClasses>
+</geo3dml:Geo3DModel>
