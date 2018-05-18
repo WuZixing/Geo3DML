@@ -58,7 +58,7 @@
                       </element>
                     </sequence>
                     <attribute name="Name" type="NCName" use="required">
-                      <annotation><documentation>标记几何属性的字段名。</documentation></annotation>
+                      <annotation><documentation>标记几何属性的字段名。同名的几何属性可能包含分属于不同LOD层级的多个几何对象。</documentation></annotation>
                     </attribute>
                     <attribute name="LOD" type="nonNegativeInteger" default="0">
                       <annotation><documentation>本几何数据对应的LOD级别。0表示分辨率最高的细节层次，级别增加表示分辨率降低（参考OpenGL关于纹理映射的LOD参数定义）。</documentation></annotation>
