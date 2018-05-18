@@ -343,7 +343,7 @@
                 <element name="Azimuth" type="double">
                   <annotation><documentation>
                     平面正交坐标轴的方位角（以度数为单位）。在平面上，X轴与Y轴正交。方位角是Y轴正方向与正北方向之间的夹角。
-                    如方位角为0时，Y轴指向正北，X轴指向正东。
+                    如方位角为0时，Y轴指向正北，X轴指向正东。约定：正北为0度，正东为90度，正南为180度，正西为270度。
                   </documentation></annotation>
                 </element>
                 <element name="Steps">
@@ -405,7 +405,7 @@
                         <complexType>
                           <simpleContent>
                             <extension base="gml:integerList">
-                              <attribute name="VertexCount" type="nonNegativeInteger" use="required"/>
+                              <attribute name="Length" type="nonNegativeInteger" use="required"/>
                             </extension>
                           </simpleContent>
                         </complexType>
@@ -434,7 +434,7 @@
                         <complexType>
                           <simpleContent>
                             <extension base="gml:integerList">
-                              <attribute name="FaceCount" type="nonNegativeInteger" use="required"/>
+                              <attribute name="Length" type="nonNegativeInteger" use="required"/>
                             </extension>
                           </simpleContent>
                         </complexType>

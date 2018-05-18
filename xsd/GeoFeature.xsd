@@ -5,7 +5,7 @@
   xmlns:swe="http://www.opengis.net/swe/2.0"
   targetNamespace="http://www.cgs.gov.cn/geo3dml"
   elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
-  
+
   <annotation>
     <documentation>此文档定义地质要素的XML文档结构。</documentation>
   </annotation>
@@ -32,20 +32,6 @@
                   <complexType>
                     <complexContent>
                       <extension base="swe:AbstractDataComponentPropertyType">
-                        <sequence>
-                          <element name="Version">
-                            <annotation><documentation>属性值的版本，如“1.2.1”。</documentation></annotation>
-                            <complexType>
-                              <simpleContent>
-                                <extension base="string">
-                                  <attribute name="Timestamp" type="dateTime" use="required">
-                                    <annotation><documentation>此版本对应的创建时间。如：“2018-04-17T14:04:33”。</documentation></annotation>
-                                  </attribute>
-                                </extension>
-                              </simpleContent>
-                            </complexType>
-                          </element>
-                        </sequence>
                         <attribute name="Name" type="NCName" use="required">
                           <annotation><documentation>标记对应属性字段的名字。</documentation></annotation>
                         </attribute>
@@ -56,20 +42,30 @@
               </sequence>
             </complexType>
           </element>
-          <element name="Geometry" minOccurs="0" maxOccurs="unbounded">
-            <annotation><documentation>地质要素的几何属性数据，以及依赖于该几何对象的属性场数据。</documentation></annotation>
+          <element name="Geometries" minOccurs="0" maxOccurs="1">
+            <annotation><documenttation>地质要素的几何属性数据，以及依赖于几何对象的属性场数据。</documenttation></annotation>
             <complexType>
               <sequence>
-                <element name="Shape" type="gml:GeometryPropertyType">
-                  <annotation><documentation>地质要素的几何属性数据。</documentation></annotation>
-                </element>
-                <element name="ShapeProperty" type="geo3dml:GeoDiscreteCoveragePropertyType" minOccurs="0" maxOccurs="unbounded">
-                  <annotation><documentation>与Shape元素中指定的几何对象相关的属性场数据。</documentation></annotation>
+                <element name="Geometry" minOccurs="0" maxOccurs="unbounded">
+                  <annotation><documentation>地质要素的几何属性数据，以及依赖于该几何对象的属性场数据。</documentation></annotation>
+                  <complexType>
+                    <sequence>
+                      <element name="Shape" type="gml:GeometryPropertyType">
+                        <annotation><documentation>地质要素的几何属性数据。</documentation></annotation>
+                      </element>
+                      <element name="ShapeProperty" type="geo3dml:GeoDiscreteCoveragePropertyType" minOccurs="0" maxOccurs="unbounded">
+                        <annotation><documentation>与Shape元素中指定的几何对象相关的属性场数据。</documentation></annotation>
+                      </element>
+                    </sequence>
+                    <attribute name="Name" type="NCName" use="required">
+                      <annotation><documentation>标记几何属性的字段名。</documentation></annotation>
+                    </attribute>
+                    <attribute name="LOD" type="nonNegativeInteger" default="0">
+                      <annotation><documentation>本几何数据对应的LOD级别。0表示分辨率最高的细节层次，级别增加表示分辨率降低（参考OpenGL关于纹理映射的LOD参数定义）。</documentation></annotation>
+                    </attribute>
+                  </complexType>
                 </element>
               </sequence>
-              <attribute name="LOD" type="nonNegativeInteger" default="0">
-                <annotation><documentation>本几何数据对应的LOD级别。0表示分辨率最高的细节层次，级别增加表示分辨率降低（参考OpenGL关于纹理映射的LOD参数定义）。</documentation></annotation>
-              </attribute>
             </complexType>
           </element>
         </sequence>
@@ -77,7 +73,7 @@
     </complexContent>
   </complexType>
   <element name="GeoFeature" type="geo3dml:GeoFeatureType" substitutionGroup="gml:AbstractFeature" />
-  
+
   <complexType name="GeoFeaturePropertyType">
     <sequence>
       <element ref="geo3dml:GeoFeature" minOccurs="0"/>
@@ -85,7 +81,7 @@
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  
+
   <complexType name="GeoFeatureRelationType">
     <annotation><documentation>描述地质要素之间关系的结构。地质要素之间的关系如不整合、侵入等是和空间关系紧密关联的，而要素之间的时代关系（如地质要素之间关于各自形成年代的对比）则是非空间关系。描述地质要素之间的关系时所使用的术语除特别说明之外，应遵循《地质矿产术语分类代码》（GB/T 9649-2009）标准。</documentation></annotation>
     <complexContent>
@@ -125,7 +121,7 @@
     </complexContent>
   </complexType>
   <element name="GeoFeatureRelation" type="geo3dml:GeoFeatureRelationType" substitutionGroup="gml:AbstractGML" />
-  
+
   <complexType name="GeoFeatureRelationPropertyType">
     <sequence>
       <element ref="geo3dml:GeoFeatureRelation" minOccurs="0"/>
@@ -133,7 +129,7 @@
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  
+
   <complexType name="GeologicHistoryType">
     <annotation><documentation>描述地质要素之间关于各自所属地质年代的对比关系。针对该关系，关系的描述或名称（即Relationship元素的值）限定于“早于”、“晚于”，或“同期于”，分别表示源地质要素的形成年代早于、晚于或同期于目标地质要素。</documentation></annotation>
     <complexContent>
@@ -141,7 +137,7 @@
     </complexContent>
   </complexType>
   <element name="GeologicHistory" type="geo3dml:GeologicHistoryType" substitutionGroup="geo3dml:GeoFeatureRelation" />
-  
+
   <complexType name="DefiningStructureType">
     <annotation><documentation>描述地质要素组合起来构成某种地质构造的关系。如上覆地层与下覆地层组合起来形成不整合构造，其中源地质要素可以是上覆地层，目标地质要素是下覆地层，反之亦可。又如侵入体与围岩形成侵入关系，其源地质要素是侵入体，目标地质要素是被侵入的围岩。使用该关系描述地质要素之间的关系时，所使用的术语应遵循《地质矿产术语分类代码》（GB/T 9649-2009）标准。</documentation></annotation>
     <complexContent>
@@ -149,7 +145,7 @@
     </complexContent>
   </complexType>
   <element name="DefiningStructure" type="geo3dml:DefiningStructureType" substitutionGroup="geo3dml:GeoFeatureRelation" />
-    
+
   <complexType name="AggregationRelationType">
     <annotation><documentation>描述地质要素由一个或多个其它地质要素聚合构成的关系。如某个断层面由多个小断面聚合而成。该关系的源表示被组成的地质要素，目标要素则是组成的部分。该关系可用于描述地质要素之间的普通聚合关系，不一定具有明确的地质含义。</documentation></annotation>
     <complexContent>
@@ -157,7 +153,7 @@
     </complexContent>
   </complexType>
   <element name="AggregationRelation" type="geo3dml:AggregationRelationType" substitutionGroup="geo3dml:GeoFeatureRelation" />
-  
+
   <complexType name="BoundaryRelationType">
     <annotation><documentation>描述地质要素由作为其边界的其它地质要素包围而成的关系。该关系的源是边界所围成的地质要素，目标地质要素则是边界。该关系也不一定具有明确的地质含义。</documentation></annotation>
     <complexContent>
