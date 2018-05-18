@@ -51,7 +51,7 @@
     <gmd:identificationInfo>
     </gmd:identificationInfo>
     <!-- 扩展的元数据项 -->
-    <Description>关于矢栅一体化模型的示例。网格数据是SGrid类型。</Description>
+    <Description>关于矢栅一体化模型的示例。网格数据是SGrid类型，并且由2层LOD组成。LOD 0是16个网格， LOD 1是2个网格。</Description>
     <Version>1.0.0</Version>
     <ToolName>XX软件</ToolName>
     <ToolVersion>vX.X.X</ToolVersion>
@@ -183,36 +183,36 @@
                         <Vertex gml:srsDimension="3" IndexNo="12">100 100 10</Vertex>
                         <Vertex gml:srsDimension="3" IndexNo="13">150 100 10</Vertex>
                         <Vertex gml:srsDimension="3" IndexNo="14">200 100 10</Vertex>
-                        <Vertex gml:srsDimension="3" IndexNo="15">0 0 60</Vertex>
-                        <Vertex gml:srsDimension="3" IndexNo="16">50 0 60</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="15">0 0 50</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="16">50 0 55</Vertex>
                         <Vertex gml:srsDimension="3" IndexNo="17">100 0 60</Vertex>
-                        <Vertex gml:srsDimension="3" IndexNo="18">150 0 60</Vertex>
-                        <Vertex gml:srsDimension="3" IndexNo="19">200 0 60</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="18">150 0 55</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="19">200 0 50</Vertex>
                         <Vertex gml:srsDimension="3" IndexNo="20">0 50 60</Vertex>
                         <Vertex gml:srsDimension="3" IndexNo="21">50 50 60</Vertex>
                         <Vertex gml:srsDimension="3" IndexNo="22">100 50 60</Vertex>
                         <Vertex gml:srsDimension="3" IndexNo="23">150 50 60</Vertex>
                         <Vertex gml:srsDimension="3" IndexNo="24">200 50 60</Vertex>
-                        <Vertex gml:srsDimension="3" IndexNo="25">0 100 60</Vertex>
-                        <Vertex gml:srsDimension="3" IndexNo="26">50 100 60</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="25">0 100 50</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="26">50 100 55</Vertex>
                         <Vertex gml:srsDimension="3" IndexNo="27">100 100 60</Vertex>
-                        <Vertex gml:srsDimension="3" IndexNo="28">150 100 60</Vertex>
-                        <Vertex gml:srsDimension="3" IndexNo="29">200 100 60</Vertex>
-                        <Vertex gml:srsDimension="3" IndexNo="30">0 0 110</Vertex>
-                        <Vertex gml:srsDimension="3" IndexNo="31">50 0 110</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="28">150 100 55</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="29">200 100 50</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="30">0 0 100</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="31">50 0 105</Vertex>
                         <Vertex gml:srsDimension="3" IndexNo="32">100 0 110</Vertex>
-                        <Vertex gml:srsDimension="3" IndexNo="33">150 0 110</Vertex>
-                        <Vertex gml:srsDimension="3" IndexNo="34">200 0 110</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="33">150 0 105</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="34">200 0 100</Vertex>
                         <Vertex gml:srsDimension="3" IndexNo="35">0 50 110</Vertex>
                         <Vertex gml:srsDimension="3" IndexNo="36">50 50 110</Vertex>
                         <Vertex gml:srsDimension="3" IndexNo="37">100 50 110</Vertex>
                         <Vertex gml:srsDimension="3" IndexNo="38">150 50 110</Vertex>
                         <Vertex gml:srsDimension="3" IndexNo="39">200 50 110</Vertex>
-                        <Vertex gml:srsDimension="3" IndexNo="40">0 100 110</Vertex>
-                        <Vertex gml:srsDimension="3" IndexNo="41">50 100 110</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="40">0 100 100</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="41">50 100 105</Vertex>
                         <Vertex gml:srsDimension="3" IndexNo="42">100 100 110</Vertex>
-                        <Vertex gml:srsDimension="3" IndexNo="43">150 100 110</Vertex>
-                        <Vertex gml:srsDimension="3" IndexNo="44">200 100 110</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="43">150 100 105</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="44">200 100 100</Vertex>
                       </Vertices>
                       <Faces>
                         <Face IndexNo="0">
@@ -552,12 +552,12 @@
                         <Vertex gml:srsDimension="3" IndexNo="3">0 100 10</Vertex>
                         <Vertex gml:srsDimension="3" IndexNo="4">100 100 10</Vertex>
                         <Vertex gml:srsDimension="3" IndexNo="5">200 100 10</Vertex>
-                        <Vertex gml:srsDimension="3" IndexNo="6">0 0 110</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="6">0 0 100</Vertex>
                         <Vertex gml:srsDimension="3" IndexNo="7">100 0 110</Vertex>
-                        <Vertex gml:srsDimension="3" IndexNo="8">200 0 110</Vertex>
-                        <Vertex gml:srsDimension="3" IndexNo="9">0 100 110</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="8">200 0 100</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="9">0 100 100</Vertex>
                         <Vertex gml:srsDimension="3" IndexNo="10">100 100 110</Vertex>
-                        <Vertex gml:srsDimension="3" IndexNo="11">200 100 110</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="11">200 100 100</Vertex>
                       </Vertices>
                       <Faces>
                         <Face IndexNo="0">
