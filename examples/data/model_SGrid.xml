@@ -85,10 +85,10 @@
                   <swe:Text><swe:value>灰岩</swe:value></swe:Text>
                 </Field>
                 <Field Name="density">
-                  <swe:Text>
+                  <swe:Quantity>
                     <swe:uom>t/m3</swe:uom>
                     <swe:value>2.3</swe:value>
-                  </swe:Text>
+                  </swe:Quantity>
                 </Field>
               </Fields>
               <Geometries>
@@ -479,6 +479,7 @@
                         <SamplingFrame xlink:type="simple" xlink:href="#1a044aa4-989d-4c48-8172-b5410817e685" />
                         <SamplingTarget>VOXEL</SamplingTarget>
                       </DomainSetExt>
+                      <Version Timestamp="2018-05-19T16:56:21+08:00">1.0.0</Version>
                       <gmlcov:rangeType>
                         <swe:DataRecord>
                           <swe:field name="岩性">
@@ -611,6 +612,7 @@
                         <SamplingFrame xlink:type="simple" xlink:href="#c4b4dfe4-75ad-4175-a37f-07423fa29a77"/>
                         <SamplingTarget>VOXEL</SamplingTarget>
                       </DomainSetExt>
+                      <Version Timestamp="2018-05-19T17:00:05+08:00">1.0.0</Version>
                       <gmlcov:rangeType>
                         <swe:DataRecord>
                           <swe:field name="岩性">
