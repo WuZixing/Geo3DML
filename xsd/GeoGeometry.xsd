@@ -455,7 +455,7 @@
   </complexType>
   <element name="GeoSGrid" type="geo3dml:GeoSGridType" substitutionGroup="geo3dml:GeoVolume"/>
 
-  <complexType name="GeoRectifiedGridType">
+  <complexType name="GeoUniformGridType">
     <annotation>
       <documentation>特指由相同形状的规则六面体体元构成的体。通过原点坐标、体元边长，以及体元相对位置可以直接计算网格顶点的坐标。</documentation>
     </annotation>
@@ -511,6 +511,6 @@
       </extension>
     </complexContent>
   </complexType>
-  <element name="GeoRectifiedGrid" type="geo3dml:GeoRectifiedGridType" substitutionGroup="geo3dml:GeoVolume"/>
+  <element name="GeoUniformGrid" type="geo3dml:GeoUniformGridType" substitutionGroup="geo3dml:GeoVolume"/>
 
 </xs:schema>
