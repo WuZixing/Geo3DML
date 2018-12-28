@@ -12,6 +12,9 @@
     <Model>
       <xi:include href="model_section.xml" />
     </Model>
+    <Model>
+      <xi:include href="model_SGrid.xml" />
+    </Model>
   </Models>
   <Maps>
     <Map>
