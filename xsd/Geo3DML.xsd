@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema"
-  xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml"
+  xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml/1.x"
   xmlns:gml="http://www.opengis.net/gml/3.2"
   xmlns:xml="http://www.w3.org/XML/1998/namespace"
-  targetNamespace="http://www.cgs.gov.cn/geo3dml"
-  elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+  targetNamespace="http://www.cgs.gov.cn/geo3dml/1.x"
+  elementFormDefault="qualified"  version="1.0">
   <annotation>
     <documentation>本文档按XML Schema标准定义了三维地质模型数据交换格式的XML文件结构。</documentation>
   </annotation>
