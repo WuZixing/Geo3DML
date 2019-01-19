@@ -1,13 +1,13 @@
 Geo3DML
 ===
 
-*2018-12-28*
+*2019-01-19*
 
 Geo3DML: Three-Dimensional Geological Model Markup Language，三维地质模型数据交换格式。
 
 Geo3DML(v1.0)是中国地质调查局地质调查技术标准（DD2015-06）。
 
-*Release Geo3DML v1.0.0*与标准原稿内容一致。分支*v1*包含对标准原稿内容的勘误。
+[Release Geo3DML v1.0.0](https://github.com/WuZixing/Geo3DML/releases/tag/v1.0.0)与标准原稿内容一致。分支*v1*包含对标准原稿内容的勘误。
 
 分支*master*是结合工作需要，对标准原稿进行扩充和更新，**更新的内容不一定会被标准接受**。为与标准原稿区分，*master*分支的当前版本号约定为1.x。
 
