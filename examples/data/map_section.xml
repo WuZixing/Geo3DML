@@ -34,7 +34,7 @@
                     <EmissiveColor>0.200857 0.001064 0.695721</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.200857 0.001064 0.695721</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -55,7 +55,7 @@
                     <EmissiveColor>0.289571 0.552345 0.305273</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.289571 0.552345 0.305273</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -76,7 +76,7 @@
                     <EmissiveColor>0.750986 0.641693 0.314811</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.750986 0.641693 0.314811</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -97,7 +97,7 @@
                     <EmissiveColor>0.324021 0.890817 0.014082</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.324021 0.890817 0.014082</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -118,7 +118,7 @@
                     <EmissiveColor>0.288431 0.274752 0.92484</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.288431 0.274752 0.92484</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -139,7 +139,7 @@
                     <EmissiveColor>0.229288 0.954222 0.612733</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.229288 0.954222 0.612733</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -160,7 +160,7 @@
                     <EmissiveColor>0.264337 0.693261 0.558875</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.264337 0.693261 0.558875</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -181,7 +181,7 @@
                     <EmissiveColor>0.101025 0.399695 0.691067</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.101025 0.399695 0.691067</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -202,7 +202,7 @@
                     <EmissiveColor>0.128058 0.640835 0.809844</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.128058 0.640835 0.809844</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -223,7 +223,7 @@
                     <EmissiveColor>0.109497 0.776299 0.691559</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.109497 0.776299 0.691559</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -244,7 +244,7 @@
                     <EmissiveColor>0.256597 0.786585 0.02639</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.256597 0.786585 0.02639</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -265,7 +265,7 @@
                     <EmissiveColor>0.937124 0.999618 0.716616</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.937124 0.999618 0.716616</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -286,7 +286,7 @@
                     <EmissiveColor>0.573197 0.052645 0.586369</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.573197 0.052645 0.586369</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -307,7 +307,7 @@
                     <EmissiveColor>0.59688 0.494315 0.462096</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.59688 0.494315 0.462096</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -328,7 +328,7 @@
                     <EmissiveColor>0.640492 0.650878 0.246247</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.640492 0.650878 0.246247</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -349,7 +349,7 @@
                     <EmissiveColor>0.297863 0.992486 0.813331</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.297863 0.992486 0.813331</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -370,7 +370,7 @@
                     <EmissiveColor>0.561637 0.62497 0.303188</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.561637 0.62497 0.303188</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -391,7 +391,7 @@
                     <EmissiveColor>0.505493 0.159103 0.483147</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.505493 0.159103 0.483147</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -412,7 +412,7 @@
                     <EmissiveColor>0.829956 0.557803 0.959575</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.829956 0.557803 0.959575</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -433,7 +433,7 @@
                     <EmissiveColor>0.358785 0.761523 0.825726</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.358785 0.761523 0.825726</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -454,7 +454,7 @@
                     <EmissiveColor>0.783922 0.102259 0.343223</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.783922 0.102259 0.343223</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -475,7 +475,7 @@
                     <EmissiveColor>0.246651 0.617985 0.502084</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.246651 0.617985 0.502084</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -496,7 +496,7 @@
                     <EmissiveColor>0.54485 0.053469 0.949053</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.54485 0.053469 0.949053</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -517,7 +517,7 @@
                     <EmissiveColor>0.244705 0.506993 0.816709</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.244705 0.506993 0.816709</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -538,7 +538,7 @@
                     <EmissiveColor>0.729902 0.661104 0.802134</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.729902 0.661104 0.802134</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -559,7 +559,7 @@
                     <EmissiveColor>0.23271 0.540458 0.278405</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.23271 0.540458 0.278405</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -580,7 +580,7 @@
                     <EmissiveColor>0.361521 0.512308 0.132444</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.361521 0.512308 0.132444</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -601,7 +601,7 @@
                     <EmissiveColor>0.007718 0.445736 0.248554</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.007718 0.445736 0.248554</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -622,7 +622,7 @@
                     <EmissiveColor>0.672475 0.591095 0.092499</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.672475 0.591095 0.092499</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -643,7 +643,7 @@
                     <EmissiveColor>0.279065 0.492181 0.720052</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.279065 0.492181 0.720052</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -664,7 +664,7 @@
                     <EmissiveColor>0.860043 0.727885 0.641735</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.860043 0.727885 0.641735</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -685,7 +685,7 @@
                     <EmissiveColor>0.0312 0.109712 0.483068</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.0312 0.109712 0.483068</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>

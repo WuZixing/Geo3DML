@@ -20,7 +20,7 @@
               <se:Rule>
                 <GeoPointSymbolizer>
                   <se:Graphic>
-                    <se:Size>1</se:Size>
+                    <se:Size>2</se:Size>
                   </se:Graphic>
                   <Material>
                     <AmbientIntensity>0</AmbientIntensity>
@@ -28,7 +28,7 @@
                     <EmissiveColor>0.69986 0.690929 0.063011</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.69986 0.690929 0.063011</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoPointSymbolizer>
               </se:Rule>
@@ -62,7 +62,7 @@
                     <EmissiveColor>0.588209 0.65929 0.993835</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.588209 0.65929 0.993835</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -83,7 +83,7 @@
                     <EmissiveColor>0.444701 0.215038 0.678852</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.444701 0.215038 0.678852</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -104,7 +104,7 @@
                     <EmissiveColor>0.562475 0.608123 0.58061</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.562475 0.608123 0.58061</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
@@ -125,7 +125,7 @@
                     <EmissiveColor>0.343448 0.168807 0.778614</EmissiveColor>
                     <Shininess>0</Shininess>
                     <SpecularColor>0.343448 0.168807 0.778614</SpecularColor>
-                    <Transparency>1</Transparency>
+                    <Transparency>0</Transparency>
                   </Material>
                 </GeoLineSymbolizer>
               </se:Rule>
