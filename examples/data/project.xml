@@ -23,5 +23,8 @@
     <Map>
       <xi:include href="map_section.xml" />
     </Map>
+    <Map>
+      <xi:include href="map_stratum.xml" />
+    </Map>
   </Maps>
 </geo3dml:Geo3DProject>
