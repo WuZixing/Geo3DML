@@ -8,7 +8,7 @@
 
 + 一个由SGrid网格填充的地质体（文件model_SGrid.xml）。
 
-该示例数据由如下6个文件组成：
+该示例数据由如下7个文件组成：
 
 + [project.xml](./project.xml)
 
@@ -21,3 +21,9 @@
 + [map_drill.xml](./map_drill.xml)
 
 + [map_section.xml](./map_section.xml)
+
++ [map_stratum.xml](./map_stratum.xml)
+
+该示例的展示效果如下图所示：
+
+![示例效果](./example.png)
