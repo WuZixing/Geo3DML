@@ -26,4 +26,4 @@
 
 该示例的展示效果如下图所示：
 
-![示例效果](./example.png)
+![示例效果(example.png)](./example.png)
