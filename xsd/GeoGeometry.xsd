@@ -326,6 +326,87 @@
   </complexType>
   <element name="GeoGrid" type="geo3dml:GeoGridType" substitutionGroup="gml:AbstractGeometry"/>
 
+  <complexType name="GeoGTPVolumeType">
+    <annotation>
+      <documentation>由广义三棱柱填充而成的体。</documentation>
+    </annotation>
+    <complexContent>
+      <extension base="geo3dml:GeoVolumeType">
+        <sequence>
+          <element name="Vertices" minOccurs="0">
+            <annotation>
+              <documentation>顶点表</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element name="Vertex" type="gml:DirectPositionType" minOccurs="0" maxOccurs="unbounded">
+                  <annotation>
+                    <documentation>顶点按其记录的顺序对应从0开始的索引号。</documentation>
+                  </annotation>
+                </element>
+              </sequence>
+            </complexType>
+          </element>
+          <element name="Prisms" minOccurs="0">
+            <annotation>
+              <documentation>三棱柱表</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element name="Prism" minOccurs="0" maxOccurs="unbounded">
+                  <annotation>
+                    <documentation>GTP中的三棱柱结构包括顶和底两个三角形。每个棱柱按其记录的顺序对应从0开始的索引号。</documentation>
+                  </annotation>
+                  <complexType>
+                    <sequence>
+                      <element name="TopTriangle">
+                        <annotation>
+                          <documentation>顶部三角形。指定构成该三角形的三个顶点的索引号。</documentation>
+                        </annotation>
+                        <complexType>
+                          <simpleContent>
+                            <extension base="gml:integerList">
+                              <attribute name="ItemCount" type="positiveInteger" fixed="3"/>
+                            </extension>
+                          </simpleContent>
+                        </complexType>
+                      </element>
+                      <element name="BottomTriangle">
+                        <annotation>
+                          <documentation>底部三角形。指定构成该三角形的三个顶点的索引号。三个顶点的顺序应与顶部三角形的对应，即顶、底三角形的对应顶点构成三棱柱的棱。</documentation>
+                        </annotation>
+                        <complexType>
+                          <simpleContent>
+                            <extension base="gml:integerList">
+                              <attribute name="ItemCount" type="positiveInteger" fixed="3"/>
+                            </extension>
+                          </simpleContent>
+                        </complexType>
+                      </element>
+                      <element name="NeighborList" minOccurs="0">
+                        <annotation>
+                          <documentation>三棱柱的3个相邻三棱柱。按顶（或底）三角形顶点的顺序，依次指定顶点对面位置的邻接三棱柱。</documentation>
+                        </annotation>
+                        <complexType>
+                          <simpleContent>
+                            <extension base="gml:integerList">
+                              <attribute name="ItemCount" type="positiveInteger" fixed="3"/>
+                            </extension>
+                          </simpleContent>
+                        </complexType>
+                      </element>
+                    </sequence>
+                  </complexType>
+                </element>
+              </sequence>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="GeoGTPVolume" type="geo3dml:GeoGTPVolumeType" substitutionGroup="geo3dml:GeoVolume"/>
+
   <complexType name="GeoSGridType">
     <annotation>
       <documentation>特指顺层网格和截断矩形网格。按顶点-面-体元的拓扑结构保存体数据。</documentation>

@@ -645,6 +645,71 @@
               </Geometries>
             </GeoFeature>
           </Feature>
+          <Feature>
+            <GeoFeature gml:id="1e61ba34-7969-2d22-1c04-d6ed8bf29d5e">
+              <gml:name>地层-三棱柱</gml:name>
+              <Fields>
+                <Field Name="stratigraphic_name">
+                  <swe:Text><swe:value>蓟县组</swe:value></swe:Text>
+                </Field>
+                <Field Name="lithology">
+                  <swe:Text><swe:value>灰岩</swe:value></swe:Text>
+                </Field>
+                <Field Name="density">
+                  <swe:Quantity>
+                    <swe:uom>t/m3</swe:uom>
+                    <swe:value>2.3</swe:value>
+                  </swe:Quantity>
+                </Field>
+              </Fields>
+              <Geometries>
+                <Geometry Name="GTP" LOD="0">
+                  <Shape>
+                    <GTPVolume gml:id="16718808-8472-4e4e-af83-f6e4a666348c">
+                      <Vertices>
+                        <Vertex gml:srsDimension="3">0 0 10</Vertex>
+                        <Vertex gml:srsDimension="3">0 100 10</Vertex>
+                        <Vertex gml:srsDimension="3">100 0 10</Vertex>
+                        <Vertex gml:srsDimension="3">75 100 10</Vertex>
+                        <Vertex gml:srsDimension="3">200 0 10</Vertex>
+                        <Vertex gml:srsDimension="3">200 100 10</Vertex>
+                        <Vertex gml:srsDimension="3">0 0 100</Vertex>
+                        <Vertex gml:srsDimension="3">0 100 110</Vertex>
+                        <Vertex gml:srsDimension="3">100 0 100</Vertex>
+                        <Vertex gml:srsDimension="3">75 100 110</Vertex>
+                        <Vertex gml:srsDimension="3">200 0 100</Vertex>
+                        <Vertex gml:srsDimension="3">200 100 110</Vertex>
+                      </Vertices>
+                      <Prisms>
+                        <Prism>
+                          <TopTriangle>6 9 7</TopTriangle>
+                          <BottomTriangle>0 3 1</BottomTriangle>
+                          <NeighborList>-1 -1 1</NeighborList>
+                        </Prism>
+                        <Prism>
+                          <TopTriangle>9 6 8</TopTriangle>
+                          <BottomTriangle>3 0 2</BottomTriangle>
+                          <NeighborList>-1 2 0</NeighborList>
+                        </Prism>
+                        <Prism>
+                          <TopTriangle>8 11 9</TopTriangle>
+                          <BottomTriangle>2 5 3</BottomTriangle>
+                          <NeighborList>-1 1 -1</NeighborList>
+                        </Prism>
+                        <!--
+                        <Prism>
+                          <TopTriangle>11 8 10</TopTriangle>
+                          <BottomTriangle>5 2 4</BottomTriangle>
+                          <NeighborList>-1 -1 2</NeighborList>
+                        </Prism>
+                      -->
+                      </Prisms>
+                    </GTPVolume>
+                  </Shape>
+                </Geometry>
+              </Geometries>
+            </GeoFeature>
+          </Feature>
         </Features>
       </GeoFeatureClass>
     </FeatureClass>
