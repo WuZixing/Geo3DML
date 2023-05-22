@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<geo3dml:Geo3DModel xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml" xmlns="http://www.cgs.gov.cn/geo3dml"
+  xmlns:gml="http://www.opengis.net/gml/3.2"
+  xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0"
+  xmlns:swe="http://www.opengis.net/swe/2.0"
+  xmlns:gco="http://www.isotc211.org/2005/gco"
+  xmlns:gmd="http://www.isotc211.org/2005/gmd"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.cgs.gov.cn/geo3dml file:///C:/Users/wliang/Workspace/Geo3DML/xsd/Geo3DML.xsd"
+  ID="6ab4433b-93a7-4b05-aacc-62ed059943c3">
+  <Name>RectifiedGrid示例模型</Name>
+  <Type>3DModel</Type>
+  <Metadata>
+    <!-- 联系方式 -->
+    <gmd:contact>
+      <gmd:CI_ResponsibleParty>
+        <!-- 责任人名字 -->
+        <gmd:individualName>
+          <gco:CharacterString>模型创建人的名字</gco:CharacterString>
+        </gmd:individualName>
+        <!-- 所在机构名 -->
+        <gmd:organisationName>
+          <gco:CharacterString>单位名</gco:CharacterString>
+        </gmd:organisationName>
+        <!-- 职务 -->
+        <gmd:positionName></gmd:positionName>
+        <!-- 具体的联系信息 -->
+        <gmd:contactInfo>
+          <gmd:CI_Contact>
+            <gmd:phone>
+              <gmd:CI_Telephone>
+                <gmd:voice>
+                  <gco:CharacterString>010-87654321</gco:CharacterString>
+                </gmd:voice>
+              </gmd:CI_Telephone>
+            </gmd:phone>
+            <!-- 联系地址 -->
+            <gmd:address>
+              <gmd:CI_Address></gmd:CI_Address>
+            </gmd:address>
+          </gmd:CI_Contact>
+        </gmd:contactInfo>
+        <gmd:role></gmd:role>
+      </gmd:CI_ResponsibleParty>
+    </gmd:contact>
+    <gmd:dateStamp>
+      <gco:Date>2013-11-13</gco:Date>
+    </gmd:dateStamp>
+    <!-- 数据的描述信息，如标题，摘要等。 -->
+    <gmd:identificationInfo>
+    </gmd:identificationInfo>
+    <!-- 扩展的元数据项 -->
+    <Description>关于矢栅一体化模型的示例。网格数据是RectifiedGrid类型。</Description>
+    <Version>1.0.0</Version>
+    <ToolName>XX软件</ToolName>
+    <ToolVersion>vX.X.X</ToolVersion>
+  </Metadata>
+  <FeatureClasses>
+    <FeatureClass>
+      <GeoFeatureClass gml:id="92911658-7ef6-4905-bda5-b2c53a4a1e03">
+        <gml:name>RectifiedGrid地层</gml:name>
+        <Schema>
+          <swe:field name="stratigraphic_name">
+            <swe:Text />
+          </swe:field>
+          <swe:field name="lithology">
+            <swe:Text />
+          </swe:field>
+          <swe:field name="density">
+            <swe:Quantity>
+              <swe:uom>t/m3</swe:uom>
+            </swe:Quantity>
+          </swe:field>
+        </Schema>
+        <Features>
+          <Feature>
+            <GeoFeature gml:id="79c95548-4db5-4536-b926-6074e7783cfc">
+              <gml:name>地层A</gml:name>
+              <Fields>
+                <Field Name="stratigraphic_name">
+                  <swe:Text><swe:value>石门组</swe:value></swe:Text>
+                </Field>
+                <Field Name="lithology">
+                  <swe:Text><swe:value>灰岩</swe:value></swe:Text>
+                </Field>
+                <Field Name="density">
+                  <swe:Quantity>
+                    <swe:uom>t/m3</swe:uom>
+                    <swe:value>2.3</swe:value>
+                  </swe:Quantity>
+                </Field>
+              </Fields>
+              <Geometries>
+                <Geometry Name="Grid1">
+                  <Shape>
+                    <gml:RectifiedGrid gml:id="c2096e54-d72e-48b8-a4be-ee3ea386f359" gml:dimension="3">
+                      <gml:limits>
+                        <gml:GridEnvelope>
+                          <gml:low>-1 -1 -1</gml:low>
+                          <gml:high>6 5 3</gml:high>
+                        </gml:GridEnvelope>
+                      </gml:limits>
+                      <gml:axisLabels>I J K</gml:axisLabels>
+                      <gml:origin>
+                        <gml:Point>43.21 11.3 25.8</gml:Point>
+                      </gml:origin>
+                      <gml:offsetVector>4.8 4.8 2</gml:offsetVector>
+                      <gml:offsetVector>0 10 0</gml:offsetVector>
+                      <gml:offsetVector>0 0 6.8</gml:offsetVector>
+                    </gml:RectifiedGrid>
+                  </Shape>
+                </Geometry>
+              </Geometries>
+            </GeoFeature>
+          </Feature>
+        </Features>
+      </GeoFeatureClass>
+    </FeatureClass>
+  </FeatureClasses>
+</geo3dml:Geo3DModel>

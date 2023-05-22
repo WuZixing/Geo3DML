@@ -15,6 +15,9 @@
     <Model>
       <xi:include href="model_SGrid.xml" />
     </Model>
+    <Model>
+      <xi:include href="model_RectifiedGrid.xml" />
+    </Model>
   </Models>
   <Maps>
     <Map>
