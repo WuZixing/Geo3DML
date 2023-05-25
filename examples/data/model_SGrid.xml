@@ -76,7 +76,7 @@
         <Features>
           <Feature>
             <GeoFeature gml:id="64a35c7c-1e87-4ef2-bcfe-2315bae0213a">
-              <gml:name>地层1</gml:name>
+              <gml:name>地层A</gml:name>
               <Fields>
                 <Field Name="stratigraphic_name">
                   <swe:Text><swe:value>蓟县组</swe:value></swe:Text>
@@ -92,7 +92,7 @@
                 </Field>
               </Fields>
               <Geometries>
-                <Geometry Name="G1" LOD="0">
+                <Geometry Name="TIN" LOD="0">
                   <Shape>
                     <GeoTin gml:id="111ba61a-5412-439e-bd9b-2cd4181eb4c4">
                       <Vertices>
@@ -647,7 +647,7 @@
           </Feature>
           <Feature>
             <GeoFeature gml:id="1e61ba34-7969-2d22-1c04-d6ed8bf29d5e">
-              <gml:name>地层-三棱柱</gml:name>
+              <gml:name>地层B</gml:name>
               <Fields>
                 <Field Name="stratigraphic_name">
                   <swe:Text><swe:value>蓟县组</swe:value></swe:Text>
@@ -667,18 +667,18 @@
                   <Shape>
                     <GTPVolume gml:id="16718808-8472-4e4e-af83-f6e4a666348c">
                       <Vertices>
-                        <Vertex gml:srsDimension="3">0 0 10</Vertex>
-                        <Vertex gml:srsDimension="3">0 100 10</Vertex>
-                        <Vertex gml:srsDimension="3">100 0 10</Vertex>
-                        <Vertex gml:srsDimension="3">75 100 10</Vertex>
-                        <Vertex gml:srsDimension="3">200 0 10</Vertex>
-                        <Vertex gml:srsDimension="3">200 100 10</Vertex>
-                        <Vertex gml:srsDimension="3">0 0 100</Vertex>
-                        <Vertex gml:srsDimension="3">0 100 110</Vertex>
-                        <Vertex gml:srsDimension="3">100 0 100</Vertex>
-                        <Vertex gml:srsDimension="3">75 100 110</Vertex>
-                        <Vertex gml:srsDimension="3">200 0 100</Vertex>
-                        <Vertex gml:srsDimension="3">200 100 110</Vertex>
+                        <Vertex gml:srsDimension="3">0 0 120</Vertex>
+                        <Vertex gml:srsDimension="3">0 100 120</Vertex>
+                        <Vertex gml:srsDimension="3">100 0 120</Vertex>
+                        <Vertex gml:srsDimension="3">75 100 120</Vertex>
+                        <Vertex gml:srsDimension="3">200 0 120</Vertex>
+                        <Vertex gml:srsDimension="3">200 100 120</Vertex>
+                        <Vertex gml:srsDimension="3">0 0 210</Vertex>
+                        <Vertex gml:srsDimension="3">0 100 220</Vertex>
+                        <Vertex gml:srsDimension="3">100 0 210</Vertex>
+                        <Vertex gml:srsDimension="3">75 100 220</Vertex>
+                        <Vertex gml:srsDimension="3">200 0 210</Vertex>
+                        <Vertex gml:srsDimension="3">200 100 220</Vertex>
                       </Vertices>
                       <Prisms>
                         <Prism>
