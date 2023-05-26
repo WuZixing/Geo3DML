@@ -187,6 +187,68 @@
               </Geometries>
             </GeoFeature>
           </Feature>
+          <Feature>
+            <GeoFeature gml:id="a9c42896-77eb-4ba8-bc7f-f7d6d8544c1f">
+              <gml:name>地层E</gml:name>
+              <Fields>
+                <Field Name="stratigraphic_name">
+                  <swe:Text><swe:value>雾迷山组</swe:value></swe:Text>
+                </Field>
+                <Field Name="lithology">
+                  <swe:Text><swe:value>白云岩</swe:value></swe:Text>
+                </Field>
+                <Field Name="density">
+                  <swe:Quantity>
+                    <swe:uom>t/m3</swe:uom>
+                    <swe:value>2.3</swe:value>
+                  </swe:Quantity>
+                </Field>
+              </Fields>
+              <Geometries>
+                <Geometry Name="六面体">
+                  <Shape>
+                    <GeoCuboidVolume gml:id="5b5607bf-714f-42e9-8925-fb51ece4c01e">
+                      <Vertices>
+                        <Vertex gml:srsDimension="3" IndexNo="0">0 200 10</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="1">0 300 10</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="2">100 300 10</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="3">100 250 10</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="4">100 200 10</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="5">200 200 10</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="6">200 250 10</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="7">200 275 10</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="8">150 275 10</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="9">150 250 10</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="10">0 200 110</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="11">0 300 110</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="12">100 300 110</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="13">100 200 110</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="14">100 250 90</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="15">100 200 90</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="16">200 200 90</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="17">200 250 90</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="18">200 250 60</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="19">200 275 60</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="20">150 275 60</Vertex>
+                        <Vertex gml:srsDimension="3" IndexNo="21">150 250 60</Vertex>
+                      </Vertices>
+                      <Cuboids>
+                        <Cuboid IndexNo="0">
+                          <VertexList>0 4 2 1 10 13 12 11</VertexList>
+                        </Cuboid>
+                        <Cuboid IndexNo="1">
+                          <VertexList>4 5 6 3 15 16 17 14</VertexList>
+                        </Cuboid>
+                        <Cuboid IndexNo="2">
+                          <VertexList>6 7 8 9 18 19 20 21</VertexList>
+                        </Cuboid>
+                      </Cuboids>
+                    </GeoCuboidVolume>
+                  </Shape>
+                </Geometry>
+              </Geometries>
+            </GeoFeature>
+          </Feature>
         </Features>
       </GeoFeatureClass>
     </FeatureClass>

@@ -158,7 +158,7 @@
                     </GeoTin>
                   </Shape>
                 </Geometry>
-                <Geometry Name="C1" LOD="0">
+                <Geometry Name="SGrid-1" LOD="0">
                   <Shape>
                     <GeoSGrid gml:id="1a044aa4-989d-4c48-8172-b5410817e685">
                       <PlaneGrid>
@@ -537,7 +537,7 @@
                     </GeoDiscreteCoverage>
                   </ShapeProperty>
                 </Geometry>
-                <Geometry Name="C1" LOD="1">
+                <Geometry Name="SGrid-1" LOD="1">
                   <Shape>
                     <GeoSGrid gml:id="c4b4dfe4-75ad-4175-a37f-07423fa29a77">
                       <PlaneGrid>
