@@ -87,10 +87,7 @@
             <annotation><documentation>面的正面可视化属性：颜色或纹理。</documentation></annotation>
             <complexType>
               <sequence>
-                <choice>
-                  <element ref="geo3dml:Material"/>
-                  <element ref="geo3dml:AbstractTexture"/>
-                </choice>
+                <element ref="geo3dml:Material"/>
               </sequence>
             </complexType>
           </element>
@@ -98,10 +95,7 @@
             <annotation><documentation>面的反面可视化属性（可选）：颜色或纹理。</documentation></annotation>
             <complexType>
               <sequence>
-                <choice>
-                  <element ref="geo3dml:Material"/>
-                  <element ref="geo3dml:AbstractTexture"/>
-                </choice>
+                <element ref="geo3dml:Material"/>
               </sequence>
             </complexType>
           </element>
@@ -166,6 +160,14 @@
       </element>
       <element name="Transparency" type="geo3dml:DoubleBetween0And1" default="0.0" minOccurs="0">
         <annotation><documentation>透明度：0表示完全不透明；1表示完全透明。</documentation></annotation>
+      </element>
+      <element name="Texture" minOccurs="0">
+          <annotation><documentation>纹理贴图设置</documentation></annotation>
+          <complexType>
+            <sequence>
+              <element ref="geo3dml:AbstractTexture" />
+            </sequence>
+          </complexType>
       </element>
     </sequence>
   </complexType>

@@ -34,6 +34,14 @@
                       <Shininess>0.200000</Shininess>
                       <SpecularColor>0.800000 0.843137 0.941176</SpecularColor>
                       <Transparency>0.000000</Transparency>
+                      <Texture>
+                        <ParameterizedTexture>
+                          <ImageURI>岩石.jpg</ImageURI>
+                          <MimeType>image/jpeg</MimeType>
+                          <WrapMode>Border</WrapMode>
+                          <BorderColor>0 1 0 0</BorderColor>
+                        </ParameterizedTexture>
+                      </Texture>
                     </Material>
                   </Front>
                 </GeoSurfaceSymbolizer>
