@@ -51,6 +51,14 @@
     <!-- 扩展的元数据项 -->
     <Description>钻孔是一种地质模型，刻画地质现象沿钻孔轨迹线的空间分布规律。</Description>
     <Version>1.0.0</Version>
+    <!-- Geo3DML schema定义的元数据不能结合水平坐标系和垂向坐标系（应视为一个错误），所以此处仅定义水平坐标系，忽略垂向坐标系。 -->
+    <SpatialReferenceSystem>
+      <CoordinateReferenceSystem>
+        <CoordinateReferenceSystemIdentifier>2000中国大地坐标系统</CoordinateReferenceSystemIdentifier>
+        <CoordinateSystemType>投影坐标系</CoordinateSystemType>
+        <CoordinateSystemIdentifier>EPSG:4526</CoordinateSystemIdentifier>
+      </CoordinateReferenceSystem>
+    </SpatialReferenceSystem>
     <ToolName>XX工具</ToolName>
     <ToolVersion>vXX.XX</ToolVersion>
   </Metadata>

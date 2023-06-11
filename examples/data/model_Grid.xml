@@ -37,7 +37,14 @@
             </gmd:phone>
             <!-- 联系地址 -->
             <gmd:address>
-              <gmd:CI_Address></gmd:CI_Address>
+              <gmd:CI_Address>
+                <gmd:deliveryPoint>
+                  <gco:CharacterString>北京市西城区阜成门外大街45号</gco:CharacterString>
+                </gmd:deliveryPoint>
+                <gmd:electronicMailAddress>
+                  <gco:CharacterString>mail@example.com</gco:CharacterString>
+                </gmd:electronicMailAddress>
+              </gmd:CI_Address>
             </gmd:address>
           </gmd:CI_Contact>
         </gmd:contactInfo>
@@ -53,6 +60,14 @@
     <!-- 扩展的元数据项 -->
     <Description>关于矢栅一体化模型的示例。</Description>
     <Version>1.0.0</Version>
+    <!-- Geo3DML schema定义的元数据不能结合水平坐标系和垂向坐标系（应视为一个错误），所以此处仅定义水平坐标系，忽略垂向坐标系。 -->
+    <SpatialReferenceSystem>
+      <CoordinateReferenceSystem>
+        <CoordinateReferenceSystemIdentifier>2000中国大地坐标系统</CoordinateReferenceSystemIdentifier>
+        <CoordinateSystemType>投影坐标系</CoordinateSystemType>
+        <CoordinateSystemIdentifier>EPSG:4526</CoordinateSystemIdentifier>
+      </CoordinateReferenceSystem>
+    </SpatialReferenceSystem>
     <ToolName>XX软件</ToolName>
     <ToolVersion>vX.X.X</ToolVersion>
   </Metadata>
