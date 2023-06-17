@@ -25,7 +25,7 @@
           <element name="Version" type="string">
             <annotation><documentation>模型的版本号。</documentation></annotation>
           </element>
-          <element name="SpatialReferenceSystem" type="geo3dml:AbstractSpatialReferenceSystemPropertyType" minOccurs="0">
+          <element name="SpatialReferenceSystem" type="SpatialReferenceSystemType" minOccurs="0">
             <annotation><documentation>空间数据参照系</documentation></annotation>
           </element>
           <element name="ToolName" type="string">
@@ -47,158 +47,68 @@
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  
-  <complexType name="AbstractSpatialReferenceSystemType" abstract="true">
-    <annotation><documentation>源自《地质信息元数据标准》（DD2006-05）的空间数据参数系数据结构。</documentation></annotation>
-    <sequence />
-  </complexType>
-  <element name="AbstractSpatialReferenceSystem" type="geo3dml:AbstractSpatialReferenceSystemType" abstract="true" />
-  
-  <complexType name="AbstractSpatialReferenceSystemPropertyType">
+
+  <complexType name="SpatialReferenceSystemType">
+    <annotation><documentation>空间数据坐标参照系，包括平面坐标系和垂向坐标系。</documentation></annotation>
     <sequence>
-      <element ref="geo3dml:AbstractSpatialReferenceSystem" minOccurs="0"/>
+      <element name="CoordinateReferenceSystem">
+        <annotation><documentation>平面坐标系参数</documentation></annotation>
+        <complexType>
+          <sequence>
+            <element name="Identifier">
+              <annotation><documentation>坐标系标识符，指示坐标系参数的格式。</documentation></annotation>
+              <simpleType>
+                <restriction base="string">
+                  <enumeration value="EPSG">
+                    <annotation><documentation>使用EGSP编码指定坐标系，如"4326"。</documentation></annotation>
+                  </enumeration>
+                  <enumeration value="OGC WTK">
+                    <annotation><documentation>使用OGC WTK格式记录坐标系参数。</documentation></annotation>
+                  </enumeration>
+                  <enumeration value="OGC WTK2">
+                    <annotation><documentation>使用OGC WTK2格式记录坐标系参数。</documentation></annotation>
+                  </enumeration>
+                  <enumeration value="PROJ4">
+                    <annotation><documentation>使用PROJ4格式记录坐标系参数。</documentation></annotation>
+                  </enumeration>
+                  <enumeration value="自定义">
+                    <annotation><documentation>使用自定义的特殊格式记录坐标系参数。</documentation></annotation>
+                  </enumeration>
+                </restriction>
+              </simpleType>
+            </element>
+            <element name="Parameter" type="string">
+              <annotation><documentation>按Identifier指定的格式记录坐标系参数，如EPSG编码"4326"。</documentation></annotation>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="VerticalReferenceSystem" type="string" minOccurs="0">
+        <annotation><documentation>垂向坐标系名称，如“1956年黄海高程系”、“1985年国家高程系”、“大地高程系”等。</documentation></annotation>
+        <complexType>
+          <sequence>
+            <element name="Category">
+              <annotation><documentation>指示高程系的类别。</documentation></annotation>
+              <simpleType>
+                <restriction base="string">
+                  <enumeration value="大地高程系">
+                    <annotation><documentation>基于椭球基准面的高程。</documentation></annotation>
+                  </enumeration>
+                  <enumeration value="国家高程系">
+                    <annotation><documentation>国家高程系，如“1956年黄海高程系”，“1985年国家高程系”。</documentation></annotation>
+                  </enumeration>
+                  <enumeration value="其它高程系">
+                    <annotation><documentation>如各地方的独立高程系。</documentation></annotation>
+                  </enumeration>
+                </restriction>
+              </simpleType>
+            </element>
+            <element name="ReferenceSystem" type="string" minOccurs="0">
+              <annotation><documentation>高程坐标系的具体名字，如“1956年黄海高程系”、“1985年国家高程系”、“吴淞零点高程”等。</documentation></annotation>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
     </sequence>
-    <attributeGroup ref="gml:AssociationAttributeGroup"/>
-    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  
-  <complexType name="SpatialReferenceSystemUsingGeographicIdentifiersType">
-    <annotation><documentation>源自《地质信息元数据标准》（DD2006-05）的基于地理标识的空间参照系。</documentation></annotation>
-    <complexContent>
-      <extension base="geo3dml:AbstractSpatialReferenceSystemType">
-        <sequence>
-          <element name="Name" type="string">
-            <annotation><documentation>基于地理标识的空间参照系名称。</documentation></annotation>
-          </element>
-        </sequence>
-      </extension>
-    </complexContent>
-  </complexType>
-  <element name="SpatialReferenceSystemUsingGeographicIdentifiers" type="geo3dml:SpatialReferenceSystemUsingGeographicIdentifiersType" substitutionGroup="geo3dml:AbstractSpatialReferenceSystem" />
-  
-  <complexType name="CoordinateReferenceSystemType">
-    <annotation><documentation>源自《地质信息元数据标准》（DD2006-05）的基于坐标的空间参照系。</documentation></annotation>
-    <complexContent>
-      <extension base="geo3dml:AbstractSpatialReferenceSystemType">
-        <sequence>
-          <element name="CoordinateReferenceSystemIdentifier">
-            <annotation><documentation>坐标参照系名称</documentation></annotation>
-            <simpleType>
-              <restriction base="string">
-                <enumeration value="1954北京坐标系" />
-                <enumeration value="1980西安坐标系" />
-                <enumeration value="地方独立坐标系">
-                  <annotation><documentation>相对于独立国家坐标系的局部坐标系</documentation></annotation>
-                </enumeration>
-                <enumeration value="全球参考系">
-                  <annotation><documentation>全球参考系：用于检索陆地卫星数据的一个全球检索系。</documentation></annotation>
-                </enumeration>
-                <enumeration value="IAG 1979年大地参照系">
-                  <annotation><documentation>国际大地测量协会（IAG）1979年大会通过的大地参照系。</documentation></annotation>
-                </enumeration>
-                <enumeration value="世界大地坐标系">
-                  <annotation><documentation>世界大地坐标系，质点在地球质心。</documentation></annotation>
-                </enumeration>
-                <enumeration value="2000中国大地坐标系统">
-                  <annotation><documentation>国家GPS大地控制网，地心坐标系</documentation></annotation>
-                </enumeration>
-              </restriction>
-            </simpleType>
-          </element>
-          <element name="CoordinateSystemType">
-            <annotation><documentation>坐标系类型名称。</documentation></annotation>
-            <simpleType>
-              <restriction base="string">
-                <enumeration value="笛卡尔坐标系">
-                  <annotation><documentation>相互正交于远点的n个数轴（n是任意正整数）组成的n维坐标系。</documentation></annotation>
-                </enumeration>
-                <enumeration value="大地坐标系">
-                  <annotation><documentation>用经度和纬度表示地面点位置的球面坐标。</documentation></annotation>
-                </enumeration>
-                <enumeration value="投影坐标系">
-                  <annotation><documentation>由不同的投影方法所形成的坐标系。</documentation></annotation>
-                </enumeration>
-                <enumeration value="极坐标系">
-                  <annotation><documentation>用某点至极点的距离和方向表示该点位置的坐标系。</documentation></annotation>
-                </enumeration>
-                <enumeration value="重力相关坐标系">
-                  <annotation><documentation>重力测量及其计算的一种基准。</documentation></annotation>
-                </enumeration>
-              </restriction>
-            </simpleType>
-          </element>
-          <element name="CoordinateSystemIdentifier" type="string">
-            <annotation><documentation>坐标系名称</documentation></annotation>
-          </element>
-          <element name="Parameter" type="string" minOccurs="0">
-            <annotation><documentation>采用投影坐标系时有关投影坐标参数的说明。</documentation></annotation>
-          </element>
-        </sequence>
-      </extension>
-    </complexContent>
-  </complexType>
-  <element name="CoordinateReferenceSystem" type="geo3dml:CoordinateReferenceSystemType" substitutionGroup="geo3dml:AbstractSpatialReferenceSystem" />
-  
-  <complexType name="VerticalReferenceSystemType">
-    <annotation><documentation>源自《地质信息元数据标准》（DD2006-05）的垂向坐标参照系。</documentation></annotation>
-    <complexContent>
-      <extension base="geo3dml:AbstractSpatialReferenceSystemType">
-        <sequence>
-          <element name="VerticalReferenceSystemIdentifier">
-            <annotation><documentation>垂向坐标参照系名称。</documentation></annotation>
-            <simpleType>
-              <restriction base="string">
-                <enumeration value="高程">
-                  <annotation><documentation>高程类别的一级分类名。</documentation></annotation>
-                </enumeration>
-                <enumeration value="1956年黄海高程系">
-                  <annotation><documentation>高程类别的二级分类名。</documentation></annotation>
-                </enumeration>
-                <enumeration value="1985年国家高程系">
-                  <annotation><documentation>高程类别的二级分类名。</documentation></annotation>
-                </enumeration>
-                <enumeration value="地方独立高程系">
-                  <annotation><documentation>高程类别的二级分类名，是独立于国家高程系外的局部高程坐标系。</documentation></annotation>
-                </enumeration>
-                <enumeration value="深度">
-                  <annotation><documentation>深度类别的一级分类名。</documentation></annotation>
-                </enumeration>
-                <enumeration value="略最低低潮面">
-                  <annotation><documentation>深度类别的二级分类名，是印度大潮低潮面。</documentation></annotation>
-                </enumeration>
-                <enumeration value="理论深度基准面">
-                  <annotation><documentation>深度类别的二级分类名。</documentation></annotation>
-                </enumeration>
-                <enumeration value="重力">
-                  <annotation><documentation>重力相关类别的一级分类名。</documentation></annotation>
-                </enumeration>
-                <enumeration value="国家重力控制网">
-                  <annotation><documentation>重力相关类别的二级分类名，是57网。重力基准由苏联引入，属波茨坦重力基准。</documentation></annotation>
-                </enumeration>
-                <enumeration value="国家1985重力基准网">
-                  <annotation><documentation>重力相关类别的二级分类名，是85网。综合性的重力基准。</documentation></annotation>
-                </enumeration>
-                <enumeration value="维也纳重力基准">
-                  <annotation><documentation>重力相关类别的二级分类名。</documentation></annotation>
-                </enumeration>
-                <enumeration value="波茨坦重力基准">
-                  <annotation><documentation>重力相关类别的二级分类名。</documentation></annotation>
-                </enumeration>
-                <enumeration value="国际重力基准网1971">
-                  <annotation><documentation>重力相关类别的二级分类名，即IGSN-71。</documentation></annotation>
-                </enumeration>
-                <enumeration value="国际绝对重力基准网">
-                  <annotation><documentation>重力相关类别的二级分类名，即IAGBN。</documentation></annotation>
-                </enumeration>
-                <enumeration value="相对高度">
-                  <annotation><documentation>相对高度类别的一级分类名。</documentation></annotation>
-                </enumeration>
-              </restriction>
-            </simpleType>
-          </element>
-        </sequence>
-      </extension>
-    </complexContent>
-  </complexType>
-  <element name="VerticalReferenceSystem" type="geo3dml:VerticalReferenceSystemType" substitutionGroup="geo3dml:AbstractSpatialReferenceSystem" />
 </xs:schema>
