@@ -83,8 +83,8 @@
           </sequence>
         </complexType>
       </element>
-      <element name="VerticalReferenceSystem" type="string" minOccurs="0">
-        <annotation><documentation>垂向坐标系名称，如“1956年黄海高程系”、“1985年国家高程系”、“大地高程系”等。</documentation></annotation>
+      <element name="VerticalReferenceSystem" minOccurs="0">
+        <annotation><documentation>垂向坐标系，如“1956年黄海高程系”、“1985年国家高程系”、“大地高程系”等。</documentation></annotation>
         <complexType>
           <sequence>
             <element name="Category">
