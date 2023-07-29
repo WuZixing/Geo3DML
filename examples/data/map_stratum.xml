@@ -51,7 +51,7 @@
         </Style>
       </Styles>
     </Layer>
-    <Layer gml:id="stratum-Grid">
+    <Layer gml:id="stratum-Volume">
       <gml:name>地层-体数据</gml:name>
       <FeatureClass xlink:type="simple" xlink:href="#92911658-7ef6-4905-bda5-b2c53a4a1e03" />
     </Layer>

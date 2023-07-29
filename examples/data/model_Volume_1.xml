@@ -9,7 +9,7 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.cgs.gov.cn/geo3dml file:///C:/Users/wliang/Workspace/Geo3DML/xsd/Geo3DML.xsd"
   ID="6ab4433b-93a7-4b05-aacc-62ed059943c3">
-  <Name>体数据示例模型</Name>
+  <Name>体数据示例模型-1</Name>
   <Type>3DModel</Type>
   <Metadata>
     <!-- 联系方式 -->
@@ -58,7 +58,7 @@
     <gmd:identificationInfo>
     </gmd:identificationInfo>
     <!-- 扩展的元数据项 -->
-    <Description>关于矢栅一体化模型的示例。</Description>
+    <Description>关于体数据模型的示例，包括规则网格体、四面体单元体、长方体单元体。</Description>
     <Version>1.0.0</Version>
     <SpatialReferenceSystem>
       <CoordinateReferenceSystem>
@@ -85,7 +85,7 @@
           </swe:field>
           <swe:field name="density">
             <swe:Quantity>
-              <swe:uom>t/m3</swe:uom>
+              <swe:uom code="t/m3" />
             </swe:Quantity>
           </swe:field>
         </Schema>
@@ -102,7 +102,7 @@
                 </Field>
                 <Field Name="density">
                   <swe:Quantity>
-                    <swe:uom>t/m3</swe:uom>
+                    <swe:uom code="t/m3" />
                     <swe:value>2.3</swe:value>
                   </swe:Quantity>
                 </Field>
@@ -142,7 +142,7 @@
                 </Field>
                 <Field Name="density">
                   <swe:Quantity>
-                    <swe:uom>t/m3</swe:uom>
+                    <swe:uom code="t/m3" />
                     <swe:value>2.3</swe:value>
                   </swe:Quantity>
                 </Field>
@@ -215,7 +215,7 @@
                 </Field>
                 <Field Name="density">
                   <swe:Quantity>
-                    <swe:uom>t/m3</swe:uom>
+                    <swe:uom code="t/m3" />
                     <swe:value>2.3</swe:value>
                   </swe:Quantity>
                 </Field>

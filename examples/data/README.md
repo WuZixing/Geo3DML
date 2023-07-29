@@ -6,9 +6,13 @@
 
 + 一个名为“剖面_m1”的描述某剖面的地质模型（文件model_section.xml）及其对应的三维可视化结果——名为“m1”的三维地质图（文件map_section.xml）；
 
-+ 一个由SGrid网格填充的地质体（文件model_SGrid.xml）。
++ 地质体模型示例：
+  
+  - model_Volume_1.xml：规则网格体，四面体单元组成的体，长方体单元组成的体。
 
-该示例数据由如下7个文件组成：
+  - model_Volume_2.xml：TIN面描述的封闭地质体，截断规则网格地质体，以及广义三棱柱地质体。
+
+该示例数据由如下8个文件组成：
 
 + [project.xml](./project.xml)
 
@@ -16,7 +20,9 @@
 
 + [model_section.xml](./model_section.xml)
 
-+ [model_SGrid.xml](./model_SGrid.xml)
++ [model_Volume_1.xml](./model_Volume_1.xml)
+
++ [model_Volume_2.xml](./model_Volume_2.xml)
 
 + [map_drill.xml](./map_drill.xml)
 

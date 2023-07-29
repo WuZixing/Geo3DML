@@ -15,6 +15,26 @@
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd" />
   <include schemaLocation="./GeoBasicTypes.xsd"/>
 
+  <complexType name="VerticesType">
+    <annotation>
+      <documentation>顶点列表。</documentation>
+    </annotation>
+    <sequence>
+      <element name="Vertex" minOccurs="0" maxOccurs="unbounded">
+        <annotation>
+          <documentation>IndexNo显示记录顶点的索引号（从0开始）。为方便数据处理，顶点的记录顺序应与索引号一致。</documentation>
+        </annotation>
+        <complexType>
+          <complexContent>
+            <extension base="gml:DirectPositionType">
+              <attribute name="IndexNo" type="nonNegativeInteger" use="required"/>
+            </extension>
+          </complexContent>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+
   <complexType name="GeoTinType">
     <annotation>
       <documentation>Geo3DML中TIN的结构分为点表与三角形表两部分。</documentation>
@@ -22,23 +42,10 @@
     <complexContent>
       <extension base="gml:AbstractSurfaceType">
         <sequence>
-          <element name="Vertices" minOccurs="0">
+          <element name="Vertices" type="geo3dml:VerticesType" minOccurs="0">
             <annotation>
               <documentation>顶点表</documentation>
             </annotation>
-            <complexType>
-              <sequence>
-                <element name="Vertex" minOccurs="0" maxOccurs="unbounded">
-                  <complexType>
-                    <complexContent>
-                      <extension base="gml:DirectPositionType">
-                        <attribute name="IndexNo" type="nonNegativeInteger" use="required"/>
-                      </extension>
-                    </complexContent>
-                  </complexType>
-                </element>
-              </sequence>
-            </complexType>
           </element>
           <element name="Triangles" minOccurs="0">
             <annotation>
@@ -100,23 +107,10 @@
     <complexContent>
       <extension base="geo3dml:GeoVolumeType">
         <sequence>
-          <element name="Vertices" minOccurs="0">
+          <element name="Vertices" type="geo3dml:VerticesType" minOccurs="0">
             <annotation>
               <documentation>顶点表</documentation>
             </annotation>
-            <complexType>
-              <sequence>
-                <element name="Vertex" minOccurs="0" maxOccurs="unbounded">
-                  <complexType>
-                    <complexContent>
-                      <extension base="gml:DirectPositionType">
-                        <attribute name="IndexNo" type="nonNegativeInteger" use="required"/>
-                      </extension>
-                    </complexContent>
-                  </complexType>
-                </element>
-              </sequence>
-            </complexType>
           </element>
           <element name="Tetrahedrons" minOccurs="0">
             <annotation>
@@ -163,28 +157,15 @@
   
   <complexType name="GeoCuboidVolumeType">
     <annotation>
-      <documentation>由规则六面体体元填充而成的体。</documentation>
+      <documentation>由规则六面体（即长方体）体元填充而成的体。不要求各体元的大小一致。当要求体元大小一致时，可以使用gml:RectifiedGrid。</documentation>
     </annotation>
     <complexContent>
       <extension base="geo3dml:GeoVolumeType">
         <sequence>
-          <element name="Vertices" minOccurs="0">
+          <element name="Vertices" type="geo3dml:VerticesType" minOccurs="0">
             <annotation>
               <documentation>顶点表</documentation>
             </annotation>
-            <complexType>
-              <sequence>
-                <element name="Vertex" minOccurs="0" maxOccurs="unbounded">
-                  <complexType>
-                    <complexContent>
-                      <extension base="gml:DirectPositionType">
-                        <attribute name="IndexNo" type="nonNegativeInteger" use="required"/>
-                      </extension>
-                    </complexContent>
-                  </complexType>
-                </element>
-              </sequence>
-            </complexType>
           </element>
           <element name="Cuboids" minOccurs="0">
             <annotation>
@@ -307,45 +288,17 @@
   </complexType>
   <element name="GeoCornerPointGrid" type="geo3dml:GeoCornerPointGridType" substitutionGroup="geo3dml:GeoVolume"/>
 
-  <complexType name="GeoGridType">
-    <annotation>
-      <documentation>Geo3DML中多维规则网格。</documentation>
-    </annotation>
-    <complexContent>
-      <extension base="gml:AbstractGeometryType">
-        <sequence>
-          <element ref="gml:Grid"/>
-          <element name="TransformationMatrix" type="geo3dml:TransformationMatrix4x4Type" minOccurs="0">
-            <annotation>
-              <documentation>网格变换参数。</documentation>
-            </annotation>
-          </element>
-        </sequence>
-      </extension>
-    </complexContent>
-  </complexType>
-  <element name="GeoGrid" type="geo3dml:GeoGridType" substitutionGroup="gml:AbstractGeometry"/>
-
-  <complexType name="GeoGTPVolumeType">
+  <complexType name="GeoTriangularPrismVolumeType">
     <annotation>
       <documentation>由广义三棱柱填充而成的体。</documentation>
     </annotation>
     <complexContent>
       <extension base="geo3dml:GeoVolumeType">
         <sequence>
-          <element name="Vertices" minOccurs="0">
+          <element name="Vertices" type="geo3dml:VerticesType" minOccurs="0">
             <annotation>
               <documentation>顶点表</documentation>
             </annotation>
-            <complexType>
-              <sequence>
-                <element name="Vertex" type="gml:DirectPositionType" minOccurs="0" maxOccurs="unbounded">
-                  <annotation>
-                    <documentation>顶点按其记录的顺序对应从0开始的索引号。</documentation>
-                  </annotation>
-                </element>
-              </sequence>
-            </complexType>
           </element>
           <element name="Prisms" minOccurs="0">
             <annotation>
@@ -399,27 +352,34 @@
                   </complexType>
                 </element>
               </sequence>
+              <attribute name="IndexNo" type="nonNegativeInteger" use="required" />
             </complexType>
           </element>
         </sequence>
       </extension>
     </complexContent>
   </complexType>
-  <element name="GeoGTPVolume" type="geo3dml:GeoGTPVolumeType" substitutionGroup="geo3dml:GeoVolume"/>
+  <element name="GeoTriangularPrismVolume" type="geo3dml:GeoTriangularPrismVolumeType" substitutionGroup="geo3dml:GeoVolume"/>
 
-  <complexType name="GeoSGridType">
+  <complexType name="GeoTruncatedRegularGridType">
     <annotation>
-      <documentation>特指顺层网格和截断矩形网格。按顶点-面-体元的拓扑结构保存体数据。</documentation>
+      <documentation>
+        定义截断规则格网数据结构。石油模拟领域常用的格网数据结构。这是一种采用特定方法构建的三维格网：利用水平规则格网与基于曲面的地质结构模型交切形成的格网单元填充而成的模型。
+        截断规则格网单元的形态：在水平上，大多数格网单元为矩形，但位于地质边界上的格网单元因为会被地质边界截断而不再是矩形（三角形或多边形）。在垂向上，格网单元的顶底面大多不是规则的平面，而是地质界面位于格网单元范围内的片段。
+        以下模式规定了截断规则格网的数据结构：平面规则格网参数和几何数据，几何数据按顶点-面-体元层次结构保存。
+      </documentation>
     </annotation>
     <complexContent>
       <extension base="geo3dml:GeoVolumeType">
         <sequence>
           <element name="PlaneGrid">
-            <annotation><documentation>网格在水平方向上的网格参数。在水平方向是按规则网格划分格子。</documentation></annotation>
+            <annotation>
+              <documentation>水平方向上的网格参数。截断规则格网在水平方向是按规则网格划分单元格。</documentation>
+            </annotation>
             <complexType>
               <sequence>
                 <element name="Origin" type="gml:DirectPositionType">
-                  <annotation>水平方向上网格划分的原点。</annotation>
+                  <annotation><documentation>水平方向上网格划分的原点。</documentation></annotation>
                 </element>
                 <element name="Azimuth" type="double">
                   <annotation><documentation>
@@ -451,23 +411,10 @@
             </complexType>
           </element>
 
-          <element name="Vertices" minOccurs="0">
+          <element name="Vertices" type="geo3dml:VerticesType" minOccurs="0">
             <annotation>
               <documentation>顶点表</documentation>
             </annotation>
-            <complexType>
-              <sequence>
-                <element name="Vertex" minOccurs="0" maxOccurs="unbounded">
-                  <complexType>
-                    <complexContent>
-                      <extension base="gml:DirectPositionType">
-                        <attribute name="IndexNo" type="nonNegativeInteger" use="required"/>
-                      </extension>
-                    </complexContent>
-                  </complexType>
-                </element>
-              </sequence>
-            </complexType>
           </element>
                 
           <element name="Faces" minOccurs="0" >
@@ -522,66 +469,20 @@
                       </element>
                     </sequence>
                     <attribute name="IndexNo" type="nonNegativeInteger" use="required"/>
-                    <attribute name="I" type="nonNegativeInteger"><annotation><documentation>体元对应的网格划分的I值。</documentation></annotation></attribute>
-                    <attribute name="J" type="nonNegativeInteger"><annotation><documentation>体元对应的网格划分的J值。</documentation></annotation></attribute>
-                    <attribute name="K" type="nonNegativeInteger"><annotation><documentation>体元对应的网格划分的K值。</documentation></annotation></attribute>
-                  </complexType>
-                </element>
-              </sequence>
-            </complexType>
-          </element>
-        </sequence>
-      </extension>
-    </complexContent>
-  </complexType>
-  <element name="GeoSGrid" type="geo3dml:GeoSGridType" substitutionGroup="geo3dml:GeoVolume"/>
-
-  <complexType name="GeoUniformGridType">
-    <annotation>
-      <documentation>特指由相同形状的规则六面体体元构成的体。通过原点坐标、体元边长，以及体元相对位置可以直接计算网格顶点的坐标。</documentation>
-    </annotation>
-    <complexContent>
-      <extension base="geo3dml:GeoVolumeType">
-        <sequence>
-          <element name="Origin" type="gml:DirectPositionType">
-            <annotation>三维空间中网格划分的原点。</annotation>
-          </element>
-          <element name="Steps">
-            <annotation><documentation>沿X、Y和Z轴划分网格的步长。</documentation></annotation>
-            <complexType>
-              <simpleContent>
-                <extension base="gml:doubleList">
-                  <attribute name="ItemCount" type="positiveInteger" fixed="3"/>
-                </extension>
-               </simpleContent>
-            </complexType>
-          </element>
-          <element name="Dimension">
-            <annotation><documentation>沿X、Y和Z轴划分网格的维度，即沿I、J、K方向各自划分的网格数目。</documentation></annotation>
-              <complexType>
-                <simpleContent>
-                  <extension base="gml:integerList">
-                    <attribute name="ItemCount" type="positiveInteger" fixed="3"/>
-                  </extension>
-                </simpleContent>
-              </complexType>
-          </element>
-          <element name="Cells" minOccurs="0">
-            <annotation>
-              <documentation>体元列表，用以记录体元的有效性。如未指定，则表示所有体元均有效。</documentation>
-            </annotation>
-            <complexType>
-              <sequence>
-                <element name="Cell" maxOccurs="unbounded">
-                  <annotation>
-                    <documentation>用于标记体元的有效性。未指定的体元默认为有效体元。</documentation>
-                  </annotation>
-                  <complexType>
-                    <attribute name="I" type="nonNegativeInteger"><annotation><documentation>体元对应的网格划分的I值。</documentation></annotation></attribute>
-                    <attribute name="J" type="nonNegativeInteger"><annotation><documentation>体元对应的网格划分的J值。</documentation></annotation></attribute>
-                    <attribute name="K" type="nonNegativeInteger"><annotation><documentation>体元对应的网格划分的K值。</documentation></annotation></attribute>
-                    <attribute name="Valid" type="boolean" default="true">
-                      <annotation><documentation>标记本体元是否有效。缺省值为true。</documentation></annotation>
+                    <attribute name="I" type="nonNegativeInteger">
+                      <annotation>
+                        <documentation>体元对应的网格划分的I值。</documentation>
+                      </annotation>
+                    </attribute>
+                    <attribute name="J" type="nonNegativeInteger">
+                      <annotation>
+                        <documentation>体元对应的网格划分的J值。</documentation>
+                      </annotation>
+                    </attribute>
+                    <attribute name="K" type="nonNegativeInteger">
+                      <annotation>
+                        <documentation>体元对应的网格划分的K值。</documentation>
+                      </annotation>
                     </attribute>
                   </complexType>
                 </element>
@@ -592,6 +493,6 @@
       </extension>
     </complexContent>
   </complexType>
-  <element name="GeoUniformGrid" type="geo3dml:GeoUniformGridType" substitutionGroup="geo3dml:GeoVolume"/>
+  <element name="GeoTruncatedRegularGrid" type="geo3dml:GeoTruncatedRegularGridType" substitutionGroup="geo3dml:GeoVolume"/>
 
 </xs:schema>
