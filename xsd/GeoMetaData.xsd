@@ -1,114 +1,158 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema"
-  xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml"
-  xmlns:gml="http://www.opengis.net/gml/3.2"
-  xmlns:gmd="http://www.isotc211.org/2005/gmd"
-  targetNamespace="http://www.cgs.gov.cn/geo3dml"
-  elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
-  <annotation>
-    <documentation>此文档定义三维地质模型的元数据结构。</documentation>
-  </annotation>
-
-  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
-  <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://www.isotc211.org/2005/gmd/metadataEntity.xsd"/>
-
-  <complexType name="GeoModelMetadataType">
+    xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml"
+    xmlns:gml="http://www.opengis.net/gml/3.2"
+    xmlns:gmd="http://www.isotc211.org/2005/gmd"
+    targetNamespace="http://www.cgs.gov.cn/geo3dml"
+    elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
     <annotation>
-      <documentation>三维地质模型元数据</documentation>
+        <documentation>此文档定义三维地质模型的元数据结构。</documentation>
     </annotation>
-    <complexContent>
-      <extension base="gmd:MD_Metadata_Type">
+
+    <import namespace="http://www.opengis.net/gml/3.2"
+        schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd" />
+    <import namespace="http://www.isotc211.org/2005/gmd"
+        schemaLocation="http://www.isotc211.org/2005/gmd/metadataEntity.xsd" />
+
+    <complexType name="GeoModelMetadataType">
+        <annotation>
+            <documentation>三维地质模型元数据</documentation>
+        </annotation>
+        <complexContent>
+            <extension base="gmd:MD_Metadata_Type">
+                <sequence>
+                    <element name="Description" type="string">
+                        <annotation>
+                            <documentation>关于地质模型的描述。</documentation>
+                        </annotation>
+                    </element>
+                    <element name="Version" type="string">
+                        <annotation>
+                            <documentation>模型的版本号。</documentation>
+                        </annotation>
+                    </element>
+                    <element name="SpatialReferenceSystem" type="geo3dml:SpatialReferenceSystemType"
+                        minOccurs="0">
+                        <annotation>
+                            <documentation>空间数据参照系</documentation>
+                        </annotation>
+                    </element>
+                    <element name="ToolName" type="string">
+                        <annotation>
+                            <documentation>创建该地质模型所使用的软件工具的名称。</documentation>
+                        </annotation>
+                    </element>
+                    <element name="ToolVersion" type="string">
+                        <annotation>
+                            <documentation>创建该地质模型所使用的软件工具的版本号。</documentation>
+                        </annotation>
+                    </element>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <element name="GeoModelMetadata" type="geo3dml:GeoModelMetadataType"
+        substitutionGroup="gmd:MD_Metadata" />
+
+    <complexType name="GeoModelMetadataPropertyType">
         <sequence>
-          <element name="Description" type="string">
-            <annotation><documentation>关于地质模型的描述。</documentation></annotation>
-          </element>
-          <element name="Version" type="string">
-            <annotation><documentation>模型的版本号。</documentation></annotation>
-          </element>
-          <element name="SpatialReferenceSystem" type="SpatialReferenceSystemType" minOccurs="0">
-            <annotation><documentation>空间数据参照系</documentation></annotation>
-          </element>
-          <element name="ToolName" type="string">
-            <annotation><documentation>创建该地质模型所使用的软件工具的名称。</documentation></annotation>
-          </element>
-          <element name="ToolVersion" type="string">
-            <annotation><documentation>创建该地质模型所使用的软件工具的版本号。</documentation></annotation>
-          </element>
+            <element ref="geo3dml:GeoModelMetadata" minOccurs="0" />
         </sequence>
-      </extension>
-    </complexContent>
-  </complexType>
-  <element name="GeoModelMetadata" type="geo3dml:GeoModelMetadataType" substitutionGroup="gmd:MD_Metadata" />
+        <attributeGroup ref="gml:AssociationAttributeGroup" />
+        <attributeGroup ref="gml:OwnershipAttributeGroup" />
+    </complexType>
 
-  <complexType name="GeoModelMetadataPropertyType">
-    <sequence>
-      <element ref="geo3dml:GeoModelMetadata" minOccurs="0"/>
-    </sequence>
-    <attributeGroup ref="gml:AssociationAttributeGroup"/>
-    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
-  </complexType>
-
-  <complexType name="SpatialReferenceSystemType">
-    <annotation><documentation>空间数据坐标参照系，包括平面坐标系和垂向坐标系。</documentation></annotation>
-    <sequence>
-      <element name="CoordinateReferenceSystem">
-        <annotation><documentation>平面坐标系参数</documentation></annotation>
-        <complexType>
-          <sequence>
-            <element name="Identifier">
-              <annotation><documentation>坐标系标识符，指示坐标系参数的格式。</documentation></annotation>
-              <simpleType>
-                <restriction base="string">
-                  <enumeration value="EPSG">
-                    <annotation><documentation>使用EGSP编码指定坐标系，如"4326"。</documentation></annotation>
-                  </enumeration>
-                  <enumeration value="OGC WTK">
-                    <annotation><documentation>使用OGC WTK格式记录坐标系参数。</documentation></annotation>
-                  </enumeration>
-                  <enumeration value="OGC WTK2">
-                    <annotation><documentation>使用OGC WTK2格式记录坐标系参数。</documentation></annotation>
-                  </enumeration>
-                  <enumeration value="PROJ4">
-                    <annotation><documentation>使用PROJ4格式记录坐标系参数。</documentation></annotation>
-                  </enumeration>
-                  <enumeration value="自定义">
-                    <annotation><documentation>使用自定义的特殊格式记录坐标系参数。</documentation></annotation>
-                  </enumeration>
-                </restriction>
-              </simpleType>
+    <complexType name="SpatialReferenceSystemType">
+        <annotation>
+            <documentation>空间数据坐标参照系，包括平面坐标系和垂向坐标系。</documentation>
+        </annotation>
+        <sequence>
+            <element name="CoordinateReferenceSystem">
+                <annotation>
+                    <documentation>平面坐标系参数</documentation>
+                </annotation>
+                <complexType>
+                    <sequence>
+                        <element name="Identifier">
+                            <annotation>
+                                <documentation>坐标系标识符，指示坐标系参数的格式。</documentation>
+                            </annotation>
+                            <simpleType>
+                                <restriction base="string">
+                                    <enumeration value="EPSG">
+                                        <annotation>
+                                            <documentation>使用EGSP编码指定坐标系，如"4326"。</documentation>
+                                        </annotation>
+                                    </enumeration>
+                                    <enumeration value="OGC WTK">
+                                        <annotation>
+                                            <documentation>使用OGC WTK格式记录坐标系参数。</documentation>
+                                        </annotation>
+                                    </enumeration>
+                                    <enumeration value="OGC WTK2">
+                                        <annotation>
+                                            <documentation>使用OGC WTK2格式记录坐标系参数。</documentation>
+                                        </annotation>
+                                    </enumeration>
+                                    <enumeration value="PROJ4">
+                                        <annotation>
+                                            <documentation>使用PROJ4格式记录坐标系参数。</documentation>
+                                        </annotation>
+                                    </enumeration>
+                                    <enumeration value="自定义">
+                                        <annotation>
+                                            <documentation>使用自定义的特殊格式记录坐标系参数。</documentation>
+                                        </annotation>
+                                    </enumeration>
+                                </restriction>
+                            </simpleType>
+                        </element>
+                        <element name="Parameter" type="string">
+                            <annotation>
+                                <documentation>按Identifier指定的格式记录坐标系参数，如EPSG编码"4326"。</documentation>
+                            </annotation>
+                        </element>
+                    </sequence>
+                </complexType>
             </element>
-            <element name="Parameter" type="string">
-              <annotation><documentation>按Identifier指定的格式记录坐标系参数，如EPSG编码"4326"。</documentation></annotation>
+            <element name="VerticalReferenceSystem" minOccurs="0">
+                <annotation>
+                    <documentation>垂向坐标系，如“1956年黄海高程系”、“1985年国家高程系”、“大地高程系”等。</documentation>
+                </annotation>
+                <complexType>
+                    <sequence>
+                        <element name="Category">
+                            <annotation>
+                                <documentation>指示高程系的类别。</documentation>
+                            </annotation>
+                            <simpleType>
+                                <restriction base="string">
+                                    <enumeration value="大地高程系">
+                                        <annotation>
+                                            <documentation>基于椭球基准面的高程。</documentation>
+                                        </annotation>
+                                    </enumeration>
+                                    <enumeration value="国家高程系">
+                                        <annotation>
+                                            <documentation>国家高程系，如“1956年黄海高程系”，“1985年国家高程系”。</documentation>
+                                        </annotation>
+                                    </enumeration>
+                                    <enumeration value="其它高程系">
+                                        <annotation>
+                                            <documentation>如各地方的独立高程系。</documentation>
+                                        </annotation>
+                                    </enumeration>
+                                </restriction>
+                            </simpleType>
+                        </element>
+                        <element name="ReferenceSystem" type="string" minOccurs="0">
+                            <annotation>
+                                <documentation>高程坐标系的具体名字，如“1956年黄海高程系”、“1985年国家高程系”、“吴淞零点高程”等。</documentation>
+                            </annotation>
+                        </element>
+                    </sequence>
+                </complexType>
             </element>
-          </sequence>
-        </complexType>
-      </element>
-      <element name="VerticalReferenceSystem" minOccurs="0">
-        <annotation><documentation>垂向坐标系，如“1956年黄海高程系”、“1985年国家高程系”、“大地高程系”等。</documentation></annotation>
-        <complexType>
-          <sequence>
-            <element name="Category">
-              <annotation><documentation>指示高程系的类别。</documentation></annotation>
-              <simpleType>
-                <restriction base="string">
-                  <enumeration value="大地高程系">
-                    <annotation><documentation>基于椭球基准面的高程。</documentation></annotation>
-                  </enumeration>
-                  <enumeration value="国家高程系">
-                    <annotation><documentation>国家高程系，如“1956年黄海高程系”，“1985年国家高程系”。</documentation></annotation>
-                  </enumeration>
-                  <enumeration value="其它高程系">
-                    <annotation><documentation>如各地方的独立高程系。</documentation></annotation>
-                  </enumeration>
-                </restriction>
-              </simpleType>
-            </element>
-            <element name="ReferenceSystem" type="string" minOccurs="0">
-              <annotation><documentation>高程坐标系的具体名字，如“1956年黄海高程系”、“1985年国家高程系”、“吴淞零点高程”等。</documentation></annotation>
-            </element>
-          </sequence>
-        </complexType>
-      </element>
-    </sequence>
-  </complexType>
+        </sequence>
+    </complexType>
 </xs:schema>

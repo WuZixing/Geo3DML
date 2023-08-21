@@ -1,80 +1,98 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema"
-  xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml/1.x"
-  xmlns:gml="http://www.opengis.net/gml/3.2"
-  xmlns:xml="http://www.w3.org/XML/1998/namespace"
-  targetNamespace="http://www.cgs.gov.cn/geo3dml/1.x"
-  elementFormDefault="qualified"  version="1.0">
-  <annotation>
-    <documentation>本文档按XML Schema标准定义了三维地质模型数据交换格式的XML文件结构。</documentation>
-  </annotation>
-
-  <include schemaLocation="./Geo3DMap.xsd"/>
-  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
-  <import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
-
-  <complexType name="Geo3DProjectType">
-    <annotation><documentation>项目的定义。项目元素是被交换数据的根元素。项目中可包含多个geo3dml:Geo3DModel子元素和多个geo3dml:Geo3DMap子元素。</documentation></annotation>
-    <sequence>
-      <element name="Name" type="string">
-        <annotation><documentation>项目的名字。</documentation></annotation>
-      </element>
-      <element name="Description" type="string" minOccurs="0">
-        <annotation><documentation>项目的说明信息。</documentation></annotation>
-      </element>
-      <element name="Style" type="geo3dml:GeoSceneStylePropertyType" minOccurs="0">
-        <annotation><documentation>全局可视化参数。</documentation></annotation>
-      </element>
-      <element name="Models" minOccurs="0">
-        <annotation><documentation>项目中包含的geo3dml:Geo3DModel元素。</documentation></annotation>
-        <complexType>
-          <sequence>
-            <element name="Model" type="geo3dml:ModelMemberType" minOccurs="0" maxOccurs="unbounded" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="Maps" minOccurs="0">
-        <annotation><documentation>项目中包含的geo3dml:Geo3DMap元素。</documentation></annotation>
-        <complexType>
-          <sequence>
-            <element name="Map" type="geo3dml:MapMemberType" minOccurs="0" maxOccurs="unbounded" />
-          </sequence>
-        </complexType>
-      </element>
-    </sequence>
-    <attribute ref="xml:base">
-      <annotation><documentation>加入此属性是为了避免xlink:link标签所引入的文档验证冲突。</documentation></annotation>
-    </attribute>
-  </complexType>
-  <element name="Geo3DProject" type="geo3dml:Geo3DProjectType">
-    <annotation><documentation>项目元素是被交换数据的根元素。项目中包含geo3dml:GeoModel元素和geo3dml:Geo3DMap元素。</documentation></annotation>
-  </element>
-  
-  <complexType name="ModelMemberType">
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.w3.org/2001/XMLSchema"
+    xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml"
+    xmlns:gml="http://www.opengis.net/gml/3.2"
+    xmlns:xml="http://www.w3.org/XML/1998/namespace"
+    targetNamespace="http://www.cgs.gov.cn/geo3dml"
+    elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
     <annotation>
-      <documentation>项目中地质模型成员类型的定义。</documentation>
+        <documentation>本文档按XMLSchema标准定义了三维地质模型数据交换格式的XML文件结构。
+        </documentation>
     </annotation>
-    <complexContent>
-      <extension base="gml:AbstractMemberType">
+    <include schemaLocation="./Geo3DMap.xsd" />
+    <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd" />
+    <import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd" />
+    <complexType name="Geo3DProjectType">
+        <annotation>
+            <documentation>
+            项目的定义。项目元素是被交换数据的根元素。项目中可包含多个geo3dml:Geo3DModel子元素和多个geo3dml:Geo3DMap子元素。
+            </documentation>
+        </annotation>
         <sequence>
-          <element ref="geo3dml:Geo3DModel"/>
+            <element name="Name" type="string">
+                <annotation>
+                    <documentation>项目的名字。</documentation>
+                </annotation>
+            </element>
+            <element name="Description" type="string" minOccurs="0">
+                <annotation>
+                    <documentation>项目的说明信息。</documentation>
+                </annotation>
+            </element>
+            <element name="Style" type="geo3dml:GeoSceneStylePropertyType" minOccurs="0">
+                <annotation>
+                    <documentation>全局可视化参数。</documentation>
+                </annotation>
+            </element>
+            <element name="Models" minOccurs="0">
+                <annotation>
+                    <documentation>项目中包含的geo3dml:Geo3DModel元素。</documentation>
+                </annotation>
+                <complexType>
+                    <sequence>
+                        <element name="Model" type="geo3dml:ModelMemberType" minOccurs="0" maxOccurs="unbounded" />
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="Maps" minOccurs="0">
+                <annotation>
+                    <documentation>项目中包含的geo3dml:Geo3DMap元素。</documentation>
+                </annotation>
+                <complexType>
+                    <sequence>
+                        <element name="Map" type="geo3dml:MapMemberType" minOccurs="0" maxOccurs="unbounded" />
+                    </sequence>
+                </complexType>
+            </element>
         </sequence>
-        <attributeGroup ref="gml:AssociationAttributeGroup"/>
-      </extension>
-    </complexContent>
-  </complexType>
-
-  <complexType name="MapMemberType">
-    <annotation>
-      <documentation>项目中地质图成员类型的定义。</documentation>
-    </annotation>
-    <complexContent>
-      <extension base="gml:AbstractMemberType">
-        <sequence>
-          <element ref="geo3dml:Geo3DMap"/>
-        </sequence>
-        <attributeGroup ref="gml:AssociationAttributeGroup"/>
-      </extension>
-    </complexContent>
-  </complexType>
+        <attribute ref="xml:base">
+            <annotation>
+                <documentation>加入此属性是为了避免xlink:link标签所引入的文档验证冲突。</documentation>
+            </annotation>
+        </attribute>
+    </complexType>
+    <element name="Geo3DProject" type="geo3dml:Geo3DProjectType">
+        <annotation>
+            <documentation>
+            项目元素是被交换数据的根元素。项目中包含geo3dml:GeoModel元素和geo3dml:Geo3DMap元素。
+            </documentation>
+        </annotation>
+    </element>
+    <complexType name="ModelMemberType">
+        <annotation>
+            <documentation>项目中地质模型成员类型的定义。</documentation>
+        </annotation>
+        <complexContent>
+            <extension base="gml:AbstractMemberType">
+                <sequence>
+                    <element ref="geo3dml:Geo3DModel" />
+                </sequence>
+                <attributeGroup ref="gml:AssociationAttributeGroup" />
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="MapMemberType">
+        <annotation>
+            <documentation>项目中地质图成员类型的定义。</documentation>
+        </annotation>
+        <complexContent>
+            <extension base="gml:AbstractMemberType">
+                <sequence>
+                    <element ref="geo3dml:Geo3DMap" />
+                </sequence>
+                <attributeGroup ref="gml:AssociationAttributeGroup" />
+            </extension>
+        </complexContent>
+    </complexType>
 </xs:schema>

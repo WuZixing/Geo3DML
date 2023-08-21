@@ -1,77 +1,103 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema"
-  xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml"
-  xmlns:gml="http://www.opengis.net/gml/3.2"
-  xmlns:xml="http://www.w3.org/XML/1998/namespace"
-  targetNamespace="http://www.cgs.gov.cn/geo3dml"
-  elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
-  <annotation>
-    <documentation>此文档定义地质模型(geo3dml:Geo3DModel)的XML文档结构。</documentation>
-  </annotation>
-
-  <include schemaLocation="./GeoMetaData.xsd"/>
-  <include schemaLocation="./GeoFeatureClass.xsd"/>
-  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd" />
-  <import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
-
-  <complexType name="Geo3DModelType">
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.w3.org/2001/XMLSchema"
+    xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml"
+    xmlns:gml="http://www.opengis.net/gml/3.2"
+    xmlns:xml="http://www.w3.org/XML/1998/namespace"
+    targetNamespace="http://www.cgs.gov.cn/geo3dml"
+    elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
     <annotation>
-      <documentation>
-        地质模型类型的定义。地质模型由多个地质要素类(geo3dml:GeoFeatureClass)组成，同时也描述地质要素之间的关系。
-      </documentation>
+        <documentation>此文档定义地质模型(geo3dml:Geo3DModel)的XML文档结构。</documentation>
     </annotation>
-    <sequence>
-      <element name="Name" type="string">
-        <annotation><documentation>地质模型的名字。</documentation></annotation>
-      </element>
-      <element name="Type">
-        <annotation><documentation>地质模型的类型。</documentation></annotation>
-        <simpleType>
-          <restriction base="string">
-            <enumeration value="Drill">
-              <annotation><documentation>钻孔</documentation></annotation>
-            </enumeration>
-            <enumeration value="Section">
-              <annotation><documentation>剖面</documentation></annotation>
-            </enumeration>
-            <enumeration value="3DModel">
-              <annotation><documentation>三维地质模型</documentation></annotation>
-            </enumeration>
-            <enumeration value="Isogram">
-              <annotation><documentation>等值图</documentation></annotation>
-            </enumeration>
-            <enumeration value="Other">
-              <annotation><documentation>其它</documentation></annotation>
-            </enumeration>
-          </restriction>
-        </simpleType>
-      </element>
-      <element name="Metadata" type="geo3dml:GeoModelMetadataType" minOccurs="0">
-        <annotation><documentation>地质模型元数据。</documentation></annotation>
-      </element>
-      <element name="FeatureClasses" minOccurs="0">
-        <annotation><documentation>地质模型中包含的地质要素类。</documentation></annotation>
-        <complexType>
-          <sequence>
-            <element name="FeatureClass" type="geo3dml:GeoFeatureClassPropertyType" minOccurs="0" maxOccurs="unbounded"/>
-          </sequence>
-        </complexType>
-      </element>
-      <element name="FeatureRelationship" minOccurs="0">
-        <annotation><documentation>模型中地质要素之间的关系。</documentation></annotation>
-        <complexType>
-          <sequence>
-            <element name="Relation" type="geo3dml:GeoFeatureRelationPropertyType" minOccurs="0" maxOccurs="unbounded" />
-          </sequence>
-        </complexType>
-      </element>
-    </sequence>
-    <attribute name="ID" type="string" use="required">
-      <annotation><documentation>地质模型的ID。ID相同时表示同一个模型的数据，以支持多文件数据的关联。</documentation></annotation>
-    </attribute>
-    <attribute ref="xml:base">
-      <annotation><documentation>加入此属性是为了避免xlink:link标签所引入的文档验证冲突。</documentation></annotation>
-    </attribute>
-  </complexType>
-  <element name="Geo3DModel" type="geo3dml:Geo3DModelType" />
+    <include schemaLocation="./GeoMetaData.xsd" />
+    <include schemaLocation="./GeoFeatureClass.xsd" />
+    <import namespace="http://www.opengis.net/gml/3.2"
+        schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd" />
+    <import namespace="http://www.w3.org/XML/1998/namespace"
+        schemaLocation="http://www.w3.org/2001/xml.xsd" />
+
+    <complexType name="Geo3DModelType">
+        <annotation>
+            <documentation> 地质模型类型的定义。地质模型由多个地质要素类(geo3dml:GeoFeatureClass)组成，同时也描述地质要素之间的关系。 </documentation>
+        </annotation>
+        <sequence>
+            <element name="Name" type="string">
+                <annotation>
+                    <documentation>地质模型的名字。</documentation>
+                </annotation>
+            </element>
+            <element name="Type">
+                <annotation>
+                    <documentation>地质模型的类型。</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="Drill">
+                            <annotation>
+                                <documentation>钻孔</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="Section">
+                            <annotation>
+                                <documentation>剖面</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="3DModel">
+                            <annotation>
+                                <documentation>三维地质模型</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="Isogram">
+                            <annotation>
+                                <documentation>等值图</documentation>
+                            </annotation>
+                        </enumeration>
+                        <enumeration value="Other">
+                            <annotation>
+                                <documentation>其它</documentation>
+                            </annotation>
+                        </enumeration>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="Metadata" type="geo3dml:GeoModelMetadataPropertyType" minOccurs="0">
+                <annotation>
+                    <documentation>地质模型元数据。</documentation>
+                </annotation>
+            </element>
+            <element name="FeatureClasses" minOccurs="0">
+                <annotation>
+                    <documentation>地质模型中包含的地质要素类。</documentation>
+                </annotation>
+                <complexType>
+                    <sequence>
+                        <element name="FeatureClass" type="geo3dml:GeoFeatureClassPropertyType"
+                            minOccurs="0" maxOccurs="unbounded" />
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="FeatureRelationship" minOccurs="0">
+                <annotation>
+                    <documentation>模型中地质要素之间的关系。</documentation>
+                </annotation>
+                <complexType>
+                    <sequence>
+                        <element name="Relation" type="geo3dml:GeoFeatureRelationPropertyType"
+                            minOccurs="0" maxOccurs="unbounded" />
+                    </sequence>
+                </complexType>
+            </element>
+        </sequence>
+        <attribute name="ID" type="string" use="required">
+            <annotation>
+                <documentation>地质模型的ID。ID相同时表示同一个模型的数据，以支持多文件数据的关联。</documentation>
+            </annotation>
+        </attribute>
+        <attribute ref="xml:base">
+            <annotation>
+                <documentation>加入此属性是为了避免xlink:link标签所引入的文档验证冲突。</documentation>
+            </annotation>
+        </attribute>
+    </complexType>
+    <element name="Geo3DModel" type="geo3dml:Geo3DModelType" />
 </xs:schema>

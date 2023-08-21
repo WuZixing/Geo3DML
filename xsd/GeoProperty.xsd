@@ -1,77 +1,87 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema"
-  xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml"
-  xmlns:gml="http://www.opengis.net/gml/3.2"
-  xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0"
-  targetNamespace="http://www.cgs.gov.cn/geo3dml"
-  elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
-  <annotation>
-    <documentation>此文档定义了属性模型的XML文档结构。</documentation>
-  </annotation>
-
-  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/geometryBasic0d1d.xsd" />
-  <import namespace="http://www.opengis.net/gmlcov/1.0" schemaLocation="http://schemas.opengis.net/gmlcov/1.0/coverage.xsd"/>
-
-  <complexType name="GeoDiscreteCoverageType">
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.w3.org/2001/XMLSchema"
+    xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml"
+    xmlns:gml="http://www.opengis.net/gml/3.2"
+    xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0" targetNamespace="http://www.cgs.gov.cn/geo3dml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
     <annotation>
-      <documentation>
-        可指定属性值在几何对象上的附着位置：顶点，棱，面元，体元。
-      </documentation>
+        <documentation>此文档定义了属性模型的XML文档结构。</documentation>
     </annotation>
-    <complexContent>
-      <extension base="gmlcov:AbstractDiscreteCoverageType">
+    <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/geometryBasic0d1d.xsd" />
+    <import namespace="http://www.opengis.net/gmlcov/1.0" schemaLocation="http://schemas.opengis.net/gmlcov/1.0/coverage.xsd"/>
+    <complexType name="GeoDiscreteCoverageType">
+        <annotation>
+            <documentation>可指定属性值在几何对象上的附着位置：顶点，棱，面元，体元。</documentation>
+        </annotation>
+        <complexContent>
+            <extension base="gmlcov:AbstractDiscreteCoverageType">
+                <sequence>
+                    <element name="DomainSetExt" minOccurs="0">
+                        <annotation>
+                            <documentation>
+                                覆盖数据定义域的扩展定义。
+                                当gml:domainSet定义的值为空时，此处的geo3dml:SamplingFrame和geo3dml:SamplingTarget可以联合起来描述该覆盖要素属性的定义域。
+                                其中，geo3dml:SamplingFrame指明所依赖的几何对象（记为G），geo3dml:SamplingTarget指明属性分布的位置类型：VETEX（顶点）表示对象G的顶点集合为属性的定义域；
+                                EDGE（棱）表示对象G的边集合为属性的定义域；
+                                FACE（面元）表示对象G的面元集合为属性的定义域；VOXEL（体元）表示对象G的体元集合为属性的定义域。
+                                此时，要求对象G有关于其顶点（或边或面元或体元）集合的明确定义。
+                                当gml:domainSet定义的值不为空时，此处的geo3dml:SamplingFrame和geo3dml:SamplingTarget也可联合起来描述gml:domainSet记录的属性定义域与某个几何对象的关联关系。
+                                其中，geo3dml:SamplingFrame记录有关联的几何对象（记为G），geo3dml:SamplingTarget指明gml:domainSet与对象G的位置对应关系：VERTEX（顶点）表示gml:domainSet是对象G的顶点集合的子集；
+                                EDGE（棱）表示gml:domainSet是对象G的边集合的子集；FACE（面元）表示gml:domainSet是对象G的面元集合的子集；VOXEL（体元）表示gml:domainSet是对象G的体元集合的子集。
+                                此时，不要求对象G有关于其顶点（或边或面元或体元）集合的明确定义。
+                            </documentation>
+                        </annotation>
+                        <complexType>
+                            <sequence>
+                                <element name="SamplingFrame" type="gml:GeometryPropertyType">
+                                    <annotation>
+                                        <documentation>用于指定该覆盖要素表达的属性分布结果所依赖的采样空间（几何对象）。</documentation>
+                                    </annotation>
+                                </element>
+                                <element name="SamplingTarget">
+                                    <annotation>
+                                        <documentation>
+                                        定义属性场在采样空间（几何对象）上的附着位置：顶点，棱，面元，体元。该方式主要基于流形理论,对于n-Compelx等同于n-Cell。n-Cell可以由低维n-1-Cell，n-2，…，0-Cell等组成。因此，对于3维体元(3-Cell or 3-Complex)共有上述4种位置。
+                                        </documentation>
+                                    </annotation>
+                                    <simpleType>
+                                        <restriction base="xs:string">
+                                            <enumeration value="VERTEX">
+                                                <annotation>
+                                                    <documentation>顶点</documentation>
+                                                </annotation>
+                                            </enumeration>
+                                            <enumeration value="EDGE">
+                                                <annotation>
+                                                    <documentation>棱</documentation>
+                                                </annotation>
+                                            </enumeration>
+                                            <enumeration value="FACE">
+                                                <annotation>
+                                                    <documentation>面元</documentation>
+                                                </annotation>
+                                            </enumeration>
+                                            <enumeration value="VOXEL">
+                                                <annotation>
+                                                    <documentation>体元</documentation>
+                                                </annotation>
+                                            </enumeration>
+                                        </restriction>
+                                    </simpleType>
+                                </element>
+                            </sequence>
+                        </complexType>
+                    </element>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <element name="GeoDiscreteCoverage" type="geo3dml:GeoDiscreteCoverageType" substitutionGroup="gmlcov:AbstractDiscreteCoverage"/>
+    <complexType name="GeoDiscreteCoveragePropertyType">
         <sequence>
-          <element name="DomainSetExt" minOccurs="0">
-            <annotation><documentation>覆盖数据定义域的扩展定义。
-            当gml:domainSet定义的值为空时，此处的geo3dml:SamplingFrame和geo3dml:SamplingTarget可以联合起来描述该覆盖要素属性的定义域。其中，geo3dml:SamplingFrame指明所依赖的几何对象（记为G），geo3dml:SamplingTarget指明属性分布的位置类型：VETEX（顶点）表示对象G的顶点集合为属性的定义域；EDGE（棱）表示对象G的边集合为属性的定义域；FACE（面元）表示对象G的面元集合为属性的定义域；VOXEL（体元）表示对象G的体元集合为属性的定义域。此时，要求对象G有关于其顶点（或边或面元或体元）集合的明确定义。
-            当gml:domainSet定义的值不为空时，此处的geo3dml:SamplingFrame和geo3dml:SamplingTarget也可联合起来描述gml:domainSet记录的属性定义域与某个几何对象的关联关系。其中，geo3dml:SamplingFrame记录有关联的几何对象（记为G），geo3dml:SamplingTarget指明gml:domainSet与对象G的位置对应关系：VERTEX（顶点）表示gml:domainSet是对象G的顶点集合的子集；EDGE（棱）表示gml:domainSet是对象G的边集合的子集；FACE（面元）表示gml:domainSet是对象G的面元集合的子集；VOXEL（体元）表示gml:domainSet是对象G的体元集合的子集。此时，不要求对象G有关于其顶点（或边或面元或体元）集合的明确定义。</documentation></annotation>
-            <complexType>
-              <sequence>
-                <element name="SamplingFrame" type="gml:GeometryPropertyType">
-                  <annotation><documentation>用于指定该覆盖要素表达的属性分布结果所依赖的采样空间（几何对象）。</documentation></annotation>
-                </element>
-                <element name="SamplingTarget">
-                  <annotation>
-                    <documentation>
-                      定义属性场在采样空间（几何对象）上的附着位置：顶点，棱，面元，体元。
-                      该方式主要基于流形理论,对于n-Compelx等同于n-Cell。n-Cell可以由低维n-1-Cell，n-2，…，0-Cell等组成。因此，对于3维体元(3-Cell or 3-Complex)共有上述4种位置。
-                    </documentation>
-                  </annotation>
-                  <simpleType>
-                    <restriction base="xs:string">
-                      <enumeration value="VERTEX"><annotation><documentation>顶点</documentation></annotation></enumeration>
-                      <enumeration value="EDGE"><annotation><documentation>棱</documentation></annotation></enumeration>
-                      <enumeration value="FACE"><annotation><documentation>面元</documentation></annotation></enumeration>
-                      <enumeration value="VOXEL"><annotation><documentation>体元</documentation></annotation></enumeration>
-                    </restriction>
-                  </simpleType>
-                </element>
-              </sequence>
-            </complexType>
-          </element>
-          <element name="Version">
-            <annotation><documentation>属性模型的版本，如“1.2.1”。</documentation></annotation>
-            <complexType>
-              <simpleContent>
-                <extension base="string">
-                  <attribute name="Timestamp" type="dateTime" use="required">
-                    <annotation><documentation>此版本对应的创建时间。如：“2018-04-17T14:04:33”。</documentation></annotation>
-                  </attribute>
-                </extension>
-              </simpleContent>
-            </complexType>
-          </element>
+            <element ref="geo3dml:GeoDiscreteCoverage" />
         </sequence>
-      </extension>
-    </complexContent>
-  </complexType>
-  <element name="GeoDiscreteCoverage" type="geo3dml:GeoDiscreteCoverageType" substitutionGroup="gmlcov:AbstractDiscreteCoverage"/>
-  
-  <complexType name="GeoDiscreteCoveragePropertyType">
-    <sequence>
-      <element ref="geo3dml:GeoDiscreteCoverage" />
-    </sequence>
-    <attributeGroup ref="gml:AssociationAttributeGroup" />
-    <attributeGroup ref="gml:OwnershipAttributeGroup" />
-  </complexType>
+        <attributeGroup ref="gml:AssociationAttributeGroup" />
+        <attributeGroup ref="gml:OwnershipAttributeGroup" />
+    </complexType>
 </xs:schema>

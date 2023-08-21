@@ -1,60 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema"
-  xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml"
-  xmlns:gml="http://www.opengis.net/gml/3.2"
-  xmlns:swe="http://www.opengis.net/swe/2.0"
-  xmlns:xml="http://www.w3.org/XML/1998/namespace"
-  targetNamespace="http://www.cgs.gov.cn/geo3dml"
-  elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
-  <annotation>
-    <documentation>此文档定义地质要素类(geo3dml:GeoFeatureClass)的XML文档结构。</documentation>
-  </annotation>
-
-  <include schemaLocation="./GeoFeature.xsd"/>
-  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
-  <import namespace="http://www.opengis.net/swe/2.0" schemaLocation="http://schemas.opengis.net/sweCommon/2.0/swe.xsd"/>
-  <import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
-  
-  <complexType name="GeoFeatureClassType">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.w3.org/2001/XMLSchema"
+    xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml"
+    xmlns:gml="http://www.opengis.net/gml/3.2"
+    xmlns:swe="http://www.opengis.net/swe/2.0"
+    xmlns:xml="http://www.w3.org/XML/1998/namespace"
+    targetNamespace="http://www.cgs.gov.cn/geo3dml"
+    elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
     <annotation>
-      <documentation>
-        地质要素类类型的定义。地质要素类定义地质要素的属性结构，同时它也是具有该属性结构的地质要素的集合。
-      </documentation>
+        <documentation>此文档定义地质要素类(geo3dml:GeoFeatureClass)的XML文档结构。</documentation>
     </annotation>
-    <complexContent>
-      <extension base="gml:AbstractGMLType">
-        <annotation><documentation>gml:AbstractGMLType定义的成员gml:name即为地质要素类的名字。</documentation></annotation>
-        <sequence>
-          <element name="Schema" type="swe:DataRecordType" minOccurs="0">
-            <annotation><documentation>
-            定义地质要素的非几何属性结构。
-            同一要素类中的地质要素应是同一类型的，即它们应具有相同的属性结构。本元素即用于定义要素类中地质要素所具有的属性结构，进而可以认为它定义的是地质要素的类型。
-            采用SWE Common Data Model规范定义的swe:DataRecord对象来定义要素的属性字段。按SWE Common Data Model规范，swe:DataRecordType类型的对象可以作为数据描述工具或者数据容器。此处，该对象就起到了数据描述工具的作用。Schema对象可包含多个swe:AbstractDataComponent对象；每个swe:AbstractDataComponent对象可用于定义一个属性字段。swe:AbstractDataComponent对象的类型为swe:AbstractDataComponentType，而该类型则派生自swe:AbstractSWEIdentifiableType。定义属性字段时，通过swe:DataRecord元素的子元素field的属性name（必填）设置属性字段的名字；通过swe:AbstractSWEIdentifiableType:label元素设置属性字段的显示名（可选。如该元素被省略，则使用前述field元素的name属性值为字段的显示名。）；通过swe:AbstractSWEIdentifiableType:description元素可以设置字段的说明信息，如解释该字段的含义（可选）；通过swe:AbstractDataComponentType:definition属性可以配置字段所对应的语义信息，如配置字段所对应的本体概念。
-            同时，geo3dml:GeoFeatureClass:Schema自身为swe:DataRecrodType类型（继承自swe:AbstractDataComponentType）的对象，可以通过geo3dml:GeoFeatureClass:Schema自身的label元素设置其所定义的地质要素的类型名（可选），通过description元素设置关于该类地质要素的说明信息（可选），通过definition属性设置相关的语义信息（可选）。
-            </documentation></annotation>
-          </element>
-          <element name="Features" minOccurs="0">
-            <annotation><documentation>包含的地质要素。</documentation></annotation>
-            <complexType>
-              <sequence>
-                <element name="Feature" type="geo3dml:GeoFeaturePropertyType" minOccurs="0" maxOccurs="unbounded"/>
-              </sequence>
-            </complexType>
-          </element>
+    <include schemaLocation="./GeoFeature.xsd"/>
+    <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+    <import namespace="http://www.opengis.net/swe/2.0" schemaLocation="http://schemas.opengis.net/sweCommon/2.0/swe.xsd"/>
+    <import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+    <complexType name="GeoFeatureClassType">
+        <annotation>
+            <documentation>
+            地质要素类类型的定义。地质要素类定义地质要素的属性结构，同时它也是具有该属性结构的地质要素的集合。
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="gml:AbstractGMLType">
+                <annotation>
+                    <documentation>gml:AbstractGMLType定义的成员gml:name即为地质要素类的名字。</documentation>
+                </annotation>
+                <sequence>
+                    <element name="Schema" type="swe:DataRecordType" minOccurs="0">
+                        <annotation>
+                            <documentation>
+                            定义地质要素的非几何属性结构。同一要素类中的地质要素应是同一类型的，即它们应具有相同的属性结构。本元素即用于定义要素类中地质要素所具有的属性结构，进而可以认为它定义的是地质要素的类型。采用SWE Common Data Model规范定义的swe:DataRecord对象来定义要素的属性字段。按SWE Common Data Model规范，swe:DataRecordType类型的对象可以作为数据描述工具或者数据容器。此处，该对象就起到了数据描述工具的作用。Schema对象可包含多个swe:AbstractDataComponent对象；每个swe:AbstractDataComponent对象可用于定义一个属性字段。swe:AbstractDataComponent对象的类型为swe:AbstractDataComponentType，而该类型则派生自swe:AbstractSWEIdentifiableType。定义属性字段时，通过swe:DataRecord元素的子元素field的属性name（必填）设置属性字段的名字；通过swe:AbstractSWEIdentifiableType:label元素设置属性字段的显示名（可选。如该元素被省略，则使用前述field元素的name属性值为字段的显示名。）；通过swe:AbstractSWEIdentifiableType:description元素可以设置字段的说明信息，如解释该字段的含义（可选）；通过swe:AbstractDataComponentType:definition属性可以配置字段所对应的语义信息，如配置字段所对应的本体概念。同时，geo3dml:GeoFeatureClass:Schema自身为swe:DataRecrodType类型（继承自swe:AbstractDataComponentType）的对象，可以通过geo3dml:GeoFeatureClass:Schema自身的label元素设置其所定义的地质要素的类型名（可选），通过description元素设置关于该类地质要素的说明信息（可选），通过definition属性设置相关的语义信息（可选）。
+                            </documentation>
+                        </annotation>
+                    </element>
+                    <element name="Features" minOccurs="0">
+                        <annotation>
+                            <documentation>包含的地质要素。</documentation>
+                        </annotation>
+                        <complexType>
+                            <sequence>
+                                <element name="Feature" type="geo3dml:GeoFeaturePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+                            </sequence>
+                        </complexType>
+                    </element>
+                </sequence>
+                <attribute ref="xml:base">
+                    <annotation>
+                        <documentation>加入此属性是为了避免xlink:link标签所引入的文档验证冲突。</documentation>
+                    </annotation>
+                </attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+    <element name="GeoFeatureClass" type="geo3dml:GeoFeatureClassType" substitutionGroup="gml:AbstractGML" />
+    <complexType name="GeoFeatureClassPropertyType">
+        <sequence minOccurs="0">
+            <element ref="geo3dml:GeoFeatureClass" />
         </sequence>
-        <attribute ref="xml:base">
-          <annotation><documentation>加入此属性是为了避免xlink:link标签所引入的文档验证冲突。</documentation></annotation>
-        </attribute>
-      </extension>
-    </complexContent>
-  </complexType>
-  <element name="GeoFeatureClass" type="geo3dml:GeoFeatureClassType" substitutionGroup="gml:AbstractGML" />
-
-  <complexType name="GeoFeatureClassPropertyType">
-    <sequence minOccurs="0">
-      <element ref="geo3dml:GeoFeatureClass" />
-    </sequence>
-    <attributeGroup ref="gml:AssociationAttributeGroup" />
-    <attributeGroup ref="gml:OwnershipAttributeGroup" />
-  </complexType>
+        <attributeGroup ref="gml:AssociationAttributeGroup" />
+        <attributeGroup ref="gml:OwnershipAttributeGroup" />
+    </complexType>
 </xs:schema>
