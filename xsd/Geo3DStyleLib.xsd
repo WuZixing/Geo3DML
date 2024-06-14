@@ -7,17 +7,19 @@
     elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
     <annotation>
         <documentation>
-        本文档定义要素可视化参数库(geo3dml:Geo3DStyleLib)的结构。该参数库实际上是三种结构的集合，分别是：
-        se:FeatureTypeStyle，se:CoverageStyle，以及se:Symbolizer。
+        本文档定义要素可视化参数库(geo3dml:Geo3DStyleLib)的结构。该参数库实际上是五种结构的集合，分别是：
+        se:FeatureTypeStyle，se:CoverageStyle、se:Symbolizer、geo3dml:Material，以及geo3dml:AbstractTexture。
         预定义的se:FeatureTypeStyle和se:CoverageStyle定位于视图（对应于“图层”）级别关于要素可视化参数的整体复用；
-        而预定义的se:Symbolizer则定位于要素级别可视化参数的复用。
+        其它预定义的参数定位于要素级别可视化参数的复用。
         geo3dml:Geo3DStyle可以直接引用参数库中定义的se:FeatureTypeStyle或se:CoverageStyle数据。
         </documentation>
     </annotation>
     <import namespace="http://www.opengis.net/se" schemaLocation="http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd" />
+    <include schemaLocation="./Geo3DStyle.xsd"/>
+
     <complexType name="Geo3DStyleLibType">
         <annotation>
-            <documentation>地质要素可视化参数库结构，主要内容为se:FeatureTypeStyle、se:CoverageStyle以及se:Symbolizer三种结构的集合。</documentation>
+            <documentation>地质要素可视化参数库结构，主要内容为se:FeatureTypeStyle、se:CoverageStyle、se:Symbolizer、geo3dml:Material和geo3dml:AbstractTexture五种结构的集合。</documentation>
         </annotation>
         <sequence>
             <element name="Name" type="string">
@@ -38,6 +40,16 @@
             <element name="SymbolizerLib" type="geo3dml:SymbolizerLibType" minOccurs="0">
                 <annotation>
                     <documentation>库中包含的预定义的se:Symbolizer结构。</documentation>
+                </annotation>
+            </element>
+            <element name="MaterialLib" type="geo3dml:MaterialLibType" minOccurs="0">
+                <annotation>
+                    <documentation>库中包含的预定义的geo3dml:Material结构。</documentation>
+                </annotation>
+            </element>
+            <element name="TextureLib" type="geo3dml:TextureLibType" minOccurs="0">
+                <annotation>
+                    <documentation>库中包含的预定义的geo3dml:AbstractTexture结构。</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -65,6 +77,22 @@
         </annotation>
         <sequence>
             <element ref="se:Symbolizer" minOccurs="0" maxOccurs="unbounded" />
+        </sequence>
+    </complexType>
+    <complexType name="MaterialLibType">
+        <annotation>
+            <documentation>关于geo3dml:Material的集合。</documentation>
+        </annotation>
+        <sequence>
+            <element ref="geo3dml:Material" minOccurs="0" maxOccurs="unbounded" />
+        </sequence>
+    </complexType>
+    <complexType name="TextureLibType">
+        <annotation>
+            <documentation>关于geo3dml:AbstractTexture的集合。</documentation>
+        </annotation>
+        <sequence>
+            <element ref="geo3dml:AbstractTexture" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
     </complexType>
 </xs:schema>

@@ -12,7 +12,28 @@
     <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd" />
     <import namespace="http://www.opengis.net/se" schemaLocation="http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd" />
     <include schemaLocation="./GeoBasicTypes.xsd"/>
-    <include schemaLocation="./Geo3DStyleLib.xsd"/>
+
+    <complexType name="FeatureTypeStylePropertyType">
+        <sequence>
+            <element ref="se:FeatureTypeStyle" minOccurs="0"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType>
+    <complexType name="CoverageStylePropertyType">
+        <sequence>
+            <element ref="se:CoverageStyle" minOccurs="0"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType>
+    <complexType name="SymbolizerPropertyType">
+        <sequence>
+            <element ref="se:Symbolizer" minOccurs="0"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType>
     <complexType name="Geo3DStyleType">
         <annotation>
             <documentation>
@@ -29,7 +50,9 @@
                 <sequence>
                     <choice maxOccurs="1">
                         <element ref="se:FeatureTypeStyle"/>
+                        <element name="FeatureTypeStyle" type="geo3dml:FeatureTypeStylePropertyType"/>
                         <element ref="se:CoverageStyle"/>
+                        <element name="CoverageStyle" type="geo3dml:CoverageStylePropertyType"/>
                     </choice>
                 </sequence>
             </extension>
@@ -57,12 +80,19 @@
         <complexContent>
             <extension base="se:PointSymbolizerType">
                 <sequence>
-                    <element ref="geo3dml:Material" minOccurs="0" />
+                    <element name="Material" type="geo3dml:MaterialPropertyType" minOccurs="0"/>
                 </sequence>
             </extension>
         </complexContent>
     </complexType>
     <element name="GeoPointSymbolizer" type="geo3dml:GeoPointSymbolizerType" substitutionGroup="se:PointSymbolizer" />
+    <complexType name="GeoPointSymbolizerPropertyType">
+        <sequence>
+            <element ref="geo3dml:GeoPointSymbolizer" minOccurs="0"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType>
     <complexType name="GeoLineSymbolizerType">
         <annotation>
             <documentation>扩展se:LineSymbolizerType类型，加入geo3dml:Material材质参数。</documentation>
@@ -70,12 +100,19 @@
         <complexContent>
             <extension base="se:LineSymbolizerType">
                 <sequence>
-                    <element ref="geo3dml:Material" minOccurs="0" />
+                    <element name="Material" type="geo3dml:MaterialPropertyType" minOccurs="0"/>
                 </sequence>
             </extension>
         </complexContent>
     </complexType>
     <element name="GeoLineSymbolizer" type="geo3dml:GeoLineSymbolizerType" substitutionGroup="se:LineSymbolizer" />
+    <complexType name="GeoLineSymbolizerPropertyType">
+        <sequence>
+            <element ref="geo3dml:GeoLineSymbolizer" minOccurs="0"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType>
     <complexType name="GeoSurfaceSymbolizerType">
         <annotation>
             <documentation>曲面(如TIN)的可视化参数。</documentation>
@@ -84,54 +121,41 @@
             <extension base="se:SymbolizerType">
                 <sequence>
                     <element ref="se:Geometry" minOccurs="0"/>
-                    <element name="Front">
+                    <element name="Front" type="geo3dml:MaterialPropertyType">
                         <annotation>
                             <documentation>面的正面材质Material。</documentation>
                         </annotation>
-                        <complexType>
-                            <sequence>
-                                <element ref="geo3dml:Material"/>
-                            </sequence>
-                        </complexType>
                     </element>
-                    <element name="Back" minOccurs="0">
+                    <element name="Back" type="geo3dml:MaterialPropertyType" minOccurs="0">
                         <annotation>
                             <documentation>面的反面材质Material。</documentation>
                         </annotation>
-                        <complexType>
-                            <sequence>
-                                <element ref="geo3dml:Material"/>
-                            </sequence>
-                        </complexType>
                     </element>
-                    <element name="VertexSymbolizer" minOccurs="0">
+                    <element name="VertexSymbolizer" type="geo3dml:GeoPointSymbolizerPropertyType" minOccurs="0">
                         <annotation>
                             <documentation>顶点的可视化参数（可选）。</documentation>
                         </annotation>
-                        <complexType>
-                            <sequence>
-                                <element ref="geo3dml:GeoPointSymbolizer"/>
-                            </sequence>
-                        </complexType>
                     </element>
-                    <element name="FrameSymbolizer" minOccurs="0">
+                    <element name="FrameSymbolizer" type="geo3dml:GeoLineSymbolizerPropertyType" minOccurs="0">
                         <annotation>
                             <documentation>线框的可视化参数（可选）。</documentation>
                         </annotation>
-                        <complexType>
-                            <sequence>
-                                <element ref="geo3dml:GeoLineSymbolizer"/>
-                            </sequence>
-                        </complexType>
                     </element>
                 </sequence>
             </extension>
         </complexContent>
     </complexType>
     <element name="GeoSurfaceSymbolizer" type="geo3dml:GeoSurfaceSymbolizerType" substitutionGroup="se:Symbolizer" />
+    <complexType name="GeoSurfaceSymbolizerPropertyType">
+        <sequence>
+            <element ref="geo3dml:GeoSurfaceSymbolizer" minOccurs="0"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType>
     <complexType name="GeoDiscreteCoverageSymbolizerType">
         <annotation>
-            <documentation>属性场的可视化参数</documentation>
+            <documentation>属性场的可视化参数。可定义多个se:Rule，从而在一个符号中完整定义属性场各种属性的可视化参数。</documentation>
         </annotation>
         <complexContent>
             <extension base="se:SymbolizerType">
@@ -151,6 +175,13 @@
         </complexContent>
     </complexType>
     <element name="GeoDiscreteCoverageSymbolizer" type="geo3dml:GeoDiscreteCoverageSymbolizerType" substitutionGroup="se:Symbolizer" />
+    <complexType name="GeoDiscreteCoverageSymbolizerPropertyType">
+        <sequence>
+            <element ref="geo3dml:GeoDiscreteCoverageSymbolizer" minOccurs="0"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType>
     <complexType name="MaterialType">
         <annotation>
             <documentation>参考X3D及OGC CityGML定义的3D可视化材质结构，包括灯光、颜色等参数。</documentation>
@@ -186,19 +217,21 @@
                     <documentation>透明度：0表示完全不透明；1表示完全透明。</documentation>
                 </annotation>
             </element>
-            <element name="Texture" minOccurs="0">
+            <element name="Texture" type="geo3dml:AbstractTexturePropertyType" minOccurs="0">
                 <annotation>
                     <documentation>纹理贴图设置</documentation>
                 </annotation>
-                <complexType>
-                    <sequence>
-                        <element ref="geo3dml:AbstractTexture" />
-                    </sequence>
-                </complexType>
             </element>
         </sequence>
     </complexType>
     <element name="Material" type="geo3dml:MaterialType" />
+    <complexType name="MaterialPropertyType">
+        <sequence>
+            <element ref="geo3dml:Material" minOccurs="0"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType>
     <complexType name="AbstractTextureType" abstract="true">
         <annotation>
             <documentation>纹理结构。参考CityGML的Appearance模块中关于AbstractTextureType的定义。</documentation>
@@ -248,6 +281,13 @@
         </sequence>
     </complexType>
     <element name="AbstractTexture" type="geo3dml:AbstractTextureType" abstract="true" />
+    <complexType name="AbstractTexturePropertyType">
+        <sequence>
+            <element ref="geo3dml:AbstractTexture" minOccurs="0"/>
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </complexType>
     <complexType name="GeoReferencedTextureType">
         <annotation>
             <documentation>参见CityGML的Appearance模块中关于GeoReferencedTextureType的定义。</documentation>
@@ -390,8 +430,8 @@
     </complexType>
     <element name="GeoSceneStyle" type="geo3dml:GeoSceneStyleType"/>
     <complexType name="GeoSceneStylePropertyType">
-        <sequence minOccurs="0">
-            <element ref="geo3dml:GeoSceneStyle"/>
+        <sequence>
+            <element ref="geo3dml:GeoSceneStyle" minOccurs="0"/>
         </sequence>
         <attributeGroup ref="gml:AssociationAttributeGroup"/>
         <attributeGroup ref="gml:OwnershipAttributeGroup"/>
