@@ -25,9 +25,9 @@
                     <documentation>项目的名字。</documentation>
                 </annotation>
             </element>
-            <element name="Description" type="string" minOccurs="0">
+            <element name="Metadata" type="geo3dml:Geo3DProjectMetadataPropertyType" minOccurs="0">
                 <annotation>
-                    <documentation>项目的说明信息。</documentation>
+                    <documentation>三维地质项目元数据。</documentation>
                 </annotation>
             </element>
             <element name="Style" type="geo3dml:GeoSceneStylePropertyType" minOccurs="0">

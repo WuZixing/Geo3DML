@@ -14,18 +14,70 @@
     <import namespace="http://www.isotc211.org/2005/gmd"
         schemaLocation="http://www.isotc211.org/2005/gmd/metadataEntity.xsd" />
 
+    <complexType name="AbstractGeo3DMetadata">
+        <annotation>
+            <documentation>三维地质元数据抽象类，用于扩展各类元数据结构</documentation>
+        </annotation>
+        <complexContent>
+            <extension base="gmd:MD_Metadata_Type">
+                <sequence>
+                    <element name="Description" type="string" minOccurs="0">
+                        <annotation>
+                            <documentation>关于对象的描述。</documentation>
+                        </annotation>
+                    </element>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <element name="AbstractGeo3DMetadata" type="geo3dml:AbstractGeo3DMetadataType"
+        substitutionGroup="gmd:MD_Metadata" />
+
+    <complexType name="Geo3DProjectMetadataType">
+        <annotation>
+            <documentation>三维地质项目元数据</documentation>
+        </annotation>
+        <complexContent>
+            <extension base="geo3dml:AbstractGeo3DMetadata">
+                <sequence>
+                    <element name="ProjectInfo">
+                        <annotation>
+                            <documentation>建模项目信息</documentation>
+                        </annotation>
+                        <complexType>
+                            <sequence>
+                                <element name="Name" type="string" />
+                                <element name="Code" type="string" />
+                                <element name="StartDate" type="date" />
+                                <element name="CompletedDate" type="date" />
+                                <element name="Duration" type="decimal" />
+                                <element name="Contractor" type="string" />
+                            </sequence>
+                        </complexType>
+                    </element>
+                    <element name="ModelCount" type="integer" minOccurs="0" />
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <element name="Geo3DProjectMetadata" type="geo3dml:Geo3DProjectMetadataType"
+        substitutionGroup="geo3dml:AbstractGeo3DMetadata" />
+
+    <complexType name="Geo3DProjectMetadataPropertyType">
+        <sequence>
+            <element ref="geo3dml:Geo3DProjectMetadata" minOccurs="0" />
+        </sequence>
+        <attributeGroup ref="gml:AssociationAttributeGroup" />
+        <attributeGroup ref="gml:OwnershipAttributeGroup" />
+    </complexType>
+
     <complexType name="GeoModelMetadataType">
         <annotation>
             <documentation>三维地质模型元数据</documentation>
         </annotation>
         <complexContent>
-            <extension base="gmd:MD_Metadata_Type">
+            <extension base="geo3dml:AbstractGeo3DMetadataType">
                 <sequence>
-                    <element name="Description" type="string">
-                        <annotation>
-                            <documentation>关于地质模型的描述。</documentation>
-                        </annotation>
-                    </element>
                     <element name="Version" type="string">
                         <annotation>
                             <documentation>模型的版本号。</documentation>
@@ -39,7 +91,7 @@
                     </element>
                     <element name="ToolName" type="string">
                         <annotation>
-                            <documentation>创建该地质模型所使用的软件工具的名称。</documentation>
+                            <documentation>创建该地质模型（项目）所使用的软件工具的名称。</documentation>
                         </annotation>
                     </element>
                     <element name="ToolVersion" type="string">
@@ -47,12 +99,43 @@
                             <documentation>创建该地质模型所使用的软件工具的版本号。</documentation>
                         </annotation>
                     </element>
+                    <element name="TopicCategory" type="string">
+                        <annotation>
+                            <documentation>模型专题类型，如：水文地质、工程地质等。</documentation>
+                        </annotation>
+                    </element>
+                    <element name="GeographyBoundaryBox" minOccurs="0">
+                        <annotation>
+                            <documentation>地理范围，包括：最西侧的经度、最东侧的经度、最北端的纬度、最南端的纬度，单位（度），十进制浮点数。</documentation>
+                        </annotation>
+                        <complexType>
+                            <sequence>
+                                <element name="WestBoundLongitude" type="decimal" />
+                                <element name="EastBoundLongitude" type="decimal" />
+                                <element name="SouthBoundLatitude" type="decimal" />
+                                <element name="NorthBoundLatitude" type="decimal" />
+                            </sequence>
+                        </complexType>
+                    </element>
+                    <element name="VerticalExtent" minOccurs="0">
+                        <annotation>
+                            <documentation>高程范围</documentation>
+                        </annotation>
+                        <complexType>
+                            <sequence>
+                                <element name="MinimumValue" type="decimal" />
+                                <element name="MaximumValue" type="decimal" />
+                            </sequence>
+                            <attribute name="Unit" type="string" use="optional"
+                                default="meter" />
+                        </complexType>
+                    </element>
                 </sequence>
             </extension>
         </complexContent>
     </complexType>
     <element name="GeoModelMetadata" type="geo3dml:GeoModelMetadataType"
-        substitutionGroup="gmd:MD_Metadata" />
+        substitutionGroup="geo3dml:AbstractGeo3DMetadata" />
 
     <complexType name="GeoModelMetadataPropertyType">
         <sequence>

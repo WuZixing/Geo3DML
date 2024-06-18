@@ -49,12 +49,15 @@
                 </annotation>
                 <sequence>
                     <choice maxOccurs="1">
-                        <element ref="se:FeatureTypeStyle"/>
                         <element name="FeatureTypeStyle" type="geo3dml:FeatureTypeStylePropertyType"/>
-                        <element ref="se:CoverageStyle"/>
                         <element name="CoverageStyle" type="geo3dml:CoverageStylePropertyType"/>
                     </choice>
                 </sequence>
+                <attribute ref="xml:base">
+                    <annotation>
+                        <documentation>加入此属性是为了避免xlink:link标签所引入的文档验证冲突。</documentation>
+                    </annotation>
+                </attribute>
             </extension>
         </complexContent>
     </complexType>
@@ -73,15 +76,27 @@
     </complexType>
     <complexType name="GeoPointSymbolizerType">
         <annotation>
-            <documentation>
-扩展se:PointSymbolizerType类型，加入geo3dml:Material材质参数。
-            </documentation>
+            <documentation>扩展se:PointSymbolizerType类型，加入geo3dml:Material材质参数。</documentation>
         </annotation>
         <complexContent>
             <extension base="se:PointSymbolizerType">
                 <sequence>
-                    <element name="Material" type="geo3dml:MaterialPropertyType" minOccurs="0"/>
+                    <element name="Material" type="geo3dml:MaterialPropertyType" minOccurs="0">
+                        <annotation>
+                            <documentation>绘制点时忽略材质参数中的纹理。</documentation>
+                        </annotation>
+                    </element>
+                    <element name="GBSymbol" type="string" minOccurs="0">
+                        <annotation>
+                            <documentation>点符号，遵照《GB/T958-2015 区域地质图图例》中关于点状要素图例规定，本元素存放图例代码，如：GPOB010001。</documentation>
+                        </annotation>
+                    </element>
                 </sequence>
+                <attribute ref="xml:base">
+                    <annotation>
+                        <documentation>加入此属性是为了避免xlink:link标签所引入的文档验证冲突。</documentation>
+                    </annotation>
+                </attribute>
             </extension>
         </complexContent>
     </complexType>
@@ -100,8 +115,22 @@
         <complexContent>
             <extension base="se:LineSymbolizerType">
                 <sequence>
-                    <element name="Material" type="geo3dml:MaterialPropertyType" minOccurs="0"/>
+                    <element name="Material" type="geo3dml:MaterialPropertyType" minOccurs="0">
+                        <annotation>
+                            <documentation>绘制线时忽略材质参数中的纹理。</documentation>
+                        </annotation>
+                    </element>
+                    <element name="GBSymbol" type="string" minOccurs="0">
+                        <annotation>
+                            <documentation>线符号，遵照《GB/T958-2015 区域地质图图例》中关于线状要素图例规定，本元素存放图例代码，如：GSFA010030。</documentation>
+                        </annotation>
+                    </element>
                 </sequence>
+                <attribute ref="xml:base">
+                    <annotation>
+                        <documentation>加入此属性是为了避免xlink:link标签所引入的文档验证冲突。</documentation>
+                    </annotation>
+                </attribute>
             </extension>
         </complexContent>
     </complexType>
@@ -123,12 +152,12 @@
                     <element ref="se:Geometry" minOccurs="0"/>
                     <element name="Front" type="geo3dml:MaterialPropertyType">
                         <annotation>
-                            <documentation>面的正面材质Material。</documentation>
+                            <documentation>面的正面材质。</documentation>
                         </annotation>
                     </element>
                     <element name="Back" type="geo3dml:MaterialPropertyType" minOccurs="0">
                         <annotation>
-                            <documentation>面的反面材质Material。</documentation>
+                            <documentation>面的反面材质。</documentation>
                         </annotation>
                     </element>
                     <element name="VertexSymbolizer" type="geo3dml:GeoPointSymbolizerPropertyType" minOccurs="0">
@@ -142,6 +171,11 @@
                         </annotation>
                     </element>
                 </sequence>
+                <attribute ref="xml:base">
+                    <annotation>
+                        <documentation>加入此属性是为了避免xlink:link标签所引入的文档验证冲突。</documentation>
+                    </annotation>
+                </attribute>
             </extension>
         </complexContent>
     </complexType>
@@ -184,45 +218,42 @@
     </complexType>
     <complexType name="MaterialType">
         <annotation>
-            <documentation>参考X3D及OGC CityGML定义的3D可视化材质结构，包括灯光、颜色等参数。</documentation>
+            <documentation>三维可视化材质结构，包括灯光、颜色等参数。</documentation>
         </annotation>
         <sequence>
-            <element name="AmbientIntensity" type="geo3dml:DoubleBetween0And1" default="0.2" minOccurs="0">
+            <choice minOccurs="0">
+                <element name="BaseColor" type="geo3dml:ColorPlusAlpha" minOccurs="0">
+                    <annotation>
+                        <documentation>基础颜色，物体本身颜色，使用自定义的颜色类型。也包含透明度参数。</documentation>
+                    </annotation>
+                </element>
+                <element name="BaseColorTexture" type="geo3dml:AbstractTexturePropertyType" minOccurs="0">
+                    <annotation>
+                        <documentation>基础颜色和透明度也可用纹理定义。</documentation>
+                    </annotation>
+                </element>
+            </choice>
+            <element name="NormalTexture" type="geo3dml:AbstractTexturePropertyType" minOccurs="0">
                 <annotation>
-                    <documentation>环境光强度。指漫反射光的最小强度。</documentation>
+                    <documentation>法向纹理。使用其RGB通道的值。</documentation>
                 </annotation>
             </element>
-            <element name="DiffuseColor" type="geo3dml:Color" default="0.8 0.8 0.8" minOccurs="0">
+            <element name="OcclusionTexture" type="geo3dml:AbstractTexturePropertyType" minOccurs="0">
                 <annotation>
-                    <documentation>漫反射光。如果不考虑光照，则漫反射光就是对象的颜色。参考二维地质图的符号及图例标准来设置要素的可视化参数时，请提取其颜色值来设置这里的漫反射光颜色。</documentation>
+                    <documentation>环境光遮蔽纹理。仅使用其R通道的值。</documentation>
                 </annotation>
             </element>
             <element name="EmissiveColor" type="geo3dml:Color" default="0.0 0.0 0.0" minOccurs="0">
                 <annotation>
-                    <documentation>辐射光</documentation>
-                </annotation>
-            </element>
-            <element name="Shininess" type="geo3dml:DoubleBetween0And1" default="0.2" minOccurs="0">
-                <annotation>
-                    <documentation>聚光度</documentation>
-                </annotation>
-            </element>
-            <element name="SpecularColor" type="geo3dml:Color" default="1.0 1.0 1.0" minOccurs="0">
-                <annotation>
-                    <documentation>镜面反射光</documentation>
-                </annotation>
-            </element>
-            <element name="Transparency" type="geo3dml:DoubleBetween0And1" default="0.0" minOccurs="0">
-                <annotation>
-                    <documentation>透明度：0表示完全不透明；1表示完全透明。</documentation>
-                </annotation>
-            </element>
-            <element name="Texture" type="geo3dml:AbstractTexturePropertyType" minOccurs="0">
-                <annotation>
-                    <documentation>纹理贴图设置</documentation>
+                    <documentation>如果对象自身发光，该参数指定其颜色。</documentation>
                 </annotation>
             </element>
         </sequence>
+        <attribute ref="xml:base">
+            <annotation>
+                <documentation>加入此属性是为了避免xlink:link标签所引入的文档验证冲突。</documentation>
+            </annotation>
+        </attribute>
     </complexType>
     <element name="Material" type="geo3dml:MaterialType" />
     <complexType name="MaterialPropertyType">
@@ -232,13 +263,78 @@
         <attributeGroup ref="gml:AssociationAttributeGroup"/>
         <attributeGroup ref="gml:OwnershipAttributeGroup"/>
     </complexType>
+    <complexType name="PBRMaterialType">
+        <annotation>
+            <documentation>Physically Based Rendering (PBR)方法使用的材质参数。</documentation>
+        </annotation>
+        <complexContent>
+            <extension base="geo3dml:MaterialType">
+                <element name="Metallic" type="geo3dml:DoubleBetween0And1">
+                    <annotation>
+                        <documentation>金属度，一个0到1之间的浮点数，0表示非金属，1表示完全金属。</documentation>
+                    </annotation>
+                </element>
+                <element name="Roughness" type="geo3dml:DoubleBetween0And1">
+                    <annotation>
+                        <documentation>
+                            粗糙度，一个0到1之间的浮点数，0表示非常光滑的表面，反射光会集中形成清晰的高光；而1表示非常粗糙的表面，反射光会被散射，形成较模糊的反射。
+                        </documentation>
+                    </annotation>
+                </element>
+                <element name="SpecularColor" type="geo3dml:Color" minOccurs="0">
+                    <annotation>
+                        <documentation>镜面反射颜色，可选，用于非金属材质的高光颜色。</documentation>
+                    </annotation>
+                </element>
+                <element name="IndexOfRefraction" type="float" minOccurs="0">
+                    <annotation>
+                        <documentation>折射率，仅适用于透明或半透明材质。</documentation>
+                    </annotation>
+                </element>
+            </extension>
+        </complexContent>
+    </complexType>
+    <element name="PBRMaterial" type="geo3dml:PBRMaterialType" substitutionGroup="geo3dml:Material" />
+
     <complexType name="AbstractTextureType" abstract="true">
         <annotation>
             <documentation>纹理结构。参考CityGML的Appearance模块中关于AbstractTextureType的定义。</documentation>
         </annotation>
         <sequence>
-            <element name="ImageURI" type="anyURI" />
-            <element name="MimeType" type="string" />
+            <choice>
+                <element name="Image">
+                    <annotation>
+                        <documentation>图像文件地址。</documentation>
+                    </annotation>
+                    <complexType>
+                        <element name="URI" type="anyURI" />
+                        <element name="MimeType" type="string" />
+                    </complexType>
+                </element>
+                <element name="GBSymbol">
+                    <annotation>
+                        <documentation>使用《GB/T958-2015 区域地质图图例》中定义的区填充符号。需要应用程序依据定义实时生成纹理图片。</documentation>
+                    </annotation>
+                    <complexType>
+                        <element name="Code" type="string">
+                            <annotation>
+                                <documentation>《GB/T958-2015 区域地质图图例》中关于区填充图例代码，如：GOQF010001。</documentation>
+                            </annotation>
+                        </element>
+                        <element name="Stroke" type="geo3dml:Color" default="0.0 0.0 0.0">
+                            <annotation>
+                                <documentation>符号的前景颜色。</documentation>
+                            </annotation>
+                        </element>
+                        <element name="Fill" type="geo3dml:Color" default="0.0 0.0 0.0">
+                            <annotation>
+                                <documentation>符号的填充颜色。</documentation>
+                            </annotation>
+                        </element>
+                    </complexType>
+                </element>
+            </choice>
+            
             <element name="WrapMode" default="None">
                 <annotation>
                     <documentation>纹理的贴图模式。</documentation>
@@ -309,6 +405,11 @@
                         </annotation>
                     </element>
                 </sequence>
+                <attribute ref="xml:base">
+                    <annotation>
+                        <documentation>加入此属性是为了避免xlink:link标签所引入的文档验证冲突。</documentation>
+                    </annotation>
+                </attribute>
             </extension>
         </complexContent>
     </complexType>
