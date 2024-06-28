@@ -54,8 +54,8 @@
     </complexType>
     <element name="GeoFeatureClass" type="geo3dml:GeoFeatureClassType" substitutionGroup="gml:AbstractGML" />
     <complexType name="GeoFeatureClassPropertyType">
-        <sequence minOccurs="0">
-            <element ref="geo3dml:GeoFeatureClass" />
+        <sequence>
+            <element ref="geo3dml:GeoFeatureClass" minOccurs="0" />
         </sequence>
         <attributeGroup ref="gml:AssociationAttributeGroup" />
         <attributeGroup ref="gml:OwnershipAttributeGroup" />
