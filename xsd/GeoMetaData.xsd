@@ -30,8 +30,6 @@
             </extension>
         </complexContent>
     </complexType>
-    <element name="AbstractGeo3DMetadata" type="geo3dml:AbstractGeo3DMetadataType"
-        substitutionGroup="gmd:MD_Metadata" />
 
     <complexType name="Geo3DProjectMetadataType">
         <annotation>
@@ -76,7 +74,7 @@
             <documentation>三维地质模型元数据</documentation>
         </annotation>
         <complexContent>
-            <extension base="geo3dml:AbstractGeo3DMetadataType">
+            <extension base="geo3dml:AbstractGeo3DMetadata">
                 <sequence>
                     <element name="Version" type="string">
                         <annotation>
