@@ -14,7 +14,7 @@
     <import namespace="http://www.isotc211.org/2005/gmd"
         schemaLocation="http://www.isotc211.org/2005/gmd/metadataEntity.xsd" />
 
-    <complexType name="AbstractGeo3DMetadata">
+    <complexType name="AbstractGeo3DMetadataType">
         <annotation>
             <documentation>三维地质元数据抽象类，用于扩展各类元数据结构</documentation>
         </annotation>
@@ -30,13 +30,15 @@
             </extension>
         </complexContent>
     </complexType>
+    <element name="AbstractGeo3DMetadata" type="geo3dml:AbstractGeo3DMetadataType" 
+        substitutionGroup="gmd:MD_Metadata" />
 
     <complexType name="Geo3DProjectMetadataType">
         <annotation>
             <documentation>三维地质项目元数据</documentation>
         </annotation>
         <complexContent>
-            <extension base="geo3dml:AbstractGeo3DMetadata">
+            <extension base="geo3dml:AbstractGeo3DMetadataType">
                 <sequence>
                     <element name="ProjectInfo">
                         <annotation>
@@ -74,7 +76,7 @@
             <documentation>三维地质模型元数据</documentation>
         </annotation>
         <complexContent>
-            <extension base="geo3dml:AbstractGeo3DMetadata">
+            <extension base="geo3dml:AbstractGeo3DMetadataType">
                 <sequence>
                     <element name="Version" type="string">
                         <annotation>
