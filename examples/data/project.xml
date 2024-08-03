@@ -4,7 +4,16 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.cgs.gov.cn/geo3dml file:///D:/GeMML/Document/schema/GMML/1.0/Geo3DML.xsd">
   <Name>示例项目</Name>
-  <Description>示例数据（Geo3DML v1.0）。</Description>
+  <Metadata>
+    <Description>示例数据（Geo3DML v1.0）。</Description>
+    <ProjectInfo>
+      <Name>xx项目</Name>
+      <Code>项目编号</Code>
+      <StartDate>2012-5-16</StartDate>
+      <CompletedDate>2013-12-31</CompletedDate>
+      <Contractor>工作承包商名字</Contractor>
+    </ProjectInfo>
+  </Metadata>
   <Models>
     <Model>
       <xi:include href="model_drill.xml" />
