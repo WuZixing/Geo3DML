@@ -17,7 +17,7 @@
           <Style>
             <Geo3DStyle gml:id="ZK0-Mark-Style">
               <gml:name>ZK0-Mark-Style</gml:name>
-              <FeatureTypeStyle>
+              <FeatureStyle>
                 <se:FeatureTypeStyle>
                   <se:Rule>
                     <GeoPointSymbolizer>
@@ -32,7 +32,7 @@
                     </GeoPointSymbolizer>
                   </se:Rule>
                 </se:FeatureTypeStyle>
-              </FeatureTypeStyle>
+              </FeatureStyle>
             </Geo3DStyle>
           </Style>
         </Styles>
@@ -46,7 +46,7 @@
           <Style>
             <Geo3DStyle gml:id="ZK0-Stratum-Style">
               <gml:name>ZK0-Stratum-Style</gml:name>
-              <FeatureTypeStyle>
+              <FeatureStyle>
                 <se:FeatureTypeStyle>
                   <se:Rule>
                     <ogc:Filter>
@@ -121,7 +121,7 @@
                     </GeoLineSymbolizer>
                   </se:Rule>
                 </se:FeatureTypeStyle>
-              </FeatureTypeStyle>
+              </FeatureStyle>
             </Geo3DStyle>
           </Style>
         </Styles>
