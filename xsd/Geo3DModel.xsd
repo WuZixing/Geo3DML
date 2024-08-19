@@ -60,7 +60,7 @@
                     </restriction>
                 </simpleType>
             </element>
-            <element name="Metadata" type="geo3dml:GeoModelMetadataPropertyType" minOccurs="0">
+            <element name="Metadata" type="geo3dml:GeoModelMetadataType" minOccurs="0">
                 <annotation>
                     <documentation>地质模型元数据。</documentation>
                 </annotation>

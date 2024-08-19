@@ -45,7 +45,7 @@
                 </annotation>
                 <sequence>
                     <choice maxOccurs="1">
-                        <element name="FeatureTypeStyle" type="geo3dml:FeatureTypeStylePropertyType"/>
+                        <element name="FeatureStyle" type="geo3dml:FeatureTypeStylePropertyType"/>
                         <element name="CoverageStyle" type="geo3dml:CoverageStylePropertyType"/>
                     </choice>
                 </sequence>

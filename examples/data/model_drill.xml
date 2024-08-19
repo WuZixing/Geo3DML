@@ -64,6 +64,7 @@
     </SpatialReferenceSystem>
     <ToolName>XX工具</ToolName>
     <ToolVersion>vXX.XX</ToolVersion>
+    <TopicCategory>工程地质</TopicCategory>
   </Metadata>
   <FeatureClasses>
     <FeatureClass>
@@ -107,15 +108,13 @@
                   </swe:Count>
                 </Field>
               </Fields>
-              <Geometries>
-                <Geometry Name="G1">
-                  <Shape>
-                    <gml:Point gml:id="ZK0-Mark-Geo-0">
-                      <gml:pos srsDimension="3">0 0 100</gml:pos>
-                    </gml:Point>
-                  </Shape>
-                </Geometry>
-              </Geometries>
+              <Geometry>
+                <Shape>
+                  <gml:Point gml:id="ZK0-Mark-Geo-0">
+                    <gml:pos srsDimension="3">0 0 100</gml:pos>
+                  </gml:Point>
+                </Shape>
+              </Geometry>
             </GeoFeature>
           </Feature>
           <Feature>
@@ -138,15 +137,13 @@
                   </swe:Count>
                 </Field>
               </Fields>
-              <Geometries>
-                <Geometry Name="G1">
-                  <Shape>
-                    <gml:Point gml:id="ZK0-Mark-Geo-1">
-                      <gml:pos srsDimension="3">0 0 70</gml:pos>
-                    </gml:Point>
-                  </Shape>
-                </Geometry>
-              </Geometries>
+              <Geometry>
+                <Shape>
+                  <gml:Point gml:id="ZK0-Mark-Geo-1">
+                    <gml:pos srsDimension="3">0 0 70</gml:pos>
+                  </gml:Point>
+                </Shape>
+              </Geometry>
             </GeoFeature>
           </Feature>
           <Feature>
@@ -169,15 +166,13 @@
                   </swe:Count>
                 </Field>
               </Fields>
-              <Geometries>
-                <Geometry Name="G1">
-                  <Shape>
-                    <gml:Point gml:id="ZK0-Mark-Geo-2">
-                      <gml:pos srsDimension="3">0 0 40</gml:pos>
-                    </gml:Point>
-                  </Shape>
-                </Geometry>
-              </Geometries>
+              <Geometry>
+                <Shape>
+                  <gml:Point gml:id="ZK0-Mark-Geo-2">
+                    <gml:pos srsDimension="3">0 0 40</gml:pos>
+                  </gml:Point>
+                </Shape>
+              </Geometry>
             </GeoFeature>
           </Feature>
           <Feature>
@@ -200,15 +195,13 @@
                   </swe:Count>
                 </Field>
               </Fields>
-              <Geometries>
-                <Geometry Name="G1">
-                  <Shape>
-                    <gml:Point gml:id="ZK0-Mark-Geo-3">
-                      <gml:pos srsDimension="3">0 0 10</gml:pos>
-                    </gml:Point>
-                  </Shape>
-                </Geometry>
-              </Geometries>
+              <Geometry>
+                <Shape>
+                  <gml:Point gml:id="ZK0-Mark-Geo-3">
+                    <gml:pos srsDimension="3">0 0 10</gml:pos>
+                  </gml:Point>
+                </Shape>
+              </Geometry>
             </GeoFeature>
           </Feature>
         </Features>
@@ -235,18 +228,16 @@
                   </swe:Text>
                 </Field>
               </Fields>
-              <Geometries>
-                <Geometry Name="G1">
-                  <Shape>
-                    <gml:LineString gml:id="ZK0-Stratum-Geo-0">
-                      <gml:posList srsDimension="3" count="2">
-                      0 0 100
-                      0 0 70
-                      </gml:posList>
-                    </gml:LineString>
-                  </Shape>
-                </Geometry>
-              </Geometries>
+              <Geometry>
+                <Shape>
+                  <gml:LineString gml:id="ZK0-Stratum-Geo-0">
+                    <gml:posList srsDimension="3" count="2">
+                    0 0 100
+                    0 0 70
+                    </gml:posList>
+                  </gml:LineString>
+                </Shape>
+              </Geometry>
             </GeoFeature>
           </Feature>
           <Feature>
@@ -259,18 +250,16 @@
                   </swe:Text>
                 </Field>
               </Fields>
-              <Geometries>
-                <Geometry Name="G1">
-                  <Shape>
-                    <gml:LineString gml:id="ZK0-Stratum-Geo-1">
-                      <gml:posList srsDimension="3" count="2">
-                      0 0 70
-                      0 0 40
-                      </gml:posList>
-                    </gml:LineString>
-                  </Shape>
-                </Geometry>
-              </Geometries>
+              <Geometry>
+                <Shape>
+                  <gml:LineString gml:id="ZK0-Stratum-Geo-1">
+                    <gml:posList srsDimension="3" count="2">
+                    0 0 70
+                    0 0 40
+                    </gml:posList>
+                  </gml:LineString>
+                </Shape>
+              </Geometry>
             </GeoFeature>
           </Feature>
           <Feature>
@@ -283,18 +272,16 @@
                   </swe:Text>
                 </Field>
               </Fields>
-              <Geometries>
-                <Geometry Name="G1">
-                  <Shape>
-                    <gml:LineString gml:id="ZK0-Stratum-Geo-2">
-                      <gml:posList srsDimension="3" count="2">
-                      0 0 40
-                      0 0 10
-                      </gml:posList>
-                    </gml:LineString>
-                  </Shape>
-                </Geometry>
-              </Geometries>
+              <Geometry>
+                <Shape>
+                  <gml:LineString gml:id="ZK0-Stratum-Geo-2">
+                    <gml:posList srsDimension="3" count="2">
+                    0 0 40
+                    0 0 10
+                    </gml:posList>
+                  </gml:LineString>
+                </Shape>
+              </Geometry>
             </GeoFeature>
           </Feature>
         </Features>
