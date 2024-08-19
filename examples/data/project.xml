@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<geo3dml:Geo3DProject xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml" xmlns="http://www.cgs.gov.cn/geo3dml"
+<geo3dml:Geo3DProject xmlns:geo3dml="https://www.iheg.cgs.gov.cn/Standard/geo3dml"
+  xmlns="https://www.iheg.cgs.gov.cn/Standard/geo3dml"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.cgs.gov.cn/geo3dml file:///D:/GeMML/Document/schema/GMML/1.0/Geo3DML.xsd">
+  xsi:schemaLocation="https://www.iheg.cgs.gov.cn/Standard/geo3dml file:///D:/Geo3DML/schemas/1.0.0/Geo3DML.xsd">
   <Name>示例项目</Name>
   <Description>示例数据（Geo3DML v1.0）。</Description>
   <Models>
@@ -12,12 +13,6 @@
     <Model>
       <xi:include href="model_section.xml" />
     </Model>
-    <Model>
-      <xi:include href="model_Volume_1.xml" />
-    </Model>
-    <Model>
-      <xi:include href="model_Volume_2.xml" />
-    </Model>
   </Models>
   <Maps>
     <Map>
@@ -25,9 +20,6 @@
     </Map>
     <Map>
       <xi:include href="map_section.xml" />
-    </Map>
-    <Map>
-      <xi:include href="map_stratum.xml" />
     </Map>
   </Maps>
 </geo3dml:Geo3DProject>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<geo3dml:Geo3DModel xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml" xmlns="http://www.cgs.gov.cn/geo3dml"
+<geo3dml:Geo3DModel xmlns:geo3dml="https://www.iheg.cgs.gov.cn/Standard/geo3dml"
+  xmlns="https://www.iheg.cgs.gov.cn/Standard/geo3dml"
   xmlns:gml="http://www.opengis.net/gml/3.2"
   xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0"
   xmlns:swe="http://www.opengis.net/swe/2.0"
@@ -7,7 +8,7 @@
   xmlns:gmd="http://www.isotc211.org/2005/gmd"
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.cgs.gov.cn/geo3dml file:///D:/GMML/Document/schema/GMML/1.0/Geo3DML.xsd"
+  xsi:schemaLocation="https://www.iheg.cgs.gov.cn/Standard/geo3dml file:///D:/Geo3DML/schemas/1.0.0/Geo3DML.xsd"
   ID="88d7cf1d-fe6c-4fb8-a4f7-19361c71990a">
   <Name>剖面_m1</Name>
   <Type>Section</Type>
