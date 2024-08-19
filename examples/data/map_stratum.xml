@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<geo3dml:Geo3DMap xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml" xmlns="http://www.cgs.gov.cn/geo3dml"
+<geo3dml:Geo3DMap xmlns:geo3dml="https://www.iheg.cgs.gov.cn/Standard/geo3dml" xmlns="https://www.iheg.cgs.gov.cn/Standard/geo3dml"
   xmlns:gml="http://www.opengis.net/gml/3.2"
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:ogc="http://www.opengis.net/ogc"
   xmlns:se="http://www.opengis.net/se"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.cgs.gov.cn/geo3dml"
+  xsi:schemaLocation="https://www.iheg.cgs.gov.cn/Standard/geo3dml https://www.iheg.cgs.gov.cn/Standard/Geo3DML/Schemas/Geo3DML.xsd"
   ID="efc39f1c-5e47-4b67-b123-254f9f0a6055">
   <Name>地层</Name>
   <Description>地层的说明信息：示例地层。</Description>

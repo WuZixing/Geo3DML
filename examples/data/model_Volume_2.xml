@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<geo3dml:Geo3DModel xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml" xmlns="http://www.cgs.gov.cn/geo3dml"
+<geo3dml:Geo3DModel xmlns:geo3dml="https://www.iheg.cgs.gov.cn/Standard/geo3dml" xmlns="https://www.iheg.cgs.gov.cn/Standard/geo3dml"
   xmlns:gml="http://www.opengis.net/gml/3.2"
   xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0"
   xmlns:swe="http://www.opengis.net/swe/2.0"
@@ -7,7 +7,7 @@
   xmlns:gmd="http://www.isotc211.org/2005/gmd"
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.cgs.gov.cn/geo3dml file:///C:/Users/wliang/Workspace/Geo3DML/xsd/Geo3DML.xsd"
+  xsi:schemaLocation="https://www.iheg.cgs.gov.cn/Standard/geo3dml https://www.iheg.cgs.gov.cn/Standard/Geo3DML/Schemas/Geo3DML.xsd"
   ID="c3607415-fa31-4b07-97fc-b22638050315">
   <Name>体数据示例模型-2</Name>
   <Type>3DModel</Type>

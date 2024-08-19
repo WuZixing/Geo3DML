@@ -8,7 +8,7 @@
   xmlns:gmd="http://www.isotc211.org/2005/gmd"
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="https://www.iheg.cgs.gov.cn/Standard/geo3dml file:///D:/Geo3DML/schemas/1.0.0/Geo3DML.xsd"
+  xsi:schemaLocation="https://www.iheg.cgs.gov.cn/Standard/geo3dml https://www.iheg.cgs.gov.cn/Standard/Geo3DML/Schemas/Geo3DML.xsd"
   ID="88d7cf1d-fe6c-4fb8-a4f7-19361c71990a">
   <Name>剖面_m1</Name>
   <Type>Section</Type>

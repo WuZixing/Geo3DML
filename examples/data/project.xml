@@ -3,7 +3,7 @@
   xmlns="https://www.iheg.cgs.gov.cn/Standard/geo3dml"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="https://www.iheg.cgs.gov.cn/Standard/geo3dml file:///D:/Geo3DML/schemas/1.0.0/Geo3DML.xsd">
+  xsi:schemaLocation="https://www.iheg.cgs.gov.cn/Standard/geo3dml https://www.iheg.cgs.gov.cn/Standard/Geo3DML/Schemas/Geo3DML.xsd">
   <Name>示例项目</Name>
   <Metadata>
     <Description>示例数据（Geo3DML v1.0）。</Description>

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns="http://www.w3.org/2001/XMLSchema"
-    xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml"
+    xmlns:geo3dml="https://www.iheg.cgs.gov.cn/Standard/geo3dml"
     xmlns:gml="http://www.opengis.net/gml/3.2"
-    xmlns:se="http://www.opengis.net/se" targetNamespace="http://www.cgs.gov.cn/geo3dml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+    xmlns:se="http://www.opengis.net/se"
+    targetNamespace="https://www.iheg.cgs.gov.cn/Standard/geo3dml"
+    elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
     <annotation>
         <documentation>
     参考OGC SLD sld:UserStyle的结构定义了关于geo3dml:Geo3DLayer的可视化参数。本方案没有直接引用SLD规范的定义，因为SLD是专门为WMS服务提供支撑的，需要与WMS规范的其它内容协同工作。而本方案的目的在于提供地质模型的中间交换格式，不刻意追求与WMS紧耦合关系。但是，本文档所定义的geo3dml:Geo3DStyle结构可以方便地转换为sld:UserStyle结构，从而为WMS等其它服务提供支持。此外，本文档还针对3D可视化的要求，在OGC SE规范的基础上定义了geo3dml:GeoPointSymbolizer、geo3dml:GeoLineSymbolizer和geo3dml:GeoSurfaceSymbolizer：主要是在SE规范相应对象的基础上加上了3D可视化的光照、材质与纹理参数。
