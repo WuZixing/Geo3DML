@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<geo3dml:Geo3DProject xmlns:geo3dml="https://www.iheg.cgs.gov.cn/Standard/geo3dml"
-  xmlns="https://www.iheg.cgs.gov.cn/Standard/geo3dml"
+<geo3dml:Geo3DProject xmlns:geo3dml="http://www.iheg.cgs.gov.cn/Standard/geo3dml"
+  xmlns="http://www.iheg.cgs.gov.cn/Standard/geo3dml"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="https://www.iheg.cgs.gov.cn/Standard/geo3dml https://www.iheg.cgs.gov.cn/Standard/Geo3DML/Schemas/Geo3DML.xsd">
+  xsi:schemaLocation="http://www.iheg.cgs.gov.cn/Standard/geo3dml Geo3DML.xsd">
   <Name>示例项目</Name>
   <Metadata>
     <Description>示例数据（Geo3DML v1.0）。</Description>
@@ -12,7 +12,7 @@
       <Code>项目编号</Code>
       <StartDate>2012-5-16</StartDate>
       <CompletedDate>2013-12-31</CompletedDate>
-      <Contractor>工作承包商名字</Contractor>
+      <Contractor>建模项目承担单位名字</Contractor>
     </ProjectInfo>
   </Metadata>
   <Models>
@@ -22,6 +22,12 @@
     <Model>
       <xi:include href="model_section.xml" />
     </Model>
+    <Model>
+      <xi:include href="model_Volume_1.xml" />
+    </Model>
+    <Model>
+      <xi:include href="model_Volume_2.xml" />
+    </Model>
   </Models>
   <Maps>
     <Map>
@@ -29,6 +35,9 @@
     </Map>
     <Map>
       <xi:include href="map_section.xml" />
+    </Map>
+    <Map>
+      <xi:include href="map_stratum.xml" />
     </Map>
   </Maps>
 </geo3dml:Geo3DProject>
