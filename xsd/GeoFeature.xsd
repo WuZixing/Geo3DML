@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns="http://www.w3.org/2001/XMLSchema"
-    xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml"
+    xmlns:geo3dml="https://www.iheg.cgs.gov.cn/Standard/geo3dml"
     xmlns:gml="http://www.opengis.net/gml/3.2"
     xmlns:swe="http://www.opengis.net/swe/2.0"
-    targetNamespace="http://www.cgs.gov.cn/geo3dml"
+    targetNamespace="https://www.iheg.cgs.gov.cn/Standard/geo3dml"
     elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
     <annotation>
         <documentation>此文档定义地质要素的XML文档结构。</documentation>
     </annotation>
-    <include schemaLocation="./GeoGeometry.xsd"/>
-    <include schemaLocation="./GeoProperty.xsd"/>
-    <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
-    <import namespace="http://www.opengis.net/swe/2.0" schemaLocation="http://schemas.opengis.net/sweCommon/2.0/swe.xsd"/>
+    <include schemaLocation="./GeoGeometry.xsd" />
+    <include schemaLocation="./GeoProperty.xsd" />
+    <import namespace="http://www.opengis.net/gml/3.2"
+        schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd" />
+    <import namespace="http://www.opengis.net/swe/2.0"
+        schemaLocation="http://schemas.opengis.net/sweCommon/2.0/swe.xsd" />
     <complexType name="FieldType">
         <annotation>
-            <documentation>
-                地质要素属性值元素节点类型。
-                此处记录的属性值的域定义应与地质要素所属的地质要素类中定义的属性域一致。
+            <documentation> 地质要素属性值元素节点类型。 此处记录的属性值的域定义应与地质要素所属的地质要素类中定义的属性域一致。
                 此处，一个具体的swe:AbstractDataComponent实例描述要素在一个属性字段上的取值。
                 通过Field元素的name属性设置所对应属性字段的名字；通过Field元素所包含的每个具体的swe:AbstractDataComponent对象的value元素记录要素在该字段上的取值。
-            </documentation>
+                </documentation>
         </annotation>
         <complexContent>
             <extension base="swe:AbstractDataComponentPropertyType">
@@ -45,7 +45,8 @@
                         </annotation>
                         <complexType>
                             <sequence>
-                                <element name="Field" type="geo3dml:FieldType" minOccurs="0" maxOccurs="unbounded" />
+                                <element name="Field" type="geo3dml:FieldType" minOccurs="0"
+                                    maxOccurs="unbounded" />
                             </sequence>
                         </complexType>
                     </element>
@@ -60,7 +61,9 @@
                                         <documentation>地质要素的几何属性数据。</documentation>
                                     </annotation>
                                 </element>
-                                <element name="ShapeProperty" type="geo3dml:GeoDiscreteCoveragePropertyType" minOccurs="0" maxOccurs="unbounded">
+                                <element name="ShapeProperty"
+                                    type="geo3dml:GeoDiscreteCoveragePropertyType" minOccurs="0"
+                                    maxOccurs="unbounded">
                                     <annotation>
                                         <documentation>与Shape元素中指定的几何对象相关的属性场数据。</documentation>
                                     </annotation>
@@ -75,60 +78,32 @@
     <element name="GeoFeature" type="geo3dml:GeoFeatureType" substitutionGroup="gml:AbstractFeature" />
     <complexType name="GeoFeaturePropertyType">
         <sequence>
-            <element ref="geo3dml:GeoFeature" minOccurs="0"/>
+            <element ref="geo3dml:GeoFeature" minOccurs="0" />
         </sequence>
-        <attributeGroup ref="gml:AssociationAttributeGroup"/>
-        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+        <attributeGroup ref="gml:AssociationAttributeGroup" />
+        <attributeGroup ref="gml:OwnershipAttributeGroup" />
     </complexType>
+
+    <!-- 通用地质要素关系组件定义-->
     <complexType name="GeoFeatureRelationType">
-        <annotation>
-            <documentation>
-            描述地质要素之间关系的结构。地质要素之间的关系如不整合、侵入等是和空间关系紧密关联的，而要素之间的时代关系（如地质要素之间关于各自形成年代的对比）则是非空间关系。描述地质要素之间的关系时所使用的术语除特别说明之外，应遵循《地质矿产术语分类代码》（GB/T9649-2009）标准。
-            </documentation>
-        </annotation>
         <complexContent>
             <extension base="gml:AbstractGMLType">
                 <sequence>
-                    <element name="Relationship" type="string" minOccurs="0">
-                        <annotation>
-                            <documentation>关于地质关系的描述或关系名称。</documentation>
-                        </annotation>
-                    </element>
+                    <element name="Relationship" type="string" minOccurs="0" />
                     <element name="Source">
-                        <annotation>
-                            <documentation>该关系所关联的源地质要素及其角色。</documentation>
-                        </annotation>
                         <complexType>
                             <sequence>
-                                <element name="Role" type="string" minOccurs="0">
-                                    <annotation>
-                                        <documentation>在该关系中，源地质要素所处的角色。</documentation>
-                                    </annotation>
-                                </element>
-                                <element name="Feature" type="geo3dml:GeoFeaturePropertyType">
-                                    <annotation>
-                                        <documentation>该关系所关联的源地质要素。</documentation>
-                                    </annotation>
-                                </element>
+                                <element name="Role" type="string" minOccurs="0" />
+                                <element name="Feature" type="geo3dml:GeoFeaturePropertyType" />
                             </sequence>
                         </complexType>
                     </element>
                     <element name="Targets">
-                        <annotation>
-                            <documentation>该关系所关联的目标地质要素及其角色。</documentation>
-                        </annotation>
                         <complexType>
                             <sequence>
-                                <element name="Role" type="string" minOccurs="0">
-                                    <annotation>
-                                        <documentation>在该关系中，目标地质要素所处的角色。</documentation>
-                                    </annotation>
-                                </element>
-                                <element name="Feature" type="geo3dml:GeoFeaturePropertyType" maxOccurs="unbounded">
-                                    <annotation>
-                                        <documentation>该关系所关联的目标地质要素。</documentation>
-                                    </annotation>
-                                </element>
+                                <element name="Role" type="string" minOccurs="0" />
+                                <element name="Feature" type="geo3dml:GeoFeaturePropertyType"
+                                    maxOccurs="unbounded" />
                             </sequence>
                         </complexType>
                     </element>
@@ -136,56 +111,60 @@
             </extension>
         </complexContent>
     </complexType>
-    <element name="GeoFeatureRelation" type="geo3dml:GeoFeatureRelationType" substitutionGroup="gml:AbstractGML" />
+    <element name="GeoFeatureRelation" type="geo3dml:GeoFeatureRelationType"
+        substitutionGroup="gml:AbstractGML" />
+
     <complexType name="GeoFeatureRelationPropertyType">
         <sequence>
-            <element ref="geo3dml:GeoFeatureRelation" minOccurs="0"/>
+            <element ref="geo3dml:GeoFeatureRelation" minOccurs="0" />
         </sequence>
-        <attributeGroup ref="gml:AssociationAttributeGroup"/>
-        <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+        <attributeGroup ref="gml:AssociationAttributeGroup" />
+        <attributeGroup ref="gml:OwnershipAttributeGroup" />
     </complexType>
-    <complexType name="GeologicHistoryType">
-        <annotation>
-            <documentation>
-            描述地质要素之间关于各自所属地质年代的对比关系。针对该关系，关系的描述或名称（即Relationship元素的值）限定于“早于”、“晚于”，或“同期于”，分别表示源地质要素的形成年代早于、晚于或同期于目标地质要素。
-            </documentation>
-        </annotation>
+
+    <!-- 专用地质要素关系组件定义 -->
+    <!-- 接触关系 -->
+    <complexType name="ContactRelationType">
         <complexContent>
             <extension base="geo3dml:GeoFeatureRelationType" />
         </complexContent>
     </complexType>
-    <element name="GeologicHistory" type="geo3dml:GeologicHistoryType" substitutionGroup="geo3dml:GeoFeatureRelation" />
-    <complexType name="DefiningStructureType">
-        <annotation>
-            <documentation>
-            描述地质要素组合起来构成某种地质构造的关系。如上覆地层与下覆地层组合起来形成不整合构造，其中源地质要素可以是上覆地层，目标地质要素是下覆地层，反之亦可。又如侵入体与围岩形成侵入关系，其源地质要素是侵入体，目标地质要素是被侵入的围岩。使用该关系描述地质要素之间的关系时，所使用的术语应遵循《地质矿产术语分类代码》（GB/T9649-2009）标准。
-            </documentation>
-        </annotation>
+    <element name="ContactRelation" type="geo3dml:ContactRelationType"
+        substitutionGroup="geo3dml:GeoFeatureRelation" />
+
+    <!-- 地质历史关系 -->
+    <complexType name="GeologicalHistoryType">
         <complexContent>
             <extension base="geo3dml:GeoFeatureRelationType" />
         </complexContent>
     </complexType>
-    <element name="DefiningStructure" type="geo3dml:DefiningStructureType" substitutionGroup="geo3dml:GeoFeatureRelation" />
+    <element name="GeologicalHistory" type="geo3dml:GeologicalHistoryType"
+        substitutionGroup="geo3dml:GeoFeatureRelation" />
+
+    <!-- 地质构造关系 -->
+    <complexType name="GeologicalStructureType">
+        <complexContent>
+            <extension base="geo3dml:GeoFeatureRelationType" />
+        </complexContent>
+    </complexType>
+    <element name="GeologicalStructure" type="geo3dml:GeologicalStructureType"
+        substitutionGroup="geo3dml:GeoFeatureRelation" />
+
+    <!-- 聚合关系 -->
     <complexType name="AggregationRelationType">
-        <annotation>
-            <documentation>
-            描述地质要素由一个或多个其它地质要素聚合构成的关系。如某个断层面由多个小断面聚合而成。该关系的源表示被组成的地质要素，目标要素则是组成的部分。该关系可用于描述地质要素之间的普通聚合关系，不一定具有明确的地质含义。
-            </documentation>
-        </annotation>
         <complexContent>
             <extension base="geo3dml:GeoFeatureRelationType" />
         </complexContent>
     </complexType>
-    <element name="AggregationRelation" type="geo3dml:AggregationRelationType" substitutionGroup="geo3dml:GeoFeatureRelation" />
+    <element name="AggregationRelation" type="geo3dml:AggregationRelationType"
+        substitutionGroup="geo3dml:GeoFeatureRelation" />
+
+    <!-- 边界包围关系 -->
     <complexType name="BoundaryRelationType">
-        <annotation>
-            <documentation>
-            描述地质要素由作为其边界的其它地质要素包围而成的关系。该关系的源是边界所围成的地质要素，目标地质要素则是边界。该关系也不一定具有明确的地质含义。
-            </documentation>
-        </annotation>
         <complexContent>
             <extension base="geo3dml:GeoFeatureRelationType" />
         </complexContent>
     </complexType>
-    <element name="BoundaryRelation" type="geo3dml:BoundaryRelationType" substitutionGroup="geo3dml:GeoFeatureRelation" />
+    <element name="BoundaryRelation" type="geo3dml:BoundaryRelationType"
+        substitutionGroup="geo3dml:GeoFeatureRelation" />
 </xs:schema>

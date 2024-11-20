@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns="http://www.w3.org/2001/XMLSchema"
-    xmlns:geo3dml="http://www.cgs.gov.cn/geo3dml"
+    xmlns:geo3dml="https://www.iheg.cgs.gov.cn/Standard/geo3dml"
     xmlns:gml="http://www.opengis.net/gml/3.2"
-    targetNamespace="http://www.cgs.gov.cn/geo3dml"
+    targetNamespace="https://www.iheg.cgs.gov.cn/Standard/geo3dml"
     elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
     <annotation>
         <documentation> Geo3DML对OGC
@@ -228,8 +228,7 @@
                                             </element>
                                             <element name="BottomTriangle">
                                                 <annotation>
-                                                    <documentation>
-                                                        底部三角形。指定构成该三角形的三个顶点的索引号。三个顶点的顺序应与顶部三角形的对应，即顶、底三角形的对应顶点构成三棱柱的棱。</documentation>
+                                                    <documentation>底部三角形。指定构成该三角形的三个顶点的索引号。三个顶点的顺序应与顶部三角形的对应，即顶、底三角形的对应顶点构成三棱柱的棱。</documentation>
                                                 </annotation>
                                                 <complexType>
                                                     <simpleContent>
@@ -242,8 +241,7 @@
                                             </element>
                                             <element name="NeighborList" minOccurs="0">
                                                 <annotation>
-                                                    <documentation>
-                                                        三棱柱的3个相邻三棱柱。按顶（或底）三角形顶点的顺序，依次指定顶点对面位置的邻接三棱柱。</documentation>
+                                                    <documentation>三棱柱的3个相邻三棱柱。按顶（或底）三角形顶点的顺序，依次指定顶点对面位置的邻接三棱柱。</documentation>
                                                 </annotation>
                                                 <complexType>
                                                     <simpleContent>
@@ -266,6 +264,87 @@
         </complexContent>
     </complexType>
     <element name="GeoTriangularPrismVolume" type="geo3dml:GeoTriangularPrismVolumeType"
+        substitutionGroup="geo3dml:GeoVolume" />
+
+        <complexType name="GeoPolyhedronVolumType">
+        <annotation>
+            <documentation>
+                定义多面体体元构成的体模型，每个体元的面数不一定相同。
+                可兼容四面体、不规则六面体、四棱柱、五棱柱、六棱柱、四棱锥、五棱锥、六棱锥等特殊体元构成的体。 通用数据结构。 
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="geo3dml:GeoVolumeType">
+                <sequence>
+                    <element name="Vertices" type="geo3dml:VerticesType" minOccurs="0" />
+                    <element name="Faces" minOccurs="0">
+                        <annotation>
+                            <documentation>面片表</documentation>
+                        </annotation>
+                        <complexType>
+                            <sequence>
+                                <element name="Face" minOccurs="0" maxOccurs="unbounded">
+                                    <annotation>
+                                        <documentation>多个顶点构成的面片。至少3个顶点。</documentation>
+                                    </annotation>
+                                    <complexType>
+                                        <sequence>
+                                            <element name="VertexList">
+                                                <complexType>
+                                                    <simpleContent>
+                                                        <extension base="gml:integerList">
+                                                            <attribute name="ItemCount"
+                                                                type="positiveInteger"
+                                                                use="required" />
+                                                        </extension>
+                                                    </simpleContent>
+                                                </complexType>
+                                            </element>
+                                        </sequence>
+                                        <attribute name="IndexNo" type="nonNegativeInteger"
+                                            use="required" />
+                                    </complexType>
+                                </element>
+                            </sequence>
+                        </complexType>
+                    </element>
+
+                    <element name="Polyhedrons" minOccurs="0">
+                        <annotation>
+                            <documentation>多面体体元表</documentation>
+                        </annotation>
+                        <complexType>
+                            <sequence>
+                                <element name="Polyhedron" maxOccurs="unbounded">
+                                    <annotation>
+                                        <documentation>多面体体元由多个面片包围封闭而成</documentation>
+                                    </annotation>
+                                    <complexType>
+                                        <sequence>
+                                            <element name="FaceList">
+                                                <complexType>
+                                                    <simpleContent>
+                                                        <extension base="gml:integerList">
+                                                            <attribute name="ItemCount"
+                                                                type="positiveInteger"
+                                                                use="required" />
+                                                        </extension>
+                                                    </simpleContent>
+                                                </complexType>
+                                            </element>
+                                        </sequence>
+                                        <attribute name="IndexNo" type="nonNegativeInteger"
+                                            use="required" />
+                                    </complexType>
+                                </element>
+                            </sequence>
+                        </complexType>
+                    </element>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <element name="GeoPolyhedronVolum" type="geo3dml:GeoPolyhedronVolumType"
         substitutionGroup="geo3dml:GeoVolume" />
 
     <complexType name="GeoTruncatedRegularGridType">
@@ -347,8 +426,8 @@
                                                 <complexType>
                                                     <simpleContent>
                                                         <extension base="gml:integerList">
-                                                            <attribute name="Length"
-                                                                type="nonNegativeInteger"
+                                                            <attribute name="ItemCount"
+                                                                type="positiveInteger"
                                                                 use="required" />
                                                         </extension>
                                                     </simpleContent>
@@ -379,8 +458,8 @@
                                                 <complexType>
                                                     <simpleContent>
                                                         <extension base="gml:integerList">
-                                                            <attribute name="Length"
-                                                                type="nonNegativeInteger"
+                                                            <attribute name="ItemCount"
+                                                                type="positiveInteger"
                                                                 use="required" />
                                                         </extension>
                                                     </simpleContent>
